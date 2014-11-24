@@ -1,0 +1,51 @@
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\EMS.exe.config
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\EMS.exe
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\EMS.pdb
+C:\Users\Christopher\Documents\EMS\EMS\obj\Debug\EMS.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Documents\EMS\EMS\obj\Debug\EMS.exe
+C:\Users\Christopher\Documents\EMS\EMS\obj\Debug\EMS.pdb
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\AllEmployees.dll
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\Presentation.dll
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\Supporting.dll
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\TheCompany.dll
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\AllEmployees.pdb
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\Presentation.pdb
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\Supporting.pdb
+C:\Users\Christopher\Documents\EMS\EMS\bin\Debug\TheCompany.pdb
+D:\Users\Jordan\Downloads\EMS\EMS\bin\Debug\EMS.exe.config
+D:\Users\Jordan\Downloads\EMS\EMS\obj\Debug\EMS.exe
+D:\Users\Jordan\Downloads\EMS\EMS\obj\Debug\EMS.pdb
+F:\code\EMS\EMS\bin\Debug\EMS.exe.config
+F:\code\EMS\EMS\obj\Debug\EMS.exe
+F:\code\EMS\EMS\obj\Debug\EMS.pdb
+F:\code\EMS\EMS\bin\Debug\EMS.XML
+F:\code\EMS\EMS\bin\Debug\EMS.exe
+F:\code\EMS\EMS\bin\Debug\EMS.pdb
+F:\code\EMS\EMS\bin\Debug\AllEmployees.dll
+F:\code\EMS\EMS\bin\Debug\Presentation.dll
+F:\code\EMS\EMS\bin\Debug\Supporting.dll
+F:\code\EMS\EMS\bin\Debug\TheCompany.dll
+F:\code\EMS\EMS\bin\Debug\AllEmployees.pdb
+F:\code\EMS\EMS\bin\Debug\Presentation.pdb
+F:\code\EMS\EMS\bin\Debug\Supporting.pdb
+F:\code\EMS\EMS\bin\Debug\TheCompany.pdb
+F:\code\EMS\EMS\obj\Debug\EMS.csprojResolveAssemblyReference.cache
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\EMS.exe.config
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\EMS.XML
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\obj\Debug\EMS.exe
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\obj\Debug\EMS.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\EMS.exe
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\EMS.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\AllEmployees.dll
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\Presentation.dll
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\Supporting.dll
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\TheCompany.dll
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\AllEmployees.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\Presentation.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\Supporting.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\bin\Debug\TheCompany.pdb
+C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\EMS\obj\Debug\EMS.csprojResolveAssemblyReference.cache
+C:\Users\Jordan Poirier\Source\Repos\SQ_KS\EMS_KS\EMS\bin\Debug\EMS.exe.config
+C:\Users\Jordan Poirier\Source\Repos\SQ_KS\EMS_KS\EMS\bin\Debug\EMS.XML
+C:\Users\Jordan Poirier\Source\Repos\SQ_KS\EMS_KS\EMS\obj\Debug\EMS.exe
+C:\Users\Jordan Poirier\Source\Repos\SQ_KS\EMS_KS\EMS\obj\Debug\EMS.pdb

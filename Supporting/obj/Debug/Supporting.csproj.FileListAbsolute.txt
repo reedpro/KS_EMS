@@ -1,0 +1,10 @@
+C:\Users\Christopher\Documents\EMS\Supporting\bin\Debug\Supporting.dll
+C:\Users\Christopher\Documents\EMS\Supporting\bin\Debug\Supporting.pdb
+C:\Users\Christopher\Documents\EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Documents\EMS\Supporting\obj\Debug\Supporting.dll
+C:\Users\Christopher\Documents\EMS\Supporting\obj\Debug\Supporting.pdb
+F:\code\EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
+F:\code\EMS\Supporting\obj\Debug\Supporting.dll
+F:\code\EMS\Supporting\bin\Debug\Supporting.dll
+F:\code\EMS\Supporting\bin\Debug\Supporting.pdb
+F:\code\EMS\Supporting\obj\Debug\Supporting.pdb
