@@ -10,7 +10,7 @@ namespace Supporting
     /// <summary>
     /// Logs events from other classes in this project
     /// </summary>
-    class Logging
+    public class Logging
     {
         /// <summary>
         /// Opens the log for the day

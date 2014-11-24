@@ -8,3 +8,8 @@ F:\code\EMS\Supporting\obj\Debug\Supporting.dll
 F:\code\EMS\Supporting\bin\Debug\Supporting.dll
 F:\code\EMS\Supporting\bin\Debug\Supporting.pdb
 F:\code\EMS\Supporting\obj\Debug\Supporting.pdb
+C:\Users\Christopher\Desktop\KS_EMS\Supporting\bin\Debug\Supporting.dll
+C:\Users\Christopher\Desktop\KS_EMS\Supporting\bin\Debug\Supporting.pdb
+C:\Users\Christopher\Desktop\KS_EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Desktop\KS_EMS\Supporting\obj\Debug\Supporting.dll
+C:\Users\Christopher\Desktop\KS_EMS\Supporting\obj\Debug\Supporting.pdb

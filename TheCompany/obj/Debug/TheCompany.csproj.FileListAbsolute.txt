@@ -13,3 +13,12 @@ F:\code\EMS\TheCompany\obj\Debug\TheCompany.pdb
 C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\TheCompany\obj\Debug\TheCompany.csprojResolveAssemblyReference.cache
 C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\TheCompany\obj\Debug\TheCompany.dll
 C:\Users\Jordan Poirier\Documents\Visual Studio 2013\Projects\code\EMS\TheCompany\obj\Debug\TheCompany.pdb
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\obj\Debug\TheCompany.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\obj\Debug\TheCompany.dll
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\obj\Debug\TheCompany.pdb
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\TheCompany.dll
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\TheCompany.pdb
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\AllEmployees.dll
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\Supporting.dll
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\AllEmployees.pdb
+C:\Users\Christopher\Desktop\KS_EMS\TheCompany\bin\Debug\Supporting.pdb

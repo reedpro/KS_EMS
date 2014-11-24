@@ -12,3 +12,10 @@ F:\code\EMS\AllEmployees\bin\Debug\Supporting.pdb
 F:\code\EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
 F:\code\EMS\AllEmployees\obj\Debug\AllEmployees.dll
 F:\code\EMS\AllEmployees\obj\Debug\AllEmployees.pdb
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\bin\Debug\AllEmployees.dll
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\bin\Debug\AllEmployees.pdb
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\bin\Debug\Supporting.dll
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\bin\Debug\Supporting.pdb
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\obj\Debug\AllEmployees.dll
+C:\Users\Christopher\Desktop\KS_EMS\AllEmployees\obj\Debug\AllEmployees.pdb
