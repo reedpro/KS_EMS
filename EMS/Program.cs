@@ -15,7 +15,8 @@ namespace EMS
     {
         static void Main(string[] args)
         {
-            Container test = new Container();
+            Console.WriteLine("Test Plan Due Soon!");
+
         }
     }
 }
