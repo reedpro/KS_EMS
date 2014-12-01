@@ -64,3 +64,7 @@ C:\Users\Christopher\Desktop\KS_EMS\EMS\bin\Debug\Presentation.pdb
 C:\Users\Christopher\Desktop\KS_EMS\EMS\bin\Debug\Supporting.pdb
 C:\Users\Christopher\Desktop\KS_EMS\EMS\bin\Debug\TheCompany.pdb
 C:\Users\Christopher\Desktop\KS_EMS\EMS\obj\Debug\EMS.csprojResolveAssemblyReference.cache
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.exe.config
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.XML
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.exe
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.pdb

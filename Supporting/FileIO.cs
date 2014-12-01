@@ -14,27 +14,38 @@ namespace Supporting
     public class FileIO
     {
         /// <summary>
+        /// Holds a database file for reading
+        /// </summary>
+        private StreamReader dBase_R;
+
+        /// <summary>
+        /// holds a database file for writing
+        /// </summary>
+        private StreamWriter dBase_W;
+
+
+        /// <summary>
         /// Opens a file for reading based on a path provided
         /// </summary>
         /// <param name="path">A string containing the path of the file to open</param>
-        /// <returns>StreamReader pointing to an opened file based on the path given</returns>
-        public StreamReader dBaseOpen_R(string path)
+        public void dBaseOpen_R(string path)
         {
             //open the file for reading, making sure it exists TODO
-            StreamReader dataFile = new StreamReader(File.OpenRead(path));
-            return dataFile;
+            StreamReader dataFile;
+            dataFile = new StreamReader(File.OpenRead(path));
+            dBase_R = dataFile;
         }
 
         /// <summary>
         /// Opens a file for writing based on a path provided
         /// </summary>
         /// <param name="path">A string containing the path of the file to open</param>
-        /// <returns>StreamWriter pointing to an opened file based on the path given</returns>
-        public StreamWriter dBaseOpen_W(string path)
+        public void dBaseOpen_W(string path)
         {
             //open file for writing, creating it if it doesnt exist TODO
-            StreamWriter dataFile = new StreamWriter(File.OpenWrite(path));
-            return dataFile;
+            StreamWriter dataFile;
+            dataFile = new StreamWriter(File.OpenWrite(path));
+            dBase_W = dataFile;
         }
 
         /// <summary>
