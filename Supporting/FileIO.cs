@@ -16,12 +16,12 @@ namespace Supporting
         /// <summary>
         /// Holds a database file for reading
         /// </summary>
-        private StreamReader dBase_R;
+        public StreamReader dBase_R;
 
         /// <summary>
         /// holds a database file for writing
         /// </summary>
-        private StreamWriter dBase_W;
+        public StreamWriter dBase_W;
 
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Supporting
         /// <param name="dBase">ArrayList of the database to write</param>
         /// <param name="file">file to write the database to</param>
         /// <returns>bool indicating success</returns>
-        public bool writeDbase(ArrayList dBase, StreamWriter file)
+        public bool writeDbase(List dBase, StreamWriter file)
         {
             //TODO write the arraylist to a file in a way where it can be read later :)
             return true;

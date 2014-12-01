@@ -1,0 +1,1 @@
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\UnitTest_ContractEmployee\obj\Debug\UnitTest_AllEmployees.csprojResolveAssemblyReference.cache

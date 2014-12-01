@@ -25,7 +25,7 @@ namespace TheCompany
         /// <summary>
         /// The container holding any number and any type of employee-type classes
         /// </summary>
-        private List<Employee> container;
+        public List<Employee> container;
 
         /// <summary>
         /// reference to database file connecting to database access layer

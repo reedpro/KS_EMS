@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Supporting;
+using TheCompany;
 
 namespace Presentation
 {
@@ -24,6 +26,10 @@ namespace Presentation
         ///<VAR choice="int">the choice made by the user 
         ///as a single number</VAR>
         public int choice;
+
+        string dBaseFile;
+        FileIO fileClass = new FileIO();
+        Container company = new Container();
 
 
         ///<summary>
@@ -88,15 +94,15 @@ namespace Presentation
 
             if (choice == 1 )
             {
-                ///TO DO:
-                ///Call to readfile()
+                fileClass.dBaseOpen_R(dBaseFile);
                 ///Display File
             }
 
                if (choice == 2 ) 
             {
-                ///TO DO:
+                
                 ///Call to WriteFile()
+                fileClass.writeDbase(company.container, fileClass.dBase_W);
             }
 
                if (choice == 9)

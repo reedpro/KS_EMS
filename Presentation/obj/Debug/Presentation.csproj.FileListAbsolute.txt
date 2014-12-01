@@ -31,3 +31,6 @@ C:\Users\Christopher\Desktop\KS_EMS\Presentation\bin\Debug\AllEmployees.pdb
 C:\Users\Christopher\Desktop\KS_EMS\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
 C:\Users\Christopher\Desktop\KS_EMS\Presentation\obj\Debug\Presentation.dll
 C:\Users\Christopher\Desktop\KS_EMS\Presentation\obj\Debug\Presentation.pdb
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\obj\Debug\Presentation.dll
+C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\obj\Debug\Presentation.pdb
