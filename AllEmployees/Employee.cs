@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Supporting;
 namespace AllEmployees
 {
     /// <summary>
@@ -23,7 +23,9 @@ namespace AllEmployees
         protected string lastName; /// Employee Last Name
         protected string socialInsuranceNumber; /// Employee Social Insurance Number
         protected DateTime dateOfBirth; /// Employee Date of Birth
+        protected String type;
 
+        private Validation val;
         /// <summary>
         /// The Employee() method is a Constructor for the Employee Class.
         /// This version of the constructor initializes all values to default (blank/0).
@@ -34,6 +36,8 @@ namespace AllEmployees
             lastName = "";
             socialInsuranceNumber = "";
             dateOfBirth = new DateTime();
+            type = "";
+            val = new Validation();
         }
 
         /// <summary>
@@ -47,6 +51,7 @@ namespace AllEmployees
         {
             firstName = first;
             lastName = last;
+            val = new Validation();
         }
 
         /// <summary>
@@ -57,12 +62,14 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to set initialize socialInsuranceNumber variable to</param>
         /// <param name="DOB">The string to initialize the dateOfBirth variable to</param>
-        public Employee(string first, string last, string SIN, DateTime DOB)
+        public Employee(string firstName, string lastName, string socialInsuranceNumber, DateTime dateOfBirth, String type)
         {
-            firstName = first;
-            lastName = last;
-            socialInsuranceNumber = SIN;
-            dateOfBirth = DOB;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.socialInsuranceNumber = socialInsuranceNumber;
+            this.dateOfBirth = dateOfBirth;
+            this.type = type;
+            val = new Validation();
         }
 
         /// <summary>
@@ -72,15 +79,13 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetFirstName(string fName)
         {
-            firstName = fName;
-            if (firstName == fName)
+            bool retV = false;
+            if(val.ValidateName(fName) == true)
             {
-                return true;
+                firstName = fName;
+                retV = true;
             }
-            else
-            {
-                return false;
-            }
+            return retV;
         }
 
         /// <summary>
@@ -90,15 +95,13 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetLastName(string lName)
         {
-            lastName = lName;
-            if (lastName == lName)
+            bool retV = false;
+            if (val.ValidateName(lName) == true)
             {
-                return true;
+                lastName = lName;
+                retV = true;
             }
-            else
-            {
-                return false;
-            }
+            return retV;
         }
 
         /// <summary>
@@ -108,15 +111,19 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetSIN(string SIN)
         {
-            socialInsuranceNumber = SIN;
-            if (socialInsuranceNumber == SIN)
+            bool retV = false;
+            if (val.ValidateSIN(SIN) == true)
             {
-                return true;
+                socialInsuranceNumber = SIN;
+                retV = true;
             }
-            else
-            {
-                return false;
-            }
+            return retV;
+        }
+
+        public bool SetType(string type)
+        {
+            this.type = type;
+            return true;
         }
 
         /// <summary>
@@ -126,15 +133,23 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDOB(DateTime dob)
         {
-            dateOfBirth = dob;
-            if (dateOfBirth == dob)
+            bool retV = false;
+            if (val.ValidateDate(dob.ToString()) == true)
             {
-                return true;
+                dateOfBirth = dob;
+                retV = true;
             }
-            else
-            {
-                return false;
-            }
+            return retV;
+        }
+
+
+        /// <summary>
+        /// Method is called upon to output (to the screen) all attribute values for the class.
+        /// </summary>
+        public virtual void Details()
+        {
+            Console.WriteLine("First Name: {0}", this.firstName);
+            Console.WriteLine("Last Name : {0}", this.lastName);
         }
     }
 }

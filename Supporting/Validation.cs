@@ -10,7 +10,7 @@ namespace Supporting
     /// <summary>
     /// Validation Class to validate all input
     /// </summary>
-    class Validation
+    public class Validation
     {
         /// <summary>
         /// Gets set each time the validation fails, detailing why it failed
@@ -22,7 +22,7 @@ namespace Supporting
         /// </summary>
         /// <param name="inName">String to be validated</param>
         /// <returns>Bool indicating success</returns>
-        public bool name(string inName)
+        public bool ValidateName(string inName)
         {
             bool returnVal = false;
             if(inName.Any(c => char.IsDigit(c)))
@@ -36,7 +36,7 @@ namespace Supporting
             return returnVal;
         }
 
-        public bool date(string inDate)
+        public bool ValidateDate(string inDate)
         {
             bool returnVal = false;
             DateTime newDate = default(DateTime);
@@ -51,7 +51,15 @@ namespace Supporting
             return returnVal;
         }
 
-        public bool rate(string inRate)
+        public bool ValidateSIN(String sin)
+        {
+            bool returnVal = false;
+
+
+            return returnVal;
+        }
+
+        public bool ValidateRate(string inRate)
         {
             bool returnVal = false;
             decimal newRate;
