@@ -19,10 +19,10 @@ namespace AllEmployees
     /// </summary>
     public class Employee
     {
-        private string firstName; /// Employee First Name
-        private string lastName; /// Employee Last Name
-        private string socialInsuranceNumber; /// Employee Social Insurance Number
-        private DateTime dateOfBirth; /// Employee Date of Birth
+        protected string firstName; /// Employee First Name
+        protected string lastName; /// Employee Last Name
+        protected string socialInsuranceNumber; /// Employee Social Insurance Number
+        protected DateTime dateOfBirth; /// Employee Date of Birth
 
         /// <summary>
         /// The Employee() method is a Constructor for the Employee Class.
@@ -135,14 +135,6 @@ namespace AllEmployees
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Method is called upon to output (to the screen) all attribute values for the class.
-        /// </summary>
-        public void Details()
-        {
-
         }
     }
 }

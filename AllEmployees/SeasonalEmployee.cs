@@ -93,5 +93,18 @@ namespace AllEmployees
                 return false;
             }
         }
+
+        /// <summary>
+        /// Method is called upon to output (to the screen) all attribute values for the class.
+        /// </summary>
+        public void Details()
+        {
+            Console.Write(firstName + "\n" +
+                lastName + "\n" +
+                socialInsuranceNumber + "\n" +
+                dateOfBirth + "\n" +
+                season + "\n" +
+                piecePay);
+        }
     }
 }
