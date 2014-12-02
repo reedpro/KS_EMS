@@ -23,7 +23,6 @@ namespace AllEmployees
         private string lastName; /// Employee Last Name
         private string socialInsuranceNumber; /// Employee Social Insurance Number
         private DateTime dateOfBirth; /// Employee Date of Birth
-        private string EmployeeType; ///type of employee
 
         /// <summary>
         /// The Employee() method is a Constructor for the Employee Class.
@@ -82,15 +81,6 @@ namespace AllEmployees
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// The setter for Employeetype
-        /// </summary>
-        /// <param name="type">The string to set EmployeeType to</param>
-        public void SetEmployeeType(string type)
-        {
-            EmployeeType = type;
         }
 
         /// <summary>
