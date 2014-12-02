@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Supporting
 {
@@ -31,6 +32,50 @@ namespace Supporting
             else
             {
                 returnVal = true;
+            }
+            return returnVal;
+        }
+
+        public bool date(string inDate)
+        {
+            bool returnVal = false;
+            DateTime newDate = default(DateTime);
+            if (DateTime.TryParseExact(inDate, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out newDate))
+            {
+                returnVal = true;
+            }
+            else
+            {
+                errorMsg = "The date must be entered in valid YYYY-MM-DD format";
+            }
+            return returnVal;
+        }
+
+        public bool rate(string inRate)
+        {
+            bool returnVal = false;
+            decimal newRate;
+            if(inRate.Any(c => char.IsSymbol(c) || char.IsLetter(c)))
+            {
+                errorMsg = "The rate must only contain a numeric value";
+            }
+            else
+            {
+                if (Decimal.TryParse(inRate, out newRate))
+                {
+                    if (newRate >= 0)
+                    {
+                        returnVal = true;
+                    }
+                    else
+                    {
+                        errorMsg = "The rate cannot be less than 0";
+                    }
+                }
+                else
+                {
+                    errorMsg = "The string provided is not decimal";
+                } 
             }
             return returnVal;
         }
