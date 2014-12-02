@@ -30,6 +30,7 @@ namespace AllEmployees
         /// </summary>
         public ParttimeEmployee()
         {
+            SetEmployeeType("PT");
             SetFirstName("");
             SetLastName("");
             SetSIN("");
