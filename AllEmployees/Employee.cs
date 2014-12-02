@@ -151,5 +151,17 @@ namespace AllEmployees
             Console.WriteLine("First Name: {0}", this.firstName);
             Console.WriteLine("Last Name : {0}", this.lastName);
         }
+
+        /// <summary>
+        /// Method ensures that all current attribute settings are in fact valid for this employee type
+        /// **logs the employee’s name (lastName, firstName) and socialInsuranceNumber values as well as whether the object is valid or not**
+        /// </summary>
+        /// <returns></returns>
+        public bool Validate()
+        {
+            bool isValid = false;
+
+            return isValid;
+        }
     }
 }
