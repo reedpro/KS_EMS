@@ -22,7 +22,7 @@ namespace AllEmployees
     {
         private DateTime dateOfHire;
         private DateTime dateOfTermination;
-        private double hourlyRate;
+        private decimal hourlyRate;
 
         /// <summary>
         /// The ParttimeEmployee() method is a Constructor for the ParttimeEmployee Class.
@@ -51,7 +51,7 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ParttimeEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime hireDate, DateTime terminationDate, double rate)
+            DateTime hireDate, DateTime terminationDate, decimal rate)
         {
             SetFirstName(first);
             SetFirstName(last);
@@ -103,7 +103,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(double rate)
+        public bool SetHourlyRate(decimal rate)
         {
             hourlyRate = rate;
             if (hourlyRate == rate)
