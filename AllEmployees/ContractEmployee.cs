@@ -30,7 +30,6 @@ namespace AllEmployees
         /// </summary>
         public ContractEmployee()
         {
-            SetEmployeeType("CT");
             SetFirstName("");
             SetLastName("");
             SetSIN("");

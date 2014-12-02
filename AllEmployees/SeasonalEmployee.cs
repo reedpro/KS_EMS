@@ -29,7 +29,6 @@ namespace AllEmployees
         /// </summary>
         public SeasonalEmployee()
         {
-            SetEmployeeType("SN");
             SetFirstName("");
             SetLastName("");
             SetSIN("");
