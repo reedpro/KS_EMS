@@ -66,7 +66,7 @@ namespace Supporting
         /// <param name="dBase">ArrayList of the database to write</param>
         /// <param name="file">file to write the database to</param>
         /// <returns>bool indicating success</returns>
-        public bool writeDbase(List dBase, StreamWriter file)
+        public bool writeDbase(List<string> dBase, StreamWriter file)
         {
             //TODO write the arraylist to a file in a way where it can be read later :)
             return true;

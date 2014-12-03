@@ -102,7 +102,7 @@ namespace Presentation
             {
                 
                 ///Call to WriteFile()
-                fileClass.writeDbase(company.container, fileClass.dBase_W);
+               // fileClass.writeDbase(company.container, fileClass.dBase_W);
             }
 
                if (choice == 9)
