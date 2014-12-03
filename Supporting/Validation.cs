@@ -51,21 +51,6 @@ namespace Supporting
             return returnVal;
         }
 
-        public bool date(Decimal inDate)
-        {
-            bool returnVal = false;
-            DateTime newDate = default(DateTime);
-            if (DateTime.TryParseExact(inDate, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out newDate))
-            {
-                returnVal = true;
-            }
-            else
-            {
-                errorMsg = "The date must be entered in valid YYYY-MM-DD format";
-            }
-            return returnVal;
-        }
-
         public bool rate(string inRate)
         {
             bool returnVal = false;
