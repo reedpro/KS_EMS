@@ -53,7 +53,7 @@ namespace Supporting
 
             using (StreamWriter w = File.AppendText(fileName))
             {
-                w.Write(timeStamp + " " + "[" + callingClass + "." + callingMethod + "]" + logEvent);
+                w.Write(timeStamp + " " + "[" + callingClass + "." + callingMethod + "] " + logEvent);
             }
             return true;
         }
