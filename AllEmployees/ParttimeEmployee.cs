@@ -103,7 +103,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(double rate)
+        public bool SetHourlyRate(string rate)
         {
             hourlyRate = rate;
             if (hourlyRate == rate)
