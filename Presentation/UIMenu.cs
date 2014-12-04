@@ -11,9 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using Supporting;
 using TheCompany;
 using AllEmployees;
+
 
 namespace Presentation
 {
@@ -30,11 +32,16 @@ namespace Presentation
         string dBaseFile;
         FileIO fileClass = new FileIO();
         Container company = new Container();
+        Validation val = new Validation();
+        Logging log = new Logging();
         ContractEmployee ct = new ContractEmployee();
         FulltimeEmployee ft = new FulltimeEmployee();
         SeasonalEmployee sn = new SeasonalEmployee();
         ParttimeEmployee pt = new ParttimeEmployee();
+        Employee baseEmp = new Employee();
         bool mainMenu = false;
+        char empType = 'x';
+        string input = "";
 
 
         ///<summary>
@@ -241,26 +248,129 @@ namespace Presentation
                             choice = Console.ReadKey();
                             if(choice.KeyChar == '1')
                             {
+                                empType = 'f';
+                            }
+                            else if (choice.KeyChar == '2')
+                            {
+                                empType = 'p';
+                            }
+                            else if(choice.KeyChar == '3')
+                            {
+                                empType = 'c';
+                            }
+                            else if(choice.KeyChar == '4')
+                            {
+                                empType = 's';
+                            }
+                            else if(choice.KeyChar == '9')
+                            {
+                                break;
+                            }
+
+                            Console.Clear();
+                            while (true)
+                            {
+                                if(empType != 'c')
+                                {
+                                    Console.WriteLine("Please Enter Last Name:");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("please Enter Company Name:");
+                                }
+                                input = Console.ReadLine();
+                                if (val.name(input))
+                                {
+                                    baseEmp.SetLastName(input);
+                                    break;
+                                }
+                                else
+                                {
+                                    //log.writeLog(input + ": " + val.errorMsg);
+                                    Console.WriteLine(input + ": " + val.errorMsg);
+                                }
+                            }
+                            if (empType != 'c')
+                            {
+                                while (true)
+                                {
+                                    Console.WriteLine("Please Enter First name:");
+                                    input = Console.ReadLine();
+                                    if (val.name(input))
+                                    {
+                                        baseEmp.SetFirstName(input);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        //log.writeLog(input + ": " + val.errorMsg);
+                                        Console.WriteLine(input + ": " + val.errorMsg);
+                                    }
+                                }
+                            }
+                            while(true)
+                            {
+                                if (empType != 'c')
+                                {
+                                    Console.WriteLine("Plese Enter SIN");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Plese Enter BIN");
+                                }
+                                input = Console.ReadLine();
+                                if(val.sin(input))
+                                {
+                                    baseEmp.SetSIN(input);
+                                    break;
+                                }
+                                else
+                                {
+                                    //log.writeLog(input + ": " + val.errorMsg);
+                                    Console.WriteLine(input + ": " + val.errorMsg);
+                                }
+                            }
+                            while(true)
+                            {
+                                if(empType != 'c')
+                                {
+                                    Console.WriteLine("Please Enter Date of Birth");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Please Enter Company Start Date");
+                                }
+
+                                input = Console.ReadLine();
+                                if (val.date(input))
+                                {
+                                    baseEmp.SetDOB(DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None));
+                                    break;
+                                }
+                                else
+                                {
+                                    //log.writeLog(input + ": " + val.errorMsg);
+                                    Console.WriteLine(input + ": " + val.errorMsg);
+                                }
+                            }
+                            if (empType == 'f')
+                            {
                                 menuFourFT();
                                 break;
                             }
-                            else if (choice.KeyChar == '2')
+                            else if (empType == 'p')
                             {
                                 menuFourPT();
                                 break;
                             }
-                            else if(choice.KeyChar == '3')
+                            else if (empType == 'c')
                             {
                                 menuFourCT();
                                 break;
                             }
-                            else if(choice.KeyChar == '4')
+                            else if (empType == 's')
                             {
                                 menuFourSN();
-                                break;
-                            }
-                            else if(choice.KeyChar == '9')
-                            {
                                 break;
                             }
                         }                        
@@ -273,7 +383,9 @@ namespace Presentation
                 }
             }
         }
-
+        /// <summary>
+        /// Menu 4 for fulltime employee
+        /// </summary>
         public void menuFourFT()
         {
             while(mainMenu != true)
@@ -284,7 +396,7 @@ namespace Presentation
                 Console.WriteLine("2. Set Employee Date Of Hire");
                 Console.WriteLine("3. Set Employee Date Of Termination");
                 Console.WriteLine("4. Set Employee Salary");
-                Console.WriteLine("9. Return to Main Menu");
+                Console.WriteLine("9. Save and Return to Main Menu");
 
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
@@ -331,7 +443,9 @@ namespace Presentation
                 }
             }
         }
-
+        /// <summary>
+        /// menu 4 for part time
+        /// </summary>
         public void menuFourPT()
         {
             
@@ -343,7 +457,7 @@ namespace Presentation
                 Console.WriteLine("2. Set Employee Date Of Hire");
                 Console.WriteLine("3. Set Employee Date Of Termination");
                 Console.WriteLine("4. Set Employee Salary");
-                Console.WriteLine("9. Return to Main Menu");
+                Console.WriteLine("9. Save and Return to Main Menu");
 
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
@@ -391,7 +505,9 @@ namespace Presentation
                 }
             }
         }
-
+        /// <summary>
+        /// menu 4 for contract
+        /// </summary>
         public void menuFourCT()
         {
 
@@ -403,7 +519,7 @@ namespace Presentation
                 Console.WriteLine("2. Set Employee Contract Start Date");
                 Console.WriteLine("3. Set Employee Contract Stop Date");
                 Console.WriteLine("4. Set Employee Fixed Contract Amount");
-                Console.WriteLine("9. Return to Main Menu");
+                Console.WriteLine("9. Save and Return to Main Menu");
 
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
@@ -451,7 +567,9 @@ namespace Presentation
                 }
             }
         }
-
+        /// <summary>
+        /// menu 4 for seasonal
+        /// </summary>
         public void menuFourSN()
         {
             while (mainMenu != true)
@@ -461,7 +579,7 @@ namespace Presentation
                 Console.WriteLine("1. Specify Base Employee");
                 Console.WriteLine("2. Set Season of Work Period");
                 Console.WriteLine("3. Set Piece Pay Salary");
-                Console.WriteLine("9. Return to Main Menu");
+                Console.WriteLine("9. Save and Return to Main Menu");
 
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
