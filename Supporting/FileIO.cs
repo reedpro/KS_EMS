@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Reflection;
 
 
 namespace Supporting
@@ -14,63 +15,50 @@ namespace Supporting
     /// </summary>
     public class FileIO
     {
+        string dbasePath = Directory.GetCurrentDirectory();
+
         /// <summary>
         /// Holds a database file for reading
         /// </summary>
-        public StreamReader dBase_R;
+        private StreamReader dBase_R;
 
         /// <summary>
         /// holds a database file for writing
         /// </summary>
-        public StreamWriter dBase_W;
-
+        private StreamWriter dBase_W;
 
         /// <summary>
         /// Opens a file for reading based on a path provided
         /// </summary>
         /// <param name="path">A string containing the path of the file to open</param>
-        public void dBaseOpen_R(string path)
+        public void dBaseOpen_R()
         {
-            //open the file for reading, making sure it exists TODO
-            StreamReader dataFile;
-            dataFile = new StreamReader(File.OpenRead(path));
-            dBase_R = dataFile;
+            if (File.Exists(dbasePath))
+            {
+                //open the file for reading, making sure it exists
+                dBase_R = new StreamReader(File.OpenRead(dbasePath));
+                // extract dbase info                
+            }
+            else
+            {
+                //file doesn't exist
+            }
         }
 
         /// <summary>
         /// Opens a file for writing based on a path provided
         /// </summary>
         /// <param name="path">A string containing the path of the file to open</param>
-        public void dBaseOpen_W(string path)
+        public void dBaseOpen_W(string[] employeeData)
         {
+            // create the DBase folder if it doesn't already exist
+            if (!Directory.Exists(Path.Combine(dbasePath, "DBase")))
+            {
+                Directory.CreateDirectory(Path.Combine(dbasePath, "DBase"));
+            }
             //open file for writing, creating it if it doesnt exist TODO
-            StreamWriter dataFile;
-            dataFile = new StreamWriter(File.OpenWrite(path));
-            dBase_W = dataFile;
-        }
-
-        /// <summary>
-        /// Read the database into an arraylist of strings
-        /// </summary>
-        /// <param name="file">file to read from</param>
-        /// <returns>returns arrayList of entries to the database class</returns>
-        public ArrayList readDBase(StreamReader file)
-        {
-            //TODO - incorporate with dbase class, and make an arraylist of the employee object
-            ArrayList dBase = new ArrayList();
-            return dBase;
-        }
-
-        /// <summary>
-        /// Writes the given database to a file
-        /// </summary>
-        /// <param name="dBase">ArrayList of the database to write</param>
-        /// <param name="file">file to write the database to</param>
-        /// <returns>bool indicating success</returns>
-        public bool writeDbase(List<Object> dBase, StreamWriter file)
-        {
-            //TODO write the arraylist to a file in a way where it can be read later :)
-            return true;
+            dBase_W = new StreamWriter(File.OpenWrite(Path.Combine(dbasePath, "Dbase", "DB.csv")));
+            // write to dbase file
         }
     }
 }
