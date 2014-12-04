@@ -63,9 +63,13 @@ namespace Supporting
             {
                 if (Decimal.TryParse(inRate, out newRate))
                 {
-                    if (newRate >= 0)
+                    if (newRate > 0)
                     {
                         returnVal = true;
+                    }
+                    else if (newRate == 0)
+                    {
+                        errorMsg = "The rate cannot be 0";
                     }
                     else
                     {
