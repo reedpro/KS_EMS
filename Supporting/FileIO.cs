@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
 
+
 namespace Supporting
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Supporting
         /// <param name="dBase">ArrayList of the database to write</param>
         /// <param name="file">file to write the database to</param>
         /// <returns>bool indicating success</returns>
-        public bool writeDbase(List<string> dBase, StreamWriter file)
+        public bool writeDbase(List<Object> dBase, StreamWriter file)
         {
             //TODO write the arraylist to a file in a way where it can be read later :)
             return true;

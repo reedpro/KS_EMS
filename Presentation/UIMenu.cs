@@ -94,15 +94,15 @@ namespace Presentation
 
             if (choice == 1 )
             {
-                fileClass.dBaseOpen_R(dBaseFile);
+                company.LoadContainer(dBaseFile);
                 ///Display File
             }
 
                if (choice == 2 ) 
             {
                 
-                ///Call to WriteFile()
-               // fileClass.writeDbase(company.container, fileClass.dBase_W);
+               ///Call to WriteFile()
+               company.SaveContainer(dBaseFile);
             }
 
                if (choice == 9)
