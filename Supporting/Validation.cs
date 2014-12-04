@@ -106,7 +106,7 @@ namespace Supporting
             int j = 0;
             for (i = 0; i < (inSin.Length - 1); i++)
             {
-                if (char.IsDigit(inSin[i]) && inSin[i] != ' ')
+                if (char.IsDigit(inSin[i]) && j < 8)
                 {
                     sin[j++] = (int)Char.GetNumericValue(inSin[i]);
                 }
