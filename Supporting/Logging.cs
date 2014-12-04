@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Supporting
 {
@@ -34,7 +36,6 @@ namespace Supporting
             return true;
         }
 
-
         /// <summary>
         /// Writes an entry to the log
         /// </summary>
@@ -42,15 +43,17 @@ namespace Supporting
         /// <returns>Bool indicating success or failure</returns>
         public bool writeLog(string logEvent)
         {
-            // store the current date as "yyyy-mm-dd"
-            string currentDate = DateTime.Now.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
-            
-            // create .log filename with current date (formatted "ems.YYYY-MM-DD.log")
-            string fileName = "ems." + currentDate + ".log";
+            DateTime time = DateTime.Now;
+            StackFrame frame = new StackFrame(1); // note the stack layout
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.GetCultureInfo("en-US")); // formatted current time
+            string fileName = "ems." + currentDate + ".log"; // formatted filename to open (create)
+            string timeStamp = time.ToString("yyy-MM-dd hh:mm:ss"); // formatted timestamp for in the log file
+            string callingMethod = frame.GetMethod().Name; // name of calling method
+            string callingClass = frame.GetMethod().DeclaringType.ToString(); // name of calling class
 
             using (StreamWriter w = File.AppendText(fileName))
             {
-                // log the event in the right format
+                w.Write(timeStamp + " " + "[" + callingClass + "." + callingMethod + "]" + logEvent);
             }
             return true;
         }

@@ -16,6 +16,8 @@ namespace EMS
         static void Main(string[] args)
         {
             Console.WriteLine("Test Plan Due Soon!"); // darn! get to work team!
+            Logging log = new Logging();
+            log.writeLog("test!");
         }
     }
 }
