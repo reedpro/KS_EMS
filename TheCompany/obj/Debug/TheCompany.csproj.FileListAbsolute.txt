@@ -31,3 +31,12 @@ C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\TheCompany\bin\Debug\Supporting.
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\TheCompany\obj\Debug\TheCompany.csprojResolveAssemblyReference.cache
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\TheCompany\obj\Debug\TheCompany.dll
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\TheCompany\obj\Debug\TheCompany.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\TheCompany.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\TheCompany.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\AllEmployees.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\Supporting.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\AllEmployees.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\bin\Debug\Supporting.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\obj\Debug\TheCompany.csprojResolveAssemblyReference.cache
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\obj\Debug\TheCompany.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\TheCompany\obj\Debug\TheCompany.pdb

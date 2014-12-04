@@ -42,3 +42,14 @@ C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\bin\Debug\TheCompan
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\bin\Debug\AllEmployees.pdb
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\bin\Debug\Supporting.pdb
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Presentation\bin\Debug\TheCompany.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\Presentation.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\Presentation.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\AllEmployees.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\Supporting.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\TheCompany.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\AllEmployees.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\Supporting.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\bin\Debug\TheCompany.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\obj\Debug\Presentation.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Presentation\obj\Debug\Presentation.pdb

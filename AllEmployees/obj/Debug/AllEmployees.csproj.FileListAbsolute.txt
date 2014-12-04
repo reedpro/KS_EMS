@@ -26,3 +26,10 @@ C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\AllEmployees\bin\Debug\Supportin
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.dll
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\bin\Debug\AllEmployees.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\bin\Debug\AllEmployees.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\bin\Debug\Supporting.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\bin\Debug\Supporting.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.pdb

@@ -18,3 +18,8 @@ C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Supporting\bin\Debug\Supporting.
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.dll
 C:\Users\Jordan Poirier\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
+C:\Users\Jay\Desktop\EMS\KS_EMS\Supporting\obj\Debug\Supporting.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Supporting\obj\Debug\Supporting.pdb
+C:\Users\Jay\Desktop\EMS\KS_EMS\Supporting\bin\Debug\Supporting.dll
+C:\Users\Jay\Desktop\EMS\KS_EMS\Supporting\bin\Debug\Supporting.pdb

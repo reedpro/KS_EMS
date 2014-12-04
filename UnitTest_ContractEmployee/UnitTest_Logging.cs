@@ -31,7 +31,7 @@ namespace UnitTest_Supporting
         /// <para><b>If Failed</b> - Failed to open log file</para>
         /// 
         [TestMethod]
-        public void openLog_NormalTest1
+        public void openLog_NormalTest1()
         {
 
         }
@@ -47,7 +47,7 @@ namespace UnitTest_Supporting
         /// <para><b>If Failed</b> - Failed to close log file</para>
         /// 
         [TestMethod]
-        public void closeLog_NormalTest1
+        public void closeLog_NormalTest1()
         {
 
         }
@@ -63,7 +63,7 @@ namespace UnitTest_Supporting
         /// <para><b>If Failed</b> - Did not fail while log is not opened</para>
         /// 
         [TestMethod]
-        public void writeLog_ExceptionTest1
+        public void writeLog_ExceptionTest1()
         {
 
         }
@@ -79,7 +79,7 @@ namespace UnitTest_Supporting
         /// <para><b>If Failed</b> - Closed file that isnt open</para>
         /// 
         [TestMethod]
-        public void closeLog_ExceptionTest1
+        public void closeLog_ExceptionTest1()
         {
 
         }
