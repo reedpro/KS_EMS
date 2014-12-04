@@ -20,9 +20,9 @@ namespace AllEmployees
     /// </summary>
     public class FulltimeEmployee : Employee
     {
-        private DateTime dateOfHire;
-        private DateTime dateOfTermination;
-        private string salary;
+        public DateTime dateOfHire { get; private set; }
+        public DateTime dateOfTermination { get; private set; }
+        public string salary { get; private set; }
 
         /// <summary>
         /// The FulltimeEmployee() method is a Constructor for the FulltimeEmployee Class.
