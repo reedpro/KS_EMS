@@ -20,9 +20,9 @@ namespace AllEmployees
     /// </summary>
     public class ParttimeEmployee : Employee
     {
-        private DateTime dateOfHire;
-        private DateTime dateOfTermination;
-        private double hourlyRate;
+        public DateTime? dateOfHire { get; private set; }
+        public DateTime? dateOfTermination { get; private set; }
+        public string hourlyRate { get; private set; }
 
         /// <summary>
         /// The ParttimeEmployee() method is a Constructor for the ParttimeEmployee Class.
@@ -34,9 +34,9 @@ namespace AllEmployees
             SetLastName("");
             SetSIN("");
             SetDOB(new DateTime());
-            dateOfHire = new DateTime();
-            dateOfTermination = new DateTime();
-            hourlyRate = 0.0;
+            dateOfHire = null;
+            dateOfTermination = null;
+            hourlyRate = "0";
         }
 
         /// <summary>
