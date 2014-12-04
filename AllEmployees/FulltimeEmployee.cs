@@ -20,8 +20,8 @@ namespace AllEmployees
     /// </summary>
     public class FulltimeEmployee : Employee
     {
-        public DateTime dateOfHire { get; private set; }
-        public DateTime dateOfTermination { get; private set; }
+        public DateTime? dateOfHire { get; private set; }
+        public DateTime? dateOfTermination { get; private set; }
         public string salary { get; private set; }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace AllEmployees
             SetLastName("");
             SetSIN("");
             SetDOB(new DateTime());
-            dateOfHire = new DateTime();
-            dateOfTermination = new DateTime();
-            salary = "";
+            dateOfHire = null;
+            dateOfTermination = null;
+            salary = "0";
         }
 
         /// <summary>
