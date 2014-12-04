@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Supporting;
 using TheCompany;
+using AllEmployees;
 
 namespace Presentation
 {
@@ -25,11 +26,15 @@ namespace Presentation
     {
         ///<VAR choice="int">the choice made by the user 
         ///as a single number</VAR>
-        public int choice;
-
+        ConsoleKeyInfo choice = new ConsoleKeyInfo();
         string dBaseFile;
         FileIO fileClass = new FileIO();
         Container company = new Container();
+        ContractEmployee ct = new ContractEmployee();
+        FulltimeEmployee ft = new FulltimeEmployee();
+        SeasonalEmployee sn = new SeasonalEmployee();
+        ParttimeEmployee pt = new ParttimeEmployee();
+        bool mainMenu = false;
 
 
         ///<summary>
@@ -42,33 +47,38 @@ namespace Presentation
         ///</summary>
         public void MenuOne()
         {
-            Console.WriteLine("Menu 1: Main Menu");
-            Console.WriteLine("1. Manage EMS DBase Files");
-            Console.WriteLine("2. Manage Employees");
-            Console.WriteLine("3.Quit");
-
-            choice = int.Parse(Console.ReadLine()); 
             ///To DO: 
             ///Call to Validate Number() is in range
-            
-            if (choice == 1)
+            while (true)
             {
-                MenuTwo();
-            }
+                mainMenu = false;
+                Console.Clear();
+                Console.WriteLine("Menu 1: Main Menu");
+                Console.WriteLine("1. Manage EMS DBase Files");
+                Console.WriteLine("2. Manage Employees");
+                Console.WriteLine("3.Quit");
 
-            if (choice == 2)
-            {
-                MenuThree();
-            }
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
+                {
+                    MenuTwo();
+                }
 
-            if (choice == 3)
-            {
-                ///TO DO:
-                ///Save and exit Program
+                if (choice.KeyChar == '2')
+                {
+                    MenuThree();
+                }
+
+                if (choice.KeyChar == '3')
+                {
+                    ///TO DO:
+                    ///Save and exit Program
+                    break;
+                }
             }
 
         }
-    
+
 
 
         ///<summary>
@@ -82,34 +92,32 @@ namespace Presentation
         ///</summary>
         public void MenuTwo()
         {
-            Console.WriteLine("Menu 2: File Managment Menu");
-            Console.WriteLine("1. Load EMS DBase From File");
-            Console.WriteLine("2. Save Employee set to EMS Dbase");
-            Console.WriteLine("9. Return To Main Menu ");
-
-            choice = int.Parse(Console.ReadLine());
-            ///To DO: 
-            ///Call to Validate Number() is in range
-            
-
-            if (choice == 1 )
+            while (true)
             {
-                company.LoadContainer(dBaseFile);
-                ///Display File
-            }
+                Console.Clear();
+                Console.WriteLine("Menu 2: File Managment Menu");
+                Console.WriteLine("1. Load EMS DBase From File");
+                Console.WriteLine("2. Save Employee set to EMS Dbase");
+                Console.WriteLine("9. Return To Main Menu ");
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
+                {
+                    company.LoadContainer(dBaseFile);
+                    ///Display File
+                }
 
-               if (choice == 2 ) 
-            {
-                
-               ///Call to WriteFile()
-               company.SaveContainer(dBaseFile);
-            }
+                if (choice.KeyChar == '2')
+                {
 
-               if (choice == 9)
-            {
-                MenuOne();
-            }
+                    ///Call to WriteFile()
+                    company.SaveContainer(dBaseFile);
+                }
 
+                if (choice.KeyChar == '9')
+                {
+                    break;
+                }
+            }
 
         }
 
@@ -124,69 +132,69 @@ namespace Presentation
         ///</summary>
         public void MenuThree()
         {
-            Console.WriteLine("Menu 3: Employee Managment Menu");
-            Console.WriteLine("1. Display Employee Set");
-            Console.WriteLine("2. Create a NEW Employee");
-            Console.WriteLine("3. Modify an EXISTING Employee ");
-            Console.WriteLine("4. Remove an EXISTING Employee");
-            Console.WriteLine("9. Return to Main Menu");
-
             ///<VAR manType = "String">The users specified type of manipulation
             ///either to create or Remove an Employee</Var>
             String manType = "";
-
-            choice = int.Parse(Console.ReadLine());
-
-            if (choice == 1)
+            while (true)
             {
-                ///TO DO:
-                ///Call Employee Set()
-                ///Traverse Employees
-                ///CAll Details()
-            }
+                Console.Clear();
+                Console.WriteLine("Menu 3: Employee Managment Menu");
+                Console.WriteLine("1. Display Employee Set");
+                Console.WriteLine("2. Create a NEW Employee");
+                Console.WriteLine("3. Modify an EXISTING Employee ");
+                Console.WriteLine("4. Remove an EXISTING Employee");
+                Console.WriteLine("9. Return to Main Menu");
 
-
-            if (choice == 2)
-            {
-                manType = "Create";
-                MenuFour(manType);
-            }
-
-            if (choice == 3)
-            {
-                manType = "Remove";
-                MenuFour(manType);
-            }
-
-            if (choice == 4)
-            {
-                choice = 0;
-                Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
-                Console.WriteLine("Enter 1 for YES.");
-                Console.WriteLine("Enter 2 for NO.");
-               
-                choice = int.Parse(Console.ReadLine());
-
-                if (choice==1)
+                choice = Console.ReadKey();
+                if (choice.KeyChar == 1)
                 {
-                    ///TO DO Call RemoveEmployee()
-                    Console.WriteLine("Employee Removed Successfully.");
-                    MenuThree();
+                    ///TO DO:
+                    ///Call Employee Set()
+                    ///Traverse Employees
+                    ///CAll Details()
                 }
-                if (choice == 2)
+
+
+                if (choice.KeyChar == '2')
                 {
-                    Console.WriteLine("Employee Was NOT Removed");
-                    MenuThree();
+                    manType = "Create";
+                    MenuFour(manType);
                 }
-                
-       
-            }
 
-            if (choice == 9)
-            {
-                MenuOne();
-            }
+                if (choice.KeyChar == '3')
+                {
+                    manType = "Remove";
+                    MenuFour(manType);
+                }
 
+                if (choice.KeyChar == '4')
+                {
+
+                    Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
+                    Console.WriteLine("Enter 1 for YES.");
+                    Console.WriteLine("Enter 2 for NO.");
+
+
+                    if (choice.KeyChar == '1')
+                    {
+                        ///TO DO Call RemoveEmployee()
+                        Console.WriteLine("Employee Removed Successfully.");
+                        MenuThree();
+                    }
+                    if (choice.KeyChar == '2')
+                    {
+                        Console.WriteLine("Employee Was NOT Removed");
+                        MenuThree();
+                    }
+
+
+                }
+
+                if (choice.KeyChar == '9')
+                {
+                    break;
+                }
+            }
         }
 
         ///<summary>
@@ -201,83 +209,303 @@ namespace Presentation
         ///</summary>
         ///<param name="ManType">This paramater is either Create Or Delete Specifying if the user 
         ///wishes to create or delte an Employee</param>
-
         public void MenuFour(String ManType)
         {
-            if (ManType == "Remove")
+            while (mainMenu != true)
             {
-                ///TO DO: Call REMOVE();
-            }
+                if (ManType == "Remove")
+                {
+                    ///TO DO: Call REMOVE();
+                }
 
-                ///Menu 4
-            else if (ManType == "Create")
+                    ///Menu 4
+                else if (ManType == "Create")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Menu 4: Employee Details Menu");
+                    Console.WriteLine("1. Specify Base Employee");
+                    Console.WriteLine("9. Return to Main Menu");
+
+                    choice = Console.ReadKey();
+                    if (choice.KeyChar == '1')
+                    {
+                        while (true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Please Enter Employee Type ");
+                            Console.WriteLine("1. Full Time");
+                            Console.WriteLine("2. Part Tme");
+                            Console.WriteLine("3. Contract");
+                            Console.WriteLine("4. Seasonal");
+                            Console.WriteLine("9. Quit");
+                            choice = Console.ReadKey();
+                            if(choice.KeyChar == '1')
+                            {
+                                menuFourFT();
+                                break;
+                            }
+                            else if (choice.KeyChar == '2')
+                            {
+                                menuFourPT();
+                                break;
+                            }
+                            else if(choice.KeyChar == '3')
+                            {
+                                menuFourCT();
+                                break;
+                            }
+                            else if(choice.KeyChar == '4')
+                            {
+                                menuFourSN();
+                                break;
+                            }
+                            else if(choice.KeyChar == '9')
+                            {
+                                break;
+                            }
+                        }                        
+                    }
+
+                    if (choice.KeyChar == '9')
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void menuFourFT()
+        {
+            while(mainMenu != true)
             {
+                Console.Clear();
                 Console.WriteLine("Menu 4: Employee Details Menu");
                 Console.WriteLine("1. Specify Base Employee");
-                Console.WriteLine("2. Specify Full Time Employee");
-                Console.WriteLine("3. Specify Part Time Employee ");
-                Console.WriteLine("4. Specify Contract Employee");
-                Console.WriteLine("5. Specify Seasonal Employee");
+                Console.WriteLine("2. Set Employee Date Of Hire");
+                Console.WriteLine("3. Set Employee Date Of Termination");
+                Console.WriteLine("4. Set Employee Salary");
                 Console.WriteLine("9. Return to Main Menu");
 
-                choice = int.Parse(Console.ReadLine());
-
-                if (choice == 1)
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
                 {
-                    Console.WriteLine("Please Enter Employee Type");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Last Name");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee First Name");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee SIN");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Date Of Birth");
-
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Please Enter Employee Type ");
+                        Console.WriteLine("1. Full Time");
+                        Console.WriteLine("2. Part Tme");
+                        Console.WriteLine("3. Contract");
+                        Console.WriteLine("4. Seasonal");
+                        Console.WriteLine("9. Quit");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == '1')
+                        {
+                            menuFourFT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '2')
+                        {
+                            menuFourPT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '3')
+                        {
+                            menuFourCT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '4')
+                        {
+                            menuFourSN();
+                            break;
+                        }
+                        else if (choice.KeyChar == '9')
+                        {
+                            break;
+                        }
+                    }
                 }
-
-                if (choice == 2)
+                else if(choice.KeyChar == '9')
                 {
-                    Console.WriteLine("Please Enter Employee Date Of Hire");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Date Of Termination");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Salary");
-                    //Console.Readline();
+                    break;
                 }
+            }
+        }
 
-                if (choice == 3)
+        public void menuFourPT()
+        {
+            
+            while (mainMenu != true)
+            {
+                Console.Clear();
+                Console.WriteLine("Menu 4: Employee Details Menu");
+                Console.WriteLine("1. Specify Base Employee");
+                Console.WriteLine("2. Set Employee Date Of Hire");
+                Console.WriteLine("3. Set Employee Date Of Termination");
+                Console.WriteLine("4. Set Employee Salary");
+                Console.WriteLine("9. Return to Main Menu");
+
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
                 {
-                    Console.WriteLine("Please Enter Employee Date Of Hire");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Date Of Termination");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Hourly Rate");
-                    //Console.Readline();
-
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Please Enter Employee Type ");
+                        Console.WriteLine("1. Full Time");
+                        Console.WriteLine("2. Part Tme");
+                        Console.WriteLine("3. Contract");
+                        Console.WriteLine("4. Seasonal");
+                        Console.WriteLine("9. Quit");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == '1')
+                        {
+                            menuFourFT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '2')
+                        {
+                            menuFourPT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '3')
+                        {
+                            menuFourCT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '4')
+                        {
+                            menuFourSN();
+                            break;
+                        }
+                        else if (choice.KeyChar == '9')
+                        {
+                            break;
+                        }
+                    }
                 }
-
-                if (choice == 4)
+                else if(choice.KeyChar == '9')
                 {
-                    Console.WriteLine("Please Enter Employee Contract Start Date");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Contract Stop Date");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Employee Fixed Contract Amount");
-                    //Console.Readline();
+                    mainMenu = true;
+                    break;
                 }
+            }
+        }
 
-                if (choice == 5)
+        public void menuFourCT()
+        {
+
+            while (mainMenu != true)
+            {
+                Console.Clear();
+                Console.WriteLine("Menu 4: Employee Details Menu");
+                Console.WriteLine("1. Specify Base Employee");
+                Console.WriteLine("2. Set Employee Contract Start Date");
+                Console.WriteLine("3. Set Employee Contract Stop Date");
+                Console.WriteLine("4. Set Employee Fixed Contract Amount");
+                Console.WriteLine("9. Return to Main Menu");
+
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
                 {
-                    Console.WriteLine("Please Enter Season of Work Period");
-                    //Console.Readline();
-                    Console.WriteLine("Please Enter Piece Pay Salary");
-                    //Console.Readline();
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Please Enter Employee Type ");
+                        Console.WriteLine("1. Full Time");
+                        Console.WriteLine("2. Part Tme");
+                        Console.WriteLine("3. Contract");
+                        Console.WriteLine("4. Seasonal");
+                        Console.WriteLine("9. Quit");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == '1')
+                        {
+                            menuFourFT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '2')
+                        {
+                            menuFourPT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '3')
+                        {
+                            menuFourCT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '4')
+                        {
+                            menuFourSN();
+                            break;
+                        }
+                        else if (choice.KeyChar == '9')
+                        {
+                            break;
+                        }
+                    }
                 }
-
-                if (choice == 9)
+                else if (choice.KeyChar == '9')
                 {
-                    MenuThree();
+                    mainMenu = true;
+                    break;
+                }
+            }
+        }
+
+        public void menuFourSN()
+        {
+            while (mainMenu != true)
+            {
+                Console.Clear();
+                Console.WriteLine("Menu 4: Employee Details Menu");
+                Console.WriteLine("1. Specify Base Employee");
+                Console.WriteLine("2. Set Season of Work Period");
+                Console.WriteLine("3. Set Piece Pay Salary");
+                Console.WriteLine("9. Return to Main Menu");
+
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
+                {
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Please Enter Employee Type ");
+                        Console.WriteLine("1. Full Time");
+                        Console.WriteLine("2. Part Tme");
+                        Console.WriteLine("3. Contract");
+                        Console.WriteLine("4. Seasonal");
+                        Console.WriteLine("9. Quit");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == '1')
+                        {
+                            menuFourFT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '2')
+                        {
+                            menuFourPT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '3')
+                        {
+                            menuFourCT();
+                            break;
+                        }
+                        else if (choice.KeyChar == '4')
+                        {
+                            menuFourSN();
+                            break;
+                        }
+                        else if (choice.KeyChar == '9')
+                        {
+                            break;
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '9')
+                {
+                    mainMenu = true;
+                    break;
                 }
             }
         }
