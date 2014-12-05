@@ -25,13 +25,27 @@ namespace Supporting
         public bool name(string inName)
         {
             bool returnVal = false;
-            if(inName.Any(c => char.IsDigit(c)))
+            if(inName.Any(c => char.IsDigit(c) || char.IsSymbol(c)))
             {
-                errorMsg = "A name cannot contain any numbers";
+                errorMsg = "A name cannot contain any numbers or symbols";
+            }
+            else if (inName == "")
+            {
+                errorMsg = "A name cannot be blank";
             }
             else
             {
                 returnVal = true;
+            }
+
+            foreach (char c in inName)
+            {
+                if(char.IsPunctuation(c) && c!= '-' && c!= '\'')
+                {
+                    errorMsg = "Cannot contain punctuation other than \"'\" or \"=\"";
+                    returnVal = false;
+                    break;
+                }
             }
             return returnVal;
         }
