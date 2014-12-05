@@ -837,6 +837,7 @@ namespace Presentation
                         {
                             break;
                         }
+                    }
                     break;
                 }
             }

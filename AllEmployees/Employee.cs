@@ -35,6 +35,7 @@ namespace AllEmployees
         /// </summary>
         public Employee()
         {
+            employeeType = "";
             firstName = "";
             lastName = "";
             socialInsuranceNumber = "";
@@ -213,6 +214,7 @@ namespace AllEmployees
         public bool SetFirstName(string fName)
         {
             bool retV = false;
+            
             if (this.employeeType.ToUpper() == "CT")
             {
                 log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Contract Employee has blank first name");
