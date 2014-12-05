@@ -236,144 +236,7 @@ namespace Presentation
                     choice = Console.ReadKey();
                     if (choice.KeyChar == '1')
                     {
-                        while (true)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Please Enter Employee Type ");
-                            Console.WriteLine("1. Full Time");
-                            Console.WriteLine("2. Part Tme");
-                            Console.WriteLine("3. Contract");
-                            Console.WriteLine("4. Seasonal");
-                            Console.WriteLine("9. Quit");
-                            choice = Console.ReadKey();
-                            if(choice.KeyChar == '1')
-                            {
-                                empType = 'f';
-                            }
-                            else if (choice.KeyChar == '2')
-                            {
-                                empType = 'p';
-                            }
-                            else if(choice.KeyChar == '3')
-                            {
-                                empType = 'c';
-                            }
-                            else if(choice.KeyChar == '4')
-                            {
-                                empType = 's';
-                            }
-                            else if(choice.KeyChar == '9')
-                            {
-                                break;
-                            }
-
-                            Console.Clear();
-                            while (true)
-                            {
-                                if(empType != 'c')
-                                {
-                                    Console.WriteLine("Please Enter Last Name:");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("please Enter Company Name:");
-                                }
-                                input = Console.ReadLine();
-                                if (val.name(input))
-                                {
-                                    baseEmp.SetLastName(input);
-                                    break;
-                                }
-                                else
-                                {
-                                    //log.writeLog(input + ": " + val.errorMsg);
-                                    Console.WriteLine(input + ": " + val.errorMsg);
-                                }
-                            }
-                            if (empType != 'c')
-                            {
-                                while (true)
-                                {
-                                    Console.WriteLine("Please Enter First name:");
-                                    input = Console.ReadLine();
-                                    if (val.name(input))
-                                    {
-                                        baseEmp.SetFirstName(input);
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        //log.writeLog(input + ": " + val.errorMsg);
-                                        Console.WriteLine(input + ": " + val.errorMsg);
-                                    }
-                                }
-                            }
-                            while(true)
-                            {
-                                if (empType != 'c')
-                                {
-                                    Console.WriteLine("Plese Enter SIN");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Plese Enter BIN");
-                                }
-                                input = Console.ReadLine();
-                                if(val.sin(input))
-                                {
-                                    baseEmp.SetSIN(input);
-                                    break;
-                                }
-                                else
-                                {
-                                    //log.writeLog(input + ": " + val.errorMsg);
-                                    Console.WriteLine(input + ": " + val.errorMsg);
-                                }
-                            }
-                            while(true)
-                            {
-                                if(empType != 'c')
-                                {
-                                    Console.WriteLine("Please Enter Date of Birth");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Please Enter Company Start Date");
-                                }
-
-                                input = Console.ReadLine();
-                                if (val.date(input))
-                                {
-                                    baseEmp.SetDOB(DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None));
-                                    break;
-                                }
-                                else
-                                {
-                                    //log.writeLog(input + ": " + val.errorMsg);
-                                    Console.WriteLine(input + ": " + val.errorMsg);
-                                }
-                            }
-                            if (empType == 'f')
-                            {
-                                menuFourFT();
-                                break;
-                            }
-                            else if (empType == 'p')
-                            {
-                                menuFourPT();
-                                break;
-                            }
-                            else if (empType == 'c')
-                            {
-                                menuFourCT();
-                                break;
-                            }
-                            else if (empType == 's')
-                            {
-                                menuFourSN();
-                                break;
-                            }
-                        }                        
+                        createBase();            
                     }
 
                     if (choice.KeyChar == '9')
@@ -383,11 +246,155 @@ namespace Presentation
                 }
             }
         }
+
+        public void createBase()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Please Enter Employee Type ");
+                Console.WriteLine("1. Full Time");
+                Console.WriteLine("2. Part Tme");
+                Console.WriteLine("3. Contract");
+                Console.WriteLine("4. Seasonal");
+                Console.WriteLine("9. Quit");
+                choice = Console.ReadKey();
+                if (choice.KeyChar == '1')
+                {
+                    empType = 'f';
+                }
+                else if (choice.KeyChar == '2')
+                {
+                    empType = 'p';
+                }
+                else if (choice.KeyChar == '3')
+                {
+                    empType = 'c';
+                }
+                else if (choice.KeyChar == '4')
+                {
+                    empType = 's';
+                }
+                else if (choice.KeyChar == '9')
+                {
+                    break;
+                }
+
+                Console.Clear();
+                while (true)
+                {
+                    if (empType != 'c')
+                    {
+                        Console.WriteLine("Please Enter Last Name:");
+                    }
+                    else
+                    {
+                        Console.WriteLine("please Enter Company Name:");
+                    }
+                    input = Console.ReadLine();
+                    if (val.name(input))
+                    {
+                        baseEmp.SetLastName(input);
+                        break;
+                    }
+                    else
+                    {
+                        log.writeLog(input + ": " + val.errorMsg);
+                        Console.WriteLine(input + ": " + val.errorMsg);
+                    }
+                }
+                if (empType != 'c')
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter First name:");
+                        input = Console.ReadLine();
+                        if (val.name(input))
+                        {
+                            baseEmp.SetFirstName(input);
+                            break;
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                while (true)
+                {
+                    if (empType != 'c')
+                    {
+                        Console.WriteLine("Plese Enter SIN");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Plese Enter BIN");
+                    }
+                    input = Console.ReadLine();
+                    if (val.sin(input))
+                    {
+                        baseEmp.SetSIN(input);
+                        break;
+                    }
+                    else
+                    {
+                        log.writeLog(input + ": " + val.errorMsg);
+                        Console.WriteLine(input + ": " + val.errorMsg);
+                    }
+                }
+                while (true)
+                {
+                    if (empType != 'c')
+                    {
+                        Console.WriteLine("Please Enter Date of Birth");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please Enter Company Start Date");
+                    }
+
+                    input = Console.ReadLine();
+                    if (val.date(input))
+                    {
+                        baseEmp.SetDOB(DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None));
+                        break;
+                    }
+                    else
+                    {
+                        log.writeLog(input + ": " + val.errorMsg);
+                        Console.WriteLine(input + ": " + val.errorMsg);
+                    }
+                }
+                if (empType == 'f')
+                {
+                    menuFourFT();
+                    break;
+                }
+                else if (empType == 'p')
+                {
+                    menuFourPT();
+                    break;
+                }
+                else if (empType == 'c')
+                {
+                    menuFourCT();
+                    break;
+                }
+                else if (empType == 's')
+                {
+                    menuFourSN();
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// Menu 4 for fulltime employee
         /// </summary>
         public void menuFourFT()
         {
+            DateTime tempTime = new DateTime();
             while(mainMenu != true)
             {
                 Console.Clear();
@@ -401,39 +408,91 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
+                    //create base employee
+                    createBase();
+                }
+                else if(choice.KeyChar == '2')
+                {
+                    //set date of hire
                     while (true)
                     {
-                        Console.Clear();
-                        Console.WriteLine("Please Enter Employee Type ");
-                        Console.WriteLine("1. Full Time");
-                        Console.WriteLine("2. Part Tme");
-                        Console.WriteLine("3. Contract");
-                        Console.WriteLine("4. Seasonal");
-                        Console.WriteLine("9. Quit");
-                        choice = Console.ReadKey();
-                        if (choice.KeyChar == '1')
+                        Console.WriteLine("Please Enter date of hire (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {               
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (tempTime > DateTime.Now)
+                            {
+                                log.writeLog(input + ": You can't have been hired before the current date");
+                                Console.WriteLine(input + ": You can't have been hired before the current date");
+                            }
+                            else if (ft.dateOfTermination != null && ft.dateOfTermination < tempTime)
+                            {
+                                log.writeLog(input + ": You can't have been hired before you've been terminated");
+                                Console.WriteLine(input + ": You can't have been hired before you've been terminated");
+                            }
+                            else
+                            {
+                                ft.SetDateOfHire(tempTime);
+                                break;
+                            }
+                        }
+                        else
                         {
-                            menuFourFT();
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '3')
+                {
+                    //set date of termination
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter date of termination (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (tempTime > DateTime.Now)
+                            {
+                                log.writeLog(input + ": You can't have been terminated before the current date");
+                                Console.WriteLine(input + ": You can't have been terminated before the current date");
+                            }
+                            else if (ft.dateOfHire != null && ft.dateOfHire > tempTime)
+                            {
+                                log.writeLog(input + ": You can't have been hired before you've been terminated");
+                                Console.WriteLine(input + ": You can't have been hired before you've been terminated");
+                            }
+                            else
+                            {
+                                ft.SetDateOfTermination(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if(choice.KeyChar == '4')
+                {
+                    //set employee salary
+                    while(true)
+                    {
+                        Console.WriteLine("Please enter salary");
+                        input = Console.ReadLine();
+                        if(val.rate(input))
+                        {
+                            ft.SetSalary(input);
                             break;
                         }
-                        else if (choice.KeyChar == '2')
+                        else
                         {
-                            menuFourPT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '3')
-                        {
-                            menuFourCT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '4')
-                        {
-                            menuFourSN();
-                            break;
-                        }
-                        else if (choice.KeyChar == '9')
-                        {
-                            break;
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
                         }
                     }
                 }
@@ -448,7 +507,7 @@ namespace Presentation
         /// </summary>
         public void menuFourPT()
         {
-            
+            DateTime tempTime = new DateTime();
             while (mainMenu != true)
             {
                 Console.Clear();
@@ -462,39 +521,90 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
+                    createBase();
+                }
+                else if (choice.KeyChar == '2')
+                {
+                    //set date of hire
                     while (true)
                     {
-                        Console.Clear();
-                        Console.WriteLine("Please Enter Employee Type ");
-                        Console.WriteLine("1. Full Time");
-                        Console.WriteLine("2. Part Tme");
-                        Console.WriteLine("3. Contract");
-                        Console.WriteLine("4. Seasonal");
-                        Console.WriteLine("9. Quit");
-                        choice = Console.ReadKey();
-                        if (choice.KeyChar == '1')
+                        Console.WriteLine("Please Enter date of hire (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
                         {
-                            menuFourFT();
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (tempTime > DateTime.Now)
+                            {
+                                log.writeLog(input + ": You can't have been hired before the current date");
+                                Console.WriteLine(input + ": You can't have been hired before the current date");
+                            }
+                            else if (pt.dateOfTermination != null && pt.dateOfTermination < tempTime)
+                            {
+                                log.writeLog(input + ": You can't have been hired before you've been terminated");
+                                Console.WriteLine(input + ": You can't have been hired before you've been terminated");
+                            }
+                            else
+                            {
+                                pt.SetDateOfHire(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '3')
+                {
+                    //set date of termination
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter date of termination (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (tempTime > DateTime.Now)
+                            {
+                                log.writeLog(input + ": You can't have been terminated before the current date");
+                                Console.WriteLine(input + ": You can't have been terminated before the current date");
+                            }
+                            else if (pt.dateOfHire != null && pt.dateOfHire > tempTime)
+                            {
+                                log.writeLog(input + ": You can't have been hired before you've been terminated");
+                                Console.WriteLine(input + ": You can't have been hired before you've been terminated");
+                            }
+                            else
+                            {
+                                pt.SetDateOfTermination(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '4')
+                {
+                    //set employee salary
+                    while (true)
+                    {
+                        Console.WriteLine("Please enter salary");
+                        input = Console.ReadLine();
+                        if (val.rate(input))
+                        {
+                            pt.SetHourlyRate(input);
                             break;
                         }
-                        else if (choice.KeyChar == '2')
+                        else
                         {
-                            menuFourPT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '3')
-                        {
-                            menuFourCT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '4')
-                        {
-                            menuFourSN();
-                            break;
-                        }
-                        else if (choice.KeyChar == '9')
-                        {
-                            break;
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
                         }
                     }
                 }
@@ -524,41 +634,7 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    while (true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Please Enter Employee Type ");
-                        Console.WriteLine("1. Full Time");
-                        Console.WriteLine("2. Part Tme");
-                        Console.WriteLine("3. Contract");
-                        Console.WriteLine("4. Seasonal");
-                        Console.WriteLine("9. Quit");
-                        choice = Console.ReadKey();
-                        if (choice.KeyChar == '1')
-                        {
-                            menuFourFT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '2')
-                        {
-                            menuFourPT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '3')
-                        {
-                            menuFourCT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '4')
-                        {
-                            menuFourSN();
-                            break;
-                        }
-                        else if (choice.KeyChar == '9')
-                        {
-                            break;
-                        }
-                    }
+                    createBase();
                 }
                 else if (choice.KeyChar == '9')
                 {
@@ -584,41 +660,7 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    while (true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Please Enter Employee Type ");
-                        Console.WriteLine("1. Full Time");
-                        Console.WriteLine("2. Part Tme");
-                        Console.WriteLine("3. Contract");
-                        Console.WriteLine("4. Seasonal");
-                        Console.WriteLine("9. Quit");
-                        choice = Console.ReadKey();
-                        if (choice.KeyChar == '1')
-                        {
-                            menuFourFT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '2')
-                        {
-                            menuFourPT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '3')
-                        {
-                            menuFourCT();
-                            break;
-                        }
-                        else if (choice.KeyChar == '4')
-                        {
-                            menuFourSN();
-                            break;
-                        }
-                        else if (choice.KeyChar == '9')
-                        {
-                            break;
-                        }
-                    }
+                    createBase();
                 }
                 else if (choice.KeyChar == '9')
                 {

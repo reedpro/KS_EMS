@@ -20,9 +20,9 @@ namespace AllEmployees
     /// </summary>
     public class ContractEmployee : Employee
     {
-        private DateTime contractStartDate;
-        private DateTime dateOfTermination;
-        double hourlyRate;
+        public DateTime? contractStartDate { get; private set; }
+        public DateTime? dateOfTermination { get; private set; }
+        public string hourlyRate { get; private set; }
 
         /// <summary>
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
@@ -34,9 +34,9 @@ namespace AllEmployees
             SetLastName("");
             SetSIN("");
             SetDOB(new DateTime());
-            contractStartDate = new DateTime();
-            dateOfTermination = new DateTime();
-            hourlyRate = 0.0;
+            contractStartDate = null;
+            dateOfTermination = null;
+            hourlyRate = "0";
         }
 
         /// <summary>

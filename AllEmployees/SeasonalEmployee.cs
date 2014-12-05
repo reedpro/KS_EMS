@@ -20,8 +20,8 @@ namespace AllEmployees
     /// </summary>
     public class SeasonalEmployee : Employee
     {
-        string season;
-        string piecePay;
+        public string season { get; private set; }
+        public string piecePay { get; private set; }
 
         /// <summary>
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
@@ -34,7 +34,7 @@ namespace AllEmployees
             SetSIN("");
             SetDOB(new DateTime());
             string[] season = { "" };
-            piecePay = "";
+            piecePay = "0";
         }
 
         /// <summary>
