@@ -498,6 +498,21 @@ namespace Presentation
                 }
                 else if(choice.KeyChar == '9')
                 {
+                    mainMenu = true;
+                    while(true)
+                    {
+                        Console.WriteLine("Would you like to save? 'y' or 'n'");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            company.AddFullTimeEmployee(ft);
+                            break;
+                        }
+                        else if(choice.KeyChar == 'n')
+                        {
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -611,6 +626,20 @@ namespace Presentation
                 else if(choice.KeyChar == '9')
                 {
                     mainMenu = true;
+                    while (true)
+                    {
+                        Console.WriteLine("Would you like to save? 'y' or 'n'");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            company.AddPartTimeEmployee(pt);
+                            break;
+                        }
+                        else if (choice.KeyChar == 'n')
+                        {
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -694,14 +723,14 @@ namespace Presentation
                 }
                 else if (choice.KeyChar == '4')
                 {
-                    //set employee salary
+                    //set contract salary
                     while (true)
                     {
-                        Console.WriteLine("Please enter Peicepay");
+                        Console.WriteLine("Please enter hourly rate");
                         input = Console.ReadLine();
                         if (val.rate(input))
                         {
-                            ct.SetHourlyRate(input); //TODO change contract to use a string instead of double
+                            ct.SetHourlyRate(input);
                             break;
                         }
                         else
@@ -714,6 +743,20 @@ namespace Presentation
                 else if (choice.KeyChar == '9')
                 {
                     mainMenu = true;
+                    while (true)
+                    {
+                        Console.WriteLine("Would you like to save? 'y' or 'n'");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            company.AddContractEmployee(ct);
+                            break;
+                        }
+                        else if (choice.KeyChar == 'n')
+                        {
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -740,7 +783,7 @@ namespace Presentation
                 }
                 else if (choice.KeyChar == '2')
                 {
-                    //set contract start date
+                    //set season
                     while (true)
                     {
                         Console.WriteLine("Please Enter season of work");
@@ -760,34 +803,6 @@ namespace Presentation
                     }
                 }
                 else if (choice.KeyChar == '3')
-                {
-                    //set date of termination
-                    while (true)
-                    {
-                        Console.WriteLine("Please Enter Contract end date (YYYY-MM-DD");
-                        input = Console.ReadLine();
-                        if (val.date(input))
-                        {
-                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
-                            if (ct.contractStartDate != null && ct.contractStartDate > tempTime)
-                            {
-                                log.writeLog(input + ": You cant end a contract before its begun");
-                                Console.WriteLine(input + ": You cant end a contract before its begun");
-                            }
-                            else
-                            {
-                                ct.SetDateOfTermination(tempTime);
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            log.writeLog(input + ": " + val.errorMsg);
-                            Console.WriteLine(input + ": " + val.errorMsg);
-                        }
-                    }
-                }
-                else if (choice.KeyChar == '4')
                 {
                     //set employee salary
                     while (true)
@@ -809,6 +824,19 @@ namespace Presentation
                 else if (choice.KeyChar == '9')
                 {
                     mainMenu = true;
+                    while (true)
+                    {
+                        Console.WriteLine("Would you like to save? 'y' or 'n'");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            company.AddSeasonalEmployee(sn);
+                            break;
+                        }
+                        else if (choice.KeyChar == 'n')
+                        {
+                            break;
+                        }
                     break;
                 }
             }

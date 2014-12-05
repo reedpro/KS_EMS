@@ -81,7 +81,7 @@ namespace TheCompany
         /// the user has put in. 
         /// </summary>
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        private bool AddFullTimeEmployee()
+        public bool AddFullTimeEmployee(FulltimeEmployee ft)
         {
             bool result = false;
             // To do
@@ -94,7 +94,7 @@ namespace TheCompany
         /// the user has put in. 
         /// </summary>
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        private bool AddPartTimeEmployee()
+        public bool AddPartTimeEmployee(ParttimeEmployee pt)
         {
             bool result = false;
             // To do
@@ -107,7 +107,7 @@ namespace TheCompany
         /// the user has put in. 
         /// </summary>
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        private bool AddSeasonalEmployee()
+        public bool AddSeasonalEmployee(SeasonalEmployee sn)
         {
             bool result = false;
             // To do
@@ -120,7 +120,7 @@ namespace TheCompany
         /// the user has put in. 
         /// </summary>
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        private bool AddContractEmployee()
+        public bool AddContractEmployee(ContractEmployee ct)
         {
             bool result = false;
             // To do
@@ -210,5 +210,7 @@ namespace TheCompany
             return result;
 
         }
+
+
     }
 }
