@@ -745,24 +745,17 @@ namespace Presentation
                     {
                         Console.WriteLine("Please Enter season of work");
                         input = Console.ReadLine();
-                        if (val.date(input))
+                        input = input.ToLower();
+                        input = input.Trim();
+                        if(input == "summer" || input == "winter" || input == "fall" || input == "spring")
                         {
-                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
-                            if (ct.dateOfTermination != null && ct.dateOfTermination < tempTime)
-                            {
-                                log.writeLog(input + ": You cant start a contract after it's been ended");
-                                Console.WriteLine(input + ": You cant start a contract after it's been ended");
-                            }
-                            else
-                            {
-                                ct.SetContractStartDate(tempTime);
-                                break;
-                            }
+                            sn.SetSeason(input);
+                            break;
                         }
                         else
                         {
-                            log.writeLog(input + ": " + val.errorMsg);
-                            Console.WriteLine(input + ": " + val.errorMsg);
+                            log.writeLog(input + ": seasons can be summer, winter, fall, or spring");
+                            Console.WriteLine(input + ": seasons can be summer, winter, fall, or spring");
                         }
                     }
                 }

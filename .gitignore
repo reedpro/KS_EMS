@@ -43,3 +43,10 @@ Temporary Items
 .apdisk
 
 *.suo
+*.dll
+*.pdb
+*.log
+*.cache
+*.exe
+*.dll
+*.dll
