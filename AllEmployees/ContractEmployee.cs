@@ -51,7 +51,7 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ContractEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime startDate, DateTime terminationDate, double rate)
+            DateTime startDate, DateTime terminationDate, string rate)
         {
             SetFirstName(first);
             SetLastName(last);
@@ -103,7 +103,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(double rate)
+        public bool SetHourlyRate(string rate)
         {
             hourlyRate = rate;
             if (hourlyRate == rate)

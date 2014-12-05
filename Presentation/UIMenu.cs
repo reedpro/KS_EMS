@@ -620,7 +620,7 @@ namespace Presentation
         /// </summary>
         public void menuFourCT()
         {
-
+            DateTime tempTime = new DateTime();
             while (mainMenu != true)
             {
                 Console.Clear();
@@ -636,6 +636,81 @@ namespace Presentation
                 {
                     createBase();
                 }
+                else if (choice.KeyChar == '2')
+                {
+                    //set contract start date
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter contract start date (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (ct.dateOfTermination != null && ct.dateOfTermination < tempTime)
+                            {
+                                log.writeLog(input + ": You cant start a contract after it's been ended");
+                                Console.WriteLine(input + ": You cant start a contract after it's been ended");
+                            }
+                            else
+                            {
+                                ct.SetContractStartDate(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '3')
+                {
+                    //set date of termination
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter Contract end date (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (ct.contractStartDate != null && ct.contractStartDate > tempTime)
+                            {
+                                log.writeLog(input + ": You cant end a contract before its begun");
+                                Console.WriteLine(input + ": You cant end a contract before its begun");
+                            }
+                            else
+                            {
+                                ct.SetDateOfTermination(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '4')
+                {
+                    //set employee salary
+                    while (true)
+                    {
+                        Console.WriteLine("Please enter Peicepay");
+                        input = Console.ReadLine();
+                        if (val.rate(input))
+                        {
+                            ct.SetHourlyRate(input); //TODO change contract to use a string instead of double
+                            break;
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
                 else if (choice.KeyChar == '9')
                 {
                     mainMenu = true;
@@ -648,6 +723,7 @@ namespace Presentation
         /// </summary>
         public void menuFourSN()
         {
+            DateTime tempTime = new DateTime();
             while (mainMenu != true)
             {
                 Console.Clear();
@@ -661,6 +737,81 @@ namespace Presentation
                 if (choice.KeyChar == '1')
                 {
                     createBase();
+                }
+                else if (choice.KeyChar == '2')
+                {
+                    //set contract start date
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter season of work");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (ct.dateOfTermination != null && ct.dateOfTermination < tempTime)
+                            {
+                                log.writeLog(input + ": You cant start a contract after it's been ended");
+                                Console.WriteLine(input + ": You cant start a contract after it's been ended");
+                            }
+                            else
+                            {
+                                ct.SetContractStartDate(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '3')
+                {
+                    //set date of termination
+                    while (true)
+                    {
+                        Console.WriteLine("Please Enter Contract end date (YYYY-MM-DD");
+                        input = Console.ReadLine();
+                        if (val.date(input))
+                        {
+                            tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                            if (ct.contractStartDate != null && ct.contractStartDate > tempTime)
+                            {
+                                log.writeLog(input + ": You cant end a contract before its begun");
+                                Console.WriteLine(input + ": You cant end a contract before its begun");
+                            }
+                            else
+                            {
+                                ct.SetDateOfTermination(tempTime);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
+                }
+                else if (choice.KeyChar == '4')
+                {
+                    //set employee salary
+                    while (true)
+                    {
+                        Console.WriteLine("Please enter Peicepay");
+                        input = Console.ReadLine();
+                        if (val.rate(input))
+                        {
+                            ct.SetHourlyRate(input); //TODO change contract to use a string instead of double
+                            break;
+                        }
+                        else
+                        {
+                            log.writeLog(input + ": " + val.errorMsg);
+                            Console.WriteLine(input + ": " + val.errorMsg);
+                        }
+                    }
                 }
                 else if (choice.KeyChar == '9')
                 {

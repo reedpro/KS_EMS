@@ -51,7 +51,7 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ParttimeEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime hireDate, DateTime terminationDate, double rate)
+            DateTime hireDate, DateTime terminationDate, string rate)
         {
             SetFirstName(first);
             SetFirstName(last);

@@ -33,7 +33,7 @@ namespace AllEmployees
             SetLastName("");
             SetSIN("");
             SetDOB(new DateTime());
-            string[] season = { "" };
+            string season = "";
             piecePay = "0";
         }
 

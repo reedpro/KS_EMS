@@ -104,66 +104,73 @@ namespace Supporting
             int checksum;
             int i = 0;
             int j = 0;
-            for (i = 0; i < (inSin.Length - 1); i++)
+            if (inSin == "")
             {
-                if (char.IsDigit(inSin[i]) && j < 8)
-                {
-                    sin[j++] = (int)Char.GetNumericValue(inSin[i]);
-                }
-            }
-            if (sin.Length != 8)
-            {
-                errorMsg = "There can only be 9 digits in an int. Got: " + (sin.Length + 1).ToString();
+                returnVal = true;
             }
             else
             {
-                checksum = (int)Char.GetNumericValue(inSin[inSin.Length - 1]);
-                foreach (int x in sin)
+                for (i = 0; i < (inSin.Length - 1); i++)
                 {
-                    if (even == false)
+                    if (char.IsDigit(inSin[i]) && j < 8)
                     {
-                        sum2 += x;
-                        even = true;
+                        sin[j++] = (int)Char.GetNumericValue(inSin[i]);
+                    }
+                }
+                if (sin.Length != 8)
+                {
+                    errorMsg = "There can only be 9 digits in an int. Got: " + (sin.Length + 1).ToString();
+                }
+                else
+                {
+                    checksum = (int)Char.GetNumericValue(inSin[inSin.Length - 1]);
+                    foreach (int x in sin)
+                    {
+                        if (even == false)
+                        {
+                            sum2 += x;
+                            even = true;
+                        }
+                        else
+                        {
+                            sum1 += x.ToString();
+                            even = false;
+                        }
+                    }
+                    for (i = 0; i < sum1.Length; i++)
+                    {
+                        doubled[i] = (2 * (int)Char.GetNumericValue(sum1[i]));
+                    }
+                    sum1 = "";
+                    foreach (int y in doubled)
+                    {
+                        sum1 += y.ToString();
+                    }
+                    for (i = 0; i < sum1.Length; i++)
+                    {
+                        total += (int)Char.GetNumericValue(sum1[i]);
+                    }
+                    total += sum2;
+                    if (total % 10 == 0)
+                    {
+                        subtractNum = total;
                     }
                     else
                     {
-                        sum1 += x.ToString();
-                        even = false;
+                        while ((total + subtractNum) % 10 != 0)
+                        {
+                            subtractNum++;
+                        }
+                        subtractNum += total;
                     }
-                }
-                for (i = 0; i < sum1.Length; i++)
-                {
-                    doubled[i] = (2 * (int)Char.GetNumericValue(sum1[i]));
-                }
-                sum1 = "";
-                foreach (int y in doubled)
-                {
-                    sum1 += y.ToString();
-                }
-                for (i = 0; i < sum1.Length; i++)
-                {
-                    total += (int)Char.GetNumericValue(sum1[i]);
-                }
-                total += sum2;
-                if (total % 10 == 0)
-                {
-                    subtractNum = total;
-                }
-                else
-                {
-                    while ((total + subtractNum) % 10 != 0)
+                    if ((subtractNum - total) == checksum)
                     {
-                        subtractNum++;
+                        returnVal = true;
                     }
-                    subtractNum += total;
-                }
-                if ((subtractNum - total) == checksum)
-                {
-                    returnVal = true;
-                }
-                else
-                {
-                    errorMsg = "The sin provided is not valid";
+                    else
+                    {
+                        errorMsg = "The sin provided is not valid";
+                    }
                 }
             }
             return returnVal;
