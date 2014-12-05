@@ -98,3 +98,7 @@ C:\Users\Jay\Desktop\EMS\KS_EMS\EMS\bin\Debug\Presentation.pdb
 C:\Users\Jay\Desktop\EMS\KS_EMS\EMS\bin\Debug\Supporting.pdb
 C:\Users\Jay\Desktop\EMS\KS_EMS\EMS\bin\Debug\TheCompany.pdb
 C:\Users\Jay\Desktop\EMS\KS_EMS\EMS\obj\Debug\EMS.csprojResolveAssemblyReference.cache
+C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.exe.config
+C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.XML
+C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.exe
+C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.pdb
