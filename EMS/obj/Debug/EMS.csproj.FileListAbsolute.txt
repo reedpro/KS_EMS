@@ -102,3 +102,7 @@ C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.exe.config
 C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.XML
 C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.exe
 C:\Users\Christoph\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.pdb
+C:\Users\owner\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.exe.config
+C:\Users\owner\Documents\GitHub\KS_EMS\EMS\bin\Debug\EMS.XML
+C:\Users\owner\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.exe
+C:\Users\owner\Documents\GitHub\KS_EMS\EMS\obj\Debug\EMS.pdb
