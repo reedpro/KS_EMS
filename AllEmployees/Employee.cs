@@ -30,16 +30,15 @@ namespace AllEmployees
         public Logging log;
 
         /// <summary>
-        /// The Employee() method is a Constructor for the Employee Class.
-        /// This version of the constructor initializes all values to default (blank/0).
+        /// Default Constructor for the Employee Class.
+        /// This version of the constructor initializes all values to default (blank).
         /// </summary>
         public Employee()
         {
             firstName = "";
             lastName = "";
             socialInsuranceNumber = "";
-            dateOfBirth = new DateTime();
-            employeeType = "";
+            dateOfBirth = new DateTime(0);
 
             log = new Logging();
         }
@@ -53,8 +52,9 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         public Employee(string first, string last)
         {
-            firstName = first;
-            lastName = last;
+            firstName = "";
+            lastName = "";
+
             log = new Logging();
         }
 
@@ -66,17 +66,21 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to set initialize socialInsuranceNumber variable to</param>
         /// <param name="DOB">The string to initialize the dateOfBirth variable to</param>
-        public Employee(string first, string last, string SIN, DateTime DOB, String type)
+        public Employee(string first, string last, string SIN, DateTime DOB)
         {
-            firstName = first;
-            lastName = last;
-            socialInsuranceNumber = SIN;
-            dateOfBirth = DOB;
-            employeeType = type;
-
+            SetFirstName(first);
+            SetLastName(last);
+            SetSIN(SIN);
+            SetDOB(DOB);
+            
             log = new Logging();
         }
 
+        /// <summary>
+        /// A method checking if the input string only contains valid characters A-Za-z, hyphen, and apostrophe
+        /// </summary>
+        /// <param name="s">The input string to be examined</param>
+        /// <returns>bool - whether the input is valid or not</returns>
         public bool CheckName(String s)
         {
             bool retV = true;
@@ -93,6 +97,12 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// A method checking if the input string only contains valid digits 0-9
+        /// </summary>
+        /// <param name="s">The input string to be examined</param>
+        /// <returns>bool - whether the input is valid or not</returns>
         public bool CheckDigit(String s)
         {
             bool retV = true;
@@ -110,10 +120,14 @@ namespace AllEmployees
             return retV;
         }
 
-
-        // reference http://www.fakenamegenerator.com/social-insurance-number.php
-        // http://www.ryerson.ca/JavaScript/lectures/forms/textValidation/sinProject.html
-        // http://stackoverflow.com/questions/17953014/c-sharp-algorithm-to-create-fake-canadian-social-secutiry-number-sin-for-unit
+        /// <summary>
+        /// A method checking if the input string valid Canadian SIN nubmer format
+        /// <see href="http://www.fakenamegenerator.com/social-insurance-number.php">Reference 1</see>
+        /// <see href="http://www.ryerson.ca/JavaScript/lectures/forms/textValidation/sinProject.html">Reference 2</see>
+        /// <see href="http://stackoverflow.com/questions/17953014/c-sharp-algorithm-to-create-fake-canadian-social-secutiry-number-sin-for-unit">Reference 3</see>
+        /// </summary>
+        /// <param name="s">The input string to be examined</param>
+        /// <returns>bool - whether the input is valid or not</returns>
         public bool CheckSIN(String sin)
         {
             bool retV = false;
@@ -147,6 +161,13 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// A method checking if the input date is within valid date range
+        /// </summary>
+        /// <param name="startDate">The earliest date that the input date can have to be valid</param>
+        /// <param name="endDate">The latest date that the input date can have to be valid</param>
+        /// <param name="inputDate">The input date to be examined</param>
+        /// <returns>bool - whether the input is valid or not</returns>
         public bool CheckDateRange(DateTime startDate, DateTime endDate, DateTime inputDate)
         {
             bool retV = false;
@@ -157,6 +178,14 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// A method checking if the input date is within valid date range
+        /// </summary>
+        /// <param name="action">Action that was done to call logging: SET, VALIDATE, DETAILS</param>
+        /// <param name="iniValue">Previous/initial value of attribute</param>
+        /// <param name="endValue">Input value</param>
+        /// <param name="result">FAIL or SUCCESS</param>
+        /// <returns>bool - whether the input is valid or not</returns>
         public String produceLogString(String action, String iniValue, String endValue, String result)
         {
             String logStr = "";
@@ -168,7 +197,7 @@ namespace AllEmployees
             {
                 logStr = "Action: " + action.ToUpper() + "_" + result.ToUpper() + "\nInput: " + endValue;
             }
-            else if (action.ToUpper() == "VALIDATE")
+            else if (action.ToUpper() == "DETAILS")
             {
                 logStr = "Action: " + action.ToUpper() + "_" + result.ToUpper();
             }
@@ -268,17 +297,32 @@ namespace AllEmployees
             return retV;
         }
 
-        public bool SetType(String type)
+        /// <summary>
+        /// The setter for employeeType
+        /// </summary>
+        /// <param name="type">The string to set the employee type to</param>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        protected bool SetType(String type)
         {
             employeeType = type;
             return true;
         }
 
+
+        /// <summary>
+        /// A virtual method to validate the employee object attributes.
+        /// Ultimate validation that is called before the object is added to the container.
+        /// </summary>
+        /// <returns>A boolean indicating whether the obejct is valid employee object or not</returns>
         public virtual bool Validate()
         {
             return validateFirstName() && validateLastName() && validateDOB() && validateDOB();
         }
 
+        /// <summary>
+        /// First name validating method that is called by Validate() function.
+        /// </summary>
+        /// <returns>A boolean indicating whether the obejct has valid first name attribute or not.</returns>
         private bool validateFirstName()
         {
             bool retV = false;
@@ -315,6 +359,11 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// Last name validating method that is called by Validate() function.
+        /// </summary>
+        /// <returns>A boolean indicating whether the obejct has valid last name attribute or not.</returns>
         private bool validateLastName()
         {
             bool retV = false;
@@ -343,6 +392,11 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// DOB validating method that is called by Validate() function.
+        /// </summary>
+        /// <returns>A boolean indicating whether the obejct has valid dateofBirth attribute or not.</returns>
         private bool validateDOB()
         {
             bool retV = false;
@@ -357,6 +411,11 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// SIN validating method that is called by Validate() function.
+        /// </summary>
+        /// <returns>A boolean indicating whether the obejct has valid SIN attribute or not.</returns>
         private bool validateSIN()
         {
             bool retV = false;
@@ -372,6 +431,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// A virtual function that will be called to produce a string containing details of employee object to console.
+        /// </summary>
+        /// <returns>A String containinng the detailed information of the employee object that will be printed to the console</returns>
         protected virtual String ConsoleDetails()
         {
             String output = "";
@@ -406,6 +469,10 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// A virtual function that will be called to print details of employee object to database file.
+        /// </summary>
+        /// <returns>A String containinng the detailed information of the employee object that will be printed to the database file</returns>
         public virtual String DatabaseDetails()
         {
             String output = "";
@@ -429,6 +496,10 @@ namespace AllEmployees
             return output;
         }
 
+
+        /// <summary>
+        /// A virtual Details function that will be called to print details of base employee object to the console.
+        /// </summary>
         public virtual void Details()
         {
             String consoleOutput = ConsoleDetails();
