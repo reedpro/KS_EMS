@@ -160,13 +160,17 @@ namespace AllEmployees
         public String produceLogString(String action, String iniValue, String endValue, String result)
         {
             String logStr = "";
-            if (action == "SET")
+            if (action.ToUpper() == "SET")
             {
-                logStr = result.ToUpper() + "\t_Action: " + action.ToUpper() + "_InitV: " + iniValue + "_Input: " + endValue;
+                logStr = "Action: " + action.ToUpper() + "_" + result.ToUpper() + "\nPrevious: " + iniValue + "\tInput: " + endValue;
             }
-            else if (action == "VALIDATE")
+            else if (action.ToUpper() == "VALIDATE")
             {
-                logStr = result.ToUpper() + "\t_Action: " + action.ToUpper() + "_Input: " + endValue;
+                logStr = "Action: " + action.ToUpper() + "_" + result.ToUpper() + "\nInput: " + endValue;
+            }
+            else if (action.ToUpper() == "VALIDATE")
+            {
+                logStr = "Action: " + action.ToUpper() + "_" + result.ToUpper();
             }
             return logStr;
         }
@@ -182,7 +186,7 @@ namespace AllEmployees
             bool retV = false;
             if (this.employeeType.ToUpper() == "CT")
             {
-                log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "_Detail: Contract Employee has blank first name");
+                log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Contract Employee has blank first name");
             }
             else
             {
@@ -194,7 +198,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "_Detail: Contains invalid characters");
+                    log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Contains invalid characters");
                 }
             }
             return retV;
@@ -217,7 +221,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("SET", lastName, lName, "FAIL") + "_Detail: Contains invalid characters");
+                log.writeLog(produceLogString("SET", lastName, lName, "FAIL") + "\nDetail: Contains invalid characters");
             }
             return retV;
         }
@@ -289,7 +293,7 @@ namespace AllEmployees
                     }
                     else
                     {
-                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "_Detail: Name cannot be BLANK");
+                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name cannot be BLANK");
                     }
                 }
                 else
@@ -301,13 +305,13 @@ namespace AllEmployees
                     }
                     else
                     {
-                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "_Detail: Name contains invalid characters");
+                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name contains invalid characters");
                     }
                 }
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "_Detail: Name cannot be NULL");
+                log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name cannot be NULL");
             }
             return retV;
         }
@@ -318,7 +322,7 @@ namespace AllEmployees
             {
                 if (lastName == "")
                 {
-                    log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "_Detail: Name cannot be BLANK");
+                    log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "\nDetail: Name cannot be BLANK");
                 }
                 else
                 {
@@ -329,13 +333,13 @@ namespace AllEmployees
                     }
                     else
                     {
-                        log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "_Detail: Name contains invalid characters");
+                        log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "\nDetail: Name contains invalid characters");
                     }
                 }
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "_Detail: Name cannot be NULL");
+                log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "\nDetail: Name cannot be NULL");
             }
             return retV;
         }
@@ -427,7 +431,9 @@ namespace AllEmployees
 
         public virtual void Details()
         {
-            Console.WriteLine(ConsoleDetails());
+            String consoleOutput = ConsoleDetails();
+            Console.WriteLine(consoleOutput);
+            log.writeLog(produceLogString("VALIDATE", "", "", "")  + "\nInput: \n" + consoleOutput);
         }
     }
 }
