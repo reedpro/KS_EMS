@@ -84,7 +84,7 @@ namespace AllEmployees
             {
                 for (int i = 0; i < s.Length; i++)
                 {
-                    if (!(Char.IsLetter(s[i]) || s[i] == '`' || s[i] == '-'))
+                    if (!(Char.IsLetter(s[i]) || s[i] == '\'' || s[i] == '-'))
                     {
                         retV = false;
                         break;
