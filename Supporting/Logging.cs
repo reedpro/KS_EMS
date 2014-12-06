@@ -14,28 +14,6 @@ namespace Supporting
     /// </summary>
     public class Logging
     {
-        //private StreamWriter log = null;
-
-        /// <summary>
-        /// Opens the log for the day
-        /// </summary>
-        /// <returns>streamWriter object of log file</returns>
-        public StreamWriter openLog(string path)
-        {
-            //TODO: actually open a file. Doesnt take paramater because it will always be the same file
-            StreamWriter log = new StreamWriter(path);
-            return log;
-        }
-
-        /// <summary>
-        /// closes the log file
-        /// </summary>
-        /// <returns>success or failure.</returns>
-        public bool closeLog()
-        {
-            return true;
-        }
-
         /// <summary>
         /// Writes an entry to the log
         /// </summary>
@@ -54,7 +32,9 @@ namespace Supporting
             using (StreamWriter w = File.AppendText(fileName))
             {
                 w.Write(timeStamp + " " + "[" + callingClass + "." + callingMethod + "] " + logEvent);
+                w.Close();
             }
+            
             return true;
         }
     }
