@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
 using AllEmployees;
 using Supporting;
 
@@ -45,8 +47,8 @@ namespace TheCompany
         public Container()
         {
             container = new List<Employee>();
-            //dbFile = new FileIO();
-            //logFile = new Logging();
+            dbFile = new FileIO();
+            logFile = new Logging();
         }
 
         /// <summary>
@@ -194,9 +196,10 @@ namespace TheCompany
         public bool SaveContainer()
         {
             bool result = false;
-            // To do
+            string[] employeeInfo = null;
+            // TODO: fill the string[] with the contents of the employee object 
+            dbFile.dBaseOpen_W(employeeInfo);
             return result;
-
         }
 
         /// <summary>
@@ -208,9 +211,9 @@ namespace TheCompany
         public bool LoadContainer()
         {
             bool result = false;
-            // To do
+            string[] fileContents; // create string to hold file contents
+            fileContents = dbFile.dBaseOpen_R(); // fill the string with file contents
             return result;
-
         }
 
 
