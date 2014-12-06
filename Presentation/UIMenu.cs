@@ -112,7 +112,7 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    company.LoadContainer(dBaseFile);
+                    company.LoadContainer();
                     ///Display File
                 }
 
@@ -120,7 +120,7 @@ namespace Presentation
                 {
 
                     ///Call to WriteFile()
-                    company.SaveContainer(dBaseFile);
+                    company.SaveContainer();
                 }
 
                 if (choice.KeyChar == '9')
