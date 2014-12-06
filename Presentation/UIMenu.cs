@@ -10,8 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Reflection;
 using Supporting;
 using TheCompany;
 using AllEmployees;
@@ -29,7 +32,7 @@ namespace Presentation
         ///<VAR choice="int">the choice made by the user 
         ///as a single number</VAR>
         ConsoleKeyInfo choice = new ConsoleKeyInfo();
-        string dBaseFile;
+        //string dBaseFile = Path.Combine(Directory.GetCurrentDirectory(), "DBase", "DB.csv");
         FileIO fileClass = new FileIO();
         Container company = new Container();
         Validation val = new Validation();

@@ -22,6 +22,8 @@ namespace TheCompany
     /// </summary>
     public class Container
     {
+        string dBaseFile = Path.Combine(Directory.GetCurrentDirectory(), "DBase", "DB.csv"); // dbase filepath
+
         /// <summary>
         /// The container holding any number and any type of employee-type classes
         /// </summary>
@@ -187,9 +189,9 @@ namespace TheCompany
         /// Method Name: SaveContainer
         /// The function is called to save the data inside the the container object to a file. 
         /// </summary>
-        /// <param name="fileName">the Name of the databas file</param>
+        /// <param name="fileName">the Name of the database file</param>
         /// <returns>A boolean indicating whether the operation was successful</returns>
-        public bool SaveContainer(String fileName)
+        public bool SaveContainer()
         {
             bool result = false;
             // To do
@@ -201,9 +203,9 @@ namespace TheCompany
         /// Method Name: LoadContainer
         /// The function is called to populate the container object with the data from the database file 
         /// </summary>
-        /// <param name="fileName">the Name of the databas file</param>
+        /// <param name="fileName">the Name of the database file</param>
         /// <returns>A boolean indicating whether the operation was successful</returns>
-        public bool LoadContainer(String fileName)
+        public bool LoadContainer()
         {
             bool result = false;
             // To do
