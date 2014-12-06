@@ -39,12 +39,12 @@ namespace Supporting
                     dBase_R.Close();
                 }
                 return fileLines;
-                
+
             }
             else
             {
                 //file doesn't exist
-                return new string[] {"File Doesn't Exist", ""};
+                return null;
             }
         }
 

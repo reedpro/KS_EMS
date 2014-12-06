@@ -28,14 +28,31 @@ namespace Supporting
             string timeStamp = time.ToString("yyy-MM-dd hh:mm:ss"); // formatted timestamp for in the log file
             string callingMethod = frame.GetMethod().Name; // name of calling method
             string callingClass = frame.GetMethod().DeclaringType.ToString(); // name of calling class
+            string entry = ""; // the entry written
+            bool succeeded = false; // return value
 
             using (StreamWriter w = File.AppendText(fileName))
             {
-                w.Write(timeStamp + " " + "[" + callingClass + "." + callingMethod + "] " + logEvent);
+                entry = timeStamp + " " + "[" + callingClass + "." + callingMethod + "] " + logEvent;
+                w.Write(entry);
                 w.Close();
             }
-            
-            return true;
+
+            // check the file just written to for the entry to ensure it was successfully written
+            using (StreamReader sr = new StreamReader(fileName))
+            {
+                // check each line
+                foreach (string line in File.ReadLines(fileName))
+                {
+                    // entry was found, write successful
+                    if (line.Contains(entry))
+                    {
+                        succeeded = true;
+                        break;
+                    }
+                }
+            }
+            return succeeded;
         }
     }
 }
