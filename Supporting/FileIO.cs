@@ -1,4 +1,11 @@
-﻿using System;
+﻿//
+// FILE: FIleIO.cs
+// PROJECT: Employee Management System Project
+// PROGRAMMERS: Jay Moorhouse, Jordan Poirier, Thom Taylor, Rachel Park
+// DATE: 11/13/2014
+// DESCRIPTION: Class contains methods to read and write from/to the database file.
+//   
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

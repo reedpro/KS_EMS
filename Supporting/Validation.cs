@@ -1,4 +1,11 @@
-﻿using System;
+﻿//
+// FILE: Logging.cs
+// PROJECT: Employee Management System Project
+// PROGRAMMERS: Jay Moorhouse, Jordan Poirier, Thom Taylor, Rachel Park
+// DATE: 11/13/2014
+// DESCRIPTION: Contains Validation methods used throughout the EMS application.
+//   
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
