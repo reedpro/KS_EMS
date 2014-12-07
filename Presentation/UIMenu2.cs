@@ -135,12 +135,12 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    ///Traverse Employees Set and Call Details()
+                    company.Display();
                 }
                 else if (choice.KeyChar == '2')
                 {
                     manType = "Create";
-                    //MenuFour(manType);
+                    
                     break;
                 }
 
@@ -175,9 +175,6 @@ namespace Presentation
                 }
             }
         }
-
-
-
 
         public void PrintMenuFourOptions(String type)
         {

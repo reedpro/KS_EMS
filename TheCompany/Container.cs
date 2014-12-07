@@ -188,6 +188,18 @@ namespace TheCompany
         }
 
         /// <summary>
+        /// Display function that list all the employee object details inside the container
+        /// </summary>
+        public void Display()
+        {
+            foreach (Employee emp in container)
+            {
+                emp.Details();
+            }
+        }
+
+
+        /// <summary>
         /// Method Name: RemoveEmployee
         /// This function is called to remove a specific employee that meets the specified condition.
         /// </summary>
