@@ -312,7 +312,7 @@ namespace Presentation
                 else if (choice.KeyChar == '4')
                 {
                     SIN = SpecifyNameOrRateOrDateOrSIN("Social Insurance Number", "Please Enter SIN number of " + type);
-                    if (baseEmp.SetDOB(SIN))
+                    if (baseEmp.SetSIN(SIN))
                     {
                         Console.WriteLine("SIN Number Successfully Set to " + baseEmp.GetDOB());
                     }
