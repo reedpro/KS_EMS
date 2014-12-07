@@ -325,10 +325,13 @@ namespace Presentation
                 {
                     break;
                 }
-                baseEmp.Details();
-
-                Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
-                Console.ReadKey();
+                
+                if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
+                {
+                    baseEmp.Details();
+                    Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                    Console.ReadKey();
+                }
             }
             return baseEmp;
         }
