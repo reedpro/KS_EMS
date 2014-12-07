@@ -27,7 +27,7 @@ namespace Presentation
     /// Menus to the user. That the user will then interact with
     /// calling the functional meathods of the program
     /// </summary>
-    public class UIMenu2
+    public class UIMenu
     {
         ///<VAR choice="int">the choice made by the user 
         ///as a single number</VAR>
@@ -275,9 +275,11 @@ namespace Presentation
                 if ((choice.KeyChar == '1') && (type != "Contract"))
                 {
                     fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
+                    Console.WriteLine("You wrote " + fName);
                     if(baseEmp.SetFirstName(fName))
                     {
                         Console.WriteLine("First Name Successfully Set to " + baseEmp.GetFirstName());
+                        baseEmp.Details();
                     }
                     else
                     {
@@ -324,6 +326,7 @@ namespace Presentation
                 {
                     break;
                 }
+                Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                 Console.ReadKey();
             }
             return baseEmp;
@@ -468,6 +471,8 @@ namespace Presentation
                             }
                         }
                     }
+
+                    Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                     Console.ReadKey();
                 }
             }

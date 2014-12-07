@@ -577,18 +577,18 @@ namespace AllEmployees
                         goto default;
                     default:
                         output += "\tLast Name:\t\t" + lastName;
-                        output += "\tFirst Name:\t\t" + firstName;
-                        output += "\tSIN:\t\t" + socialInsuranceNumber.Insert(4, " ").Insert(8, " ");
-                        output += "\tDate of Birth:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
+                        output += "\n\tFirst Name:\t\t" + firstName;
+                        output += "\n\tSIN:\t\t" + socialInsuranceNumber;//.Insert(4, " ").Insert(8, " ");
+                        output += "\n\tDate of Birth:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
                         break;
                 }
             }
             else
             {
                 output += "<Contract Employee>\n";
-                output += "\tBusiness Name:\t\t" + lastName;
-                output += "\tBusiness Number:\t\t" + socialInsuranceNumber.Insert(5, " ");
-                output += "\tDate of Incorporation:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
+                output += "\n\tBusiness Name:\t\t" + lastName;
+                output += "\n\tBusiness Number:\t\t" + socialInsuranceNumber.Insert(5, " ");
+                output += "\n\tDate of Incorporation:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
             }
             return output;
         }
