@@ -756,7 +756,7 @@ namespace Presentation
                         if (val.date(input))
                         {
                             tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
-                            if (ct.contractStartDate != null && ct.contractStartDate > tempTime)
+                            if (ct.contractEndDate != null && ct.contractEndDate > tempTime)
                             {
                                 log.writeLog(input + ": You cant end a contract before its begun");
                                 Console.WriteLine(input + ": You cant end a contract before its begun");

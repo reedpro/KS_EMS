@@ -111,11 +111,39 @@ namespace AllEmployees
             return retV;
         }
 
-        public bool SetDateOfHire(String hDate)
+        public bool SetDateOfHire(String hDateStr)
         {
-            return true;
+            bool retV = false;
+            DateTime? date = null;
+            if (hDateStr == "N/A")
+            {
+                retV = SetDateOfHire(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(hDateStr)) != null)
+            {
+                retV = SetDateOfHire(date);
+                retV = true;
+            }
+            return retV;
         }
 
+        public bool SetDateOfTermination(String tDateStr)
+        {
+            bool retV = false;
+            DateTime? date = null;
+            if (tDateStr == "N/A")
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(tDateStr)) != null)
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            return retV;
+        }
 
 
         /// <summary>
@@ -128,10 +156,10 @@ namespace AllEmployees
             bool retV = false;
             log.writeLog(
                 produceLogString("SET",
-                                (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"),
                                 (tDate.HasValue ? tDate.Value.ToString("yyyy-MM-dd") : "N/A"),
                                 "SUCCESS"));
-            dateOfHire = tDate;
+            dateOfTermination = tDate;
             retV = true;
             return retV;
         }

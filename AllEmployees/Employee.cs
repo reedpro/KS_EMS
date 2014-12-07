@@ -93,6 +93,24 @@ namespace AllEmployees
             log = new Logging();
         }
 
+        public String GetFirstName()
+        {
+            return firstName;
+        }
+
+        public String GetLastName()
+        {
+            return lastName;
+        }
+
+        public DateTime? GetDOB()
+        {
+            return dateOfBirth;
+        }
+        public String GetSIN()
+        {
+            return socialInsuranceNumber;
+        }
         /// <summary>
         /// A method checking if the input string only contains valid characters A-Za-z, hyphen, and apostrophe
         /// </summary>
@@ -203,7 +221,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="dateStr"></param>
         /// <returns>Return DateTime variable if contain valid DateTime information; otherwise null</returns>
-        public DateTime? ReturnDate(String dateStr)
+        public DateTime? ReturnDateIfValid(String dateStr)
         {
             DateTime date = DateTime.MinValue;
             DateTime? dateNull = null;
@@ -233,7 +251,7 @@ namespace AllEmployees
                 retV = SetDOB(date);
                 retV = true;
             }
-            else if((date = ReturnDate(dateStr)) != null)
+            else if((date = ReturnDateIfValid(dateStr)) != null)
             {
                 retV = SetDOB(date);
                 retV = true;

@@ -20,9 +20,9 @@ namespace AllEmployees
     /// </summary>
     public sealed class ContractEmployee : Employee
     {
-        public DateTime? contractStartDate { get; private set; }
-        public DateTime? dateOfTermination { get; private set; }
-        public string hourlyRate { get; private set; }
+        private DateTime? contractStartDate;
+        private DateTime? contractEndDate;
+        private String fixedContractAmt;
 
         /// <summary>
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
@@ -35,8 +35,8 @@ namespace AllEmployees
             SetSIN("");
             SetDOB(new DateTime());
             contractStartDate = null;
-            dateOfTermination = null;
-            hourlyRate = "0";
+            contractEndDate = null;
+            fixedContractAmt = "0";
         }
 
         /// <summary>
@@ -51,17 +51,29 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ContractEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime startDate, DateTime terminationDate, string rate)
+            DateTime startDate, DateTime endDate, string rate)
         {
             SetFirstName(first);
             SetLastName(last);
             SetSIN(SIN);
             SetDOB(DOB);
             contractStartDate = startDate;
-            dateOfTermination = terminationDate;
-            hourlyRate = rate;
+            contractEndDate = endDate;
+            fixedContractAmt = rate;
         }
 
+        public DateTime? GetContractStartDate()
+        {
+            return contractStartDate;
+        }
+        public DateTime? GetContractEndDate()
+        {
+            return contractEndDate;
+        }
+        public String GetFixedContractAmt()
+        {
+            return fixedContractAmt;
+        }
         /// <summary>
         /// The setter for the contractStartDate variable
         /// </summary>
@@ -69,15 +81,8 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetContractStartDate(DateTime date)
         {
-            contractStartDate = date;
-            if (contractStartDate == date)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            bool retV = false;
+            return retV;
         }
 
         /// <summary>
@@ -87,15 +92,8 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfTermination(DateTime date)
         {
-            dateOfTermination = date;
-            if (dateOfTermination == date)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            bool retV = false;
+            return retV;
         }
 
         /// <summary>
@@ -103,17 +101,10 @@ namespace AllEmployees
         /// </summary>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(string rate)
+        public bool SetFixedContractAmt(string fAmt)
         {
-            hourlyRate = rate;
-            if (hourlyRate == rate)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            bool retV = false;
+            return retV;
         }
 
         /// <summary>
@@ -126,8 +117,8 @@ namespace AllEmployees
                 socialInsuranceNumber + "\n" +
                 dateOfBirth + "\n" +
                 contractStartDate + "\n" +
-                dateOfTermination + "\n" +
-                hourlyRate);
+                contractEndDate + "\n" +
+                fixedContractAmt);
         }
     }
 }

@@ -80,6 +80,41 @@ namespace AllEmployees
             //fte = new FulltimeEmployee(first, last, SIN, DOB, hDate, tDate, 0.00M);
         }
 
+        public bool SetDateOfHire(String hDateStr)
+        {
+            bool retV = false;
+            DateTime? date = null;
+            if (hDateStr == "N/A")
+            {
+                retV = SetDateOfHire(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(hDateStr)) != null)
+            {
+                retV = SetDateOfHire(date);
+                retV = true;
+            }
+            return retV;
+        }
+
+        public bool SetDateOfTermination(String tDateStr)
+        {
+            bool retV = false;
+            DateTime? date = null;
+            if (tDateStr == "N/A")
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(tDateStr)) != null)
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            return retV;
+        }
+
+
         /// <summary>
         /// The setter for dateOfHire
         /// </summary>
@@ -88,16 +123,13 @@ namespace AllEmployees
         public bool SetDateOfHire(DateTime? hDate)
         {
             bool retV = false;
-            //if (fte.SetDateOfHire(hDate))
-            //{
-            //    dateOfHire = hDate;
-            //    log.writeLog(
-            //    produceLogString("SET",
-            //                    (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
-            //                    (hDate.HasValue ? hDate.Value.ToString("yyyy-MM-dd") : "N/A"),
-            //                    "SUCCESS"));
-            //}
-
+            log.writeLog(
+                produceLogString("SET",
+                                (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (hDate.HasValue ? hDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            dateOfHire = hDate;
+            retV = true;
             return retV;
         }
 
@@ -106,35 +138,62 @@ namespace AllEmployees
         /// </summary>
         /// <param name="date">The date to set the dateOfTermination variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfTermination(DateTime date)
+        public bool SetDateOfTermination(DateTime? tDate)
         {
-            dateOfTermination = date;
-            if (dateOfTermination == date)
+            bool retV = false;
+            log.writeLog(
+                produceLogString("SET",
+                                (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (tDate.HasValue ? tDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            dateOfTermination = tDate;
+            retV = true;
+            return retV;
+        }
+
+        public bool CheckHourlyRate(Decimal hRate)
+        {
+            return hRate > 0;
+        }
+
+        public bool CheckHourlyRate(String hRateStr)
+        {
+            Decimal newSal;
+            return Decimal.TryParse(hRateStr, out newSal) && CheckHourlyRate(newSal);
+        }
+
+        public bool SetHourlyRate(Decimal hRate)
+        {
+            bool retV = false;
+            if (CheckHourlyRate(hRate) == true)
             {
-                return true;
+                log.writeLog(produceLogString("SET", hourlyRate.ToString("0.00"), hRate.ToString("0.00"), "SUCCESS"));
+                hourlyRate = hRate;
+                retV = true;
             }
             else
             {
-                return false;
+                log.writeLog(produceLogString("SET", hourlyRate.ToString("0.00"), hRate.ToString("0.00"), "FAIL")
+                    + "\nDetail: Hourly Rate cannot be lower than zero");
             }
+            return retV;
         }
 
         /// <summary>
-        /// The setter for hourlyRate
+        /// The setter for salary
         /// </summary>
-        /// <param name="rate">The value to set the hourlyRate variable to</param>
+        /// <param name="hRateStr">The string to set the salary variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(Decimal rate)
+        public bool SetHourlyRate(String hRateStr)
         {
-            hourlyRate = rate;
-            if (hourlyRate == rate)
+            bool retV = false;
+            Decimal newSal;
+            if (Decimal.TryParse(hRateStr, out newSal))
             {
-                return true;
+                SetHourlyRate(newSal);
+                retV = true;
             }
-            else
-            {
-                return false;
-            }
+            return retV;
         }
 
         /// <summary>
