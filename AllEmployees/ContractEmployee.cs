@@ -28,7 +28,8 @@ namespace AllEmployees
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public ContractEmployee() : base()
+        public ContractEmployee()
+            : base()
         {
             contractStartDate = null;
             contractEndDate = null;
@@ -243,7 +244,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", fixedContractAmt.ToString("0.00"), "FAIL") 
+                log.writeLog(produceLogString("VALIDATE", "", fixedContractAmt.ToString("0.00"), "FAIL")
                                             + "\nDetails: Fixed Contract Amount must be bigger than 0");
 
             }
@@ -263,6 +264,6 @@ namespace AllEmployees
         {
             return base.Validate() && validateCSD() && validateCED() && validateFixedContractAmt();
         }
-       
+
     }
 }

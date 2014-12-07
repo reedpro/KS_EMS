@@ -23,11 +23,11 @@ namespace AllEmployees
     /// </summary>
     public class Employee
     {
-        protected string firstName { public get; set; } /// Employee First Name
-        protected string lastName { public get; set; } /// Employee Last Name
-        protected string socialInsuranceNumber { public get; set; } /// Employee Social Insurance Number
-        protected DateTime? dateOfBirth { public get; set; } /// Employee Date of Birth
-        private String employeeType { public get; set; } /// Employee Type
+        protected string firstName; /// Employee First Name
+        protected string lastName; /// Employee Last Name
+        protected string socialInsuranceNumber; /// Employee Social Insurance Number
+        protected DateTime? dateOfBirth; /// Employee Date of Birth
+        private String employeeType; /// Employee Type
 
         public Logging log;
 
@@ -85,11 +85,12 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to set initialize socialInsuranceNumber variable to</param>
         /// <param name="DOB">The string to initialize the dateOfBirth variable to</param>
-        public Employee(string first, string last, string SIN, DateTime? DOB) : this(first, last)
+        public Employee(string first, string last, string SIN, DateTime? DOB)
+            : this(first, last)
         {
             SetSIN(SIN);
             SetDOB(DOB);
-            
+
             log = new Logging();
         }
 
@@ -159,7 +160,7 @@ namespace AllEmployees
             bool retV = false;
             retV = (s.Length != 9 && s == "") || (s.Length == 9 && CheckDigit(s));
             return retV;
-         }
+        }
 
 
         /// <summary>
@@ -246,19 +247,19 @@ namespace AllEmployees
         {
             bool retV = false;
             DateTime? date = null;
-            if(dateStr == "N/A")
+            if (dateStr == "N/A")
             {
                 retV = SetDOB(date);
                 retV = true;
             }
-            else if((date = ReturnDateIfValid(dateStr)) != null)
+            else if ((date = ReturnDateIfValid(dateStr)) != null)
             {
                 retV = SetDOB(date);
                 retV = true;
             }
             return retV;
         }
-        
+
         /// <summary>
         /// A method checking if the input date is within valid date range
         /// </summary>
@@ -294,19 +295,19 @@ namespace AllEmployees
         public bool SetFirstName(string fName)
         {
             bool retV = false;
-            
+
             if (this.employeeType.ToUpper() == "CT")
             {
                 if (fName != "")
                 {
                     log.writeLog(
-                        produceLogString("SET", firstName, fName, "FAIL") 
+                        produceLogString("SET", firstName, fName, "FAIL")
                                         + "\nDetail: Contract Employee's first name must be blank");
                 }
-                else 
+                else
                 {
                     log.writeLog(
-                        produceLogString("SET", firstName, fName, "SUCCESS") 
+                        produceLogString("SET", firstName, fName, "SUCCESS")
                                          + "\nDetail: Called to set type to Contract Employee thus blank first name");
                     firstName = fName;
                     retV = true;
@@ -369,7 +370,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "FAIL") 
+                log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "FAIL")
                                             + "\nDetails: SIN Should be blank or 9 digits");
             }
             return retV;
@@ -388,7 +389,7 @@ namespace AllEmployees
                 log.writeLog(
                     produceLogString("SET",
                                     (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                    "N/A", 
+                                    "N/A",
                                     "SUCCESS"));
                 dateOfBirth = null;
                 retV = true;
@@ -398,10 +399,10 @@ namespace AllEmployees
                 DateTime newDOB = (DateTime)dob;
 
                 log.writeLog(
-                    produceLogString("SET", 
+                    produceLogString("SET",
                                     (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                    newDOB.ToString("yyyy-MM-dd"), 
-                                    "SUCCESS") );
+                                    newDOB.ToString("yyyy-MM-dd"),
+                                    "SUCCESS"));
                 dateOfBirth = dob;
                 retV = true;
             }
@@ -518,7 +519,7 @@ namespace AllEmployees
 
             if (dateOfBirth != null)
             {
-                if (CheckDateRange(DateTime.MinValue, DateTime.Now, (DateTime) dateOfBirth) == true)
+                if (CheckDateRange(DateTime.MinValue, DateTime.Now, (DateTime)dateOfBirth) == true)
                 {
                     log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "SUCCESS"));
                     retV = true;
@@ -576,10 +577,10 @@ namespace AllEmployees
                         output += "<Seasonal Employee>\n";
                         goto default;
                     default:
-                        output += "\tLast Name:\t\t" + lastName;
-                        output += "\n\tFirst Name:\t\t" + firstName;
-                        output += "\n\tSIN:\t\t" + socialInsuranceNumber;//.Insert(4, " ").Insert(8, " ");
-                        output += "\n\tDate of Birth:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
+                        output += "\tLast Name:\t\t" + "\"" + lastName + "\"";
+                        output += "\n\tFirst Name:\t\t" + "\"" + firstName + "\"";
+                        output += "\n\tSIN:\t\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(3, " ").Insert(7, " ") : "") + "\"";
+                        output += "\n\tDate of Birth:\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
                         break;
                 }
             }
@@ -587,8 +588,8 @@ namespace AllEmployees
             {
                 output += "<Contract Employee>\n";
                 output += "\n\tBusiness Name:\t\t" + lastName;
-                output += "\n\tBusiness Number:\t\t" + socialInsuranceNumber.Insert(5, " ");
-                output += "\n\tDate of Incorporation:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
+                output += "\n\tBusiness Number:\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(4, " ") : "") + "\"";
+                output += "\n\tDate of Incorporation:\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
             return output;
         }

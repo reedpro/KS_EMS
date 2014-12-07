@@ -23,7 +23,7 @@ namespace EMS
         static void Main(string[] args)
         {
             UIMenu UI = new UIMenu();
-            UI.SpecifiyBaseEmployee("Full Time");
+            UI.MenuFourToCreate("FT");
         }
     }
 }

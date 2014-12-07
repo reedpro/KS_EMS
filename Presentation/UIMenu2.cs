@@ -176,9 +176,9 @@ namespace Presentation
             }
         }
 
-       
 
-        
+
+
         public void PrintMenuFourOptions(String type)
         {
             Console.Clear();
@@ -191,29 +191,27 @@ namespace Presentation
                     Console.WriteLine("2. Set Full Time Employee Date Of Hire");
                     Console.WriteLine("3. Set Full Time Employee Date Of Termination");
                     Console.WriteLine("4. Set Full Time Employee Salary");
-                    goto default;
+                    break;
                 case "PT":
                     Console.WriteLine("2. Set Part Time Employee Date Of Hire");
                     Console.WriteLine("3. Set Part Time Employee Date Of Termination");
                     Console.WriteLine("4. Set Part Time Employee Hourly rate");
-                    goto default;
+                    break;
                 case "CT":
                     Console.WriteLine("2. Set Contract Employee Contract Start Date");
                     Console.WriteLine("3. Set Contract Employee Contract Stop Date");
                     Console.WriteLine("4. Set Contract Employee Fixed Contract Amount");
-                    goto default;
+                    break;
                 case "SN":
                     Console.WriteLine("2. Set Seasonal Employee Season");
                     Console.WriteLine("3. Set Seasonal Employee Piece Pay");
-                    goto default;
-                default:
-                    Console.WriteLine("");
-                    Console.WriteLine("6. Preview Employee Data Entered So Far");
-                    Console.WriteLine("7. Discard Employee Data Entered So Far");
-                    Console.WriteLine("8. Add Employee Data Entered to Employee Set");
-                    Console.WriteLine("9. Return to Employee Management Menu");
                     break;
             }
+            Console.WriteLine("");
+            Console.WriteLine("6. Preview Employee Data Entered So Far");
+            Console.WriteLine("7. Discard Employee Data Entered So Far");
+            Console.WriteLine("8. Add Employee Data Entered to Employee Set");
+            Console.WriteLine("9. Return to Employee Management Menu");
         }
 
         public String SpecifyNameOrRateOrDateOrSIN(String what, String question)
@@ -238,7 +236,7 @@ namespace Presentation
             Console.WriteLine("\t3. Summer");
             Console.WriteLine("\t4. Fall");
             char c = Console.ReadKey().KeyChar;
-            switch(c)
+            switch (c)
             {
                 case '1':
                     input = "WINTER";
@@ -276,21 +274,21 @@ namespace Presentation
                 {
                     fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
                     Console.WriteLine("You wrote " + fName);
-                    if(baseEmp.SetFirstName(fName))
+                    if (baseEmp.SetFirstName(fName))
                     {
-                        Console.WriteLine("First Name Successfully Set to " + baseEmp.GetFirstName());
+                        Console.WriteLine("First Name Successfully Set to \"" + baseEmp.GetFirstName() + "\"");
                     }
                     else
                     {
                         Console.WriteLine("Failed to Set First Name to \"" + fName + "\"; Remain as \"" + baseEmp.GetFirstName() + "\"");
                     }
                 }
-                else if(choice.KeyChar == '2')
+                else if (choice.KeyChar == '2')
                 {
                     lName = SpecifyNameOrRateOrDateOrSIN("Last Name", "Please Enter Last Name of " + type);
                     if (baseEmp.SetFirstName(lName))
                     {
-                        Console.WriteLine("Last Name Successfully Set to " + baseEmp.GetLastName());
+                        Console.WriteLine("Last Name Successfully Set to \"" + baseEmp.GetLastName() + "\"");
                     }
                     else
                     {
@@ -302,7 +300,14 @@ namespace Presentation
                     dob = SpecifyNameOrRateOrDateOrSIN("Date of Birth", "Please Enter Date of Birth of " + type);
                     if (baseEmp.SetDOB(dob))
                     {
-                        Console.WriteLine("Date of Birth Successfully Set to " + baseEmp.GetDOB());
+                        if (dob == "N/A")
+                        {
+                            Console.WriteLine("Date of Birth Successfully Set to \"N/A\"");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Date of Birth Successfully Set to \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
+                        }
                     }
                     else
                     {
@@ -314,7 +319,7 @@ namespace Presentation
                     SIN = SpecifyNameOrRateOrDateOrSIN("Social Insurance Number", "Please Enter SIN number of " + type);
                     if (baseEmp.SetSIN(SIN))
                     {
-                        Console.WriteLine("SIN Number Successfully Set to " + baseEmp.GetDOB());
+                        Console.WriteLine("SIN Number Successfully Set to \"" + baseEmp.GetSIN() + "\"");
                     }
                     else
                     {
@@ -325,7 +330,7 @@ namespace Presentation
                 {
                     break;
                 }
-                
+
                 if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
                 {
                     baseEmp.Details();
@@ -338,29 +343,37 @@ namespace Presentation
 
 
 
-        public void MenuFourToCreate(String type)
+        public void MenuFourToCreate(String shortType)
         {
             while (true)
             {
-                PrintMenuFourOptions(type);
+                PrintMenuFourOptions(shortType);
 
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    baseEmp = SpecifiyBaseEmployee(type);
+                    baseEmp = SpecifiyBaseEmployee(shortType);
                 }
                 else
                 {
                     #region FULLTIME
-                    if (type == "Full Time")
+                    if (shortType == "FT")
                     {
+                        String type = "Full Time";
                         String hDateStr, tDateStr, salaryStr;
                         if (choice.KeyChar == '2')
                         {
                             hDateStr = SpecifyNameOrRateOrDateOrSIN("Hiring Date", "Please Enter Hiring Date of " + type);
                             if (ftEmp.SetDateOfHire(hDateStr))
                             {
-                                Console.WriteLine("Hiring Date Successfully Set to " + ftEmp.GetDateOfHire());
+                                if (hDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Hiring Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ftEmp.GetDateOfHire() + "\"");
+                                }
                             }
                             else
                             {
@@ -372,7 +385,7 @@ namespace Presentation
                             tDateStr = SpecifyNameOrRateOrDateOrSIN("Termination Date", "Please Enter Termination Date of " + type);
                             if (ftEmp.SetDateOfTermination(tDateStr))
                             {
-                                Console.WriteLine("Termination Date Successfully Set to " + ftEmp.GetDateOfTermination());
+                                Console.WriteLine("Termination Date Successfully Set to \"" + ftEmp.GetDateOfTermination() + "\"");
                             }
                             else
                             {
@@ -384,25 +397,36 @@ namespace Presentation
                             salaryStr = SpecifyNameOrRateOrDateOrSIN("Salary", "Please Enter Salary of " + type);
                             if (ftEmp.SetSalary(salaryStr))
                             {
-                                Console.WriteLine("Salary Successfully Set to " + ftEmp.GetSalary());
+                                Console.WriteLine("Salary Successfully Set to \"" + ftEmp.GetSalary() + "\"");
                             }
                             else
                             {
                                 Console.WriteLine("Failed to Set Salary to \"" + salaryStr + "\"; Remain as \"" + ftEmp.GetSalary() + "\"");
                             }
                         }
+                        else if (choice.KeyChar == '6')
+                        {
+                            Console.Clear();
+                            ftEmp.Details();
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        {
+                            Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                            Console.ReadKey();
+                        }
                     }//FULL TIME EMPLOYEE
                     #endregion
                     #region PARTTIME
-                    else if (type == "Part Time")
+                    else if (shortType == "PT")
                     {
+                        String type = "Part Time";
                         String hDateStr, tDateStr, hourlyRateStr;
                         if (choice.KeyChar == '2')
                         {
                             hDateStr = SpecifyNameOrRateOrDateOrSIN("Hiring Date", "Please Enter Hiring Date of " + type);
                             if (ptEmp.SetDateOfHire(hDateStr))
                             {
-                                Console.WriteLine("Hiring Date Successfully Set to " + ptEmp.GetDateOfHire());
+                                Console.WriteLine("Hiring Date Successfully Set to \"" + ptEmp.GetDateOfHire() + "\"");
                             }
                             else
                             {
@@ -414,7 +438,7 @@ namespace Presentation
                             tDateStr = SpecifyNameOrRateOrDateOrSIN("Termination Date", "Please Enter Termination Date of " + type);
                             if (ptEmp.SetDateOfTermination(tDateStr))
                             {
-                                Console.WriteLine("Termination Date Successfully Set to " + ptEmp.GetDateOfTermination());
+                                Console.WriteLine("Termination Date Successfully Set to \"" + ptEmp.GetDateOfTermination() + "\"");
                             }
                             else
                             {
@@ -426,24 +450,35 @@ namespace Presentation
                             hourlyRateStr = SpecifyNameOrRateOrDateOrSIN("Hourly Rate", "Please Enter Salary of " + type);
                             if (ptEmp.SetHourlyRate(hourlyRateStr))
                             {
-                                Console.WriteLine("Hourly Rate Successfully Set to " + ptEmp.GetHourlyRate());
+                                Console.WriteLine("Hourly Rate Successfully Set to \"" + ptEmp.GetHourlyRate() + "\"");
                             }
                             else
                             {
                                 Console.WriteLine("Failed to Set Hourly Rate to \"" + hourlyRateStr + "\"; Remain as \"" + ptEmp.GetHourlyRate() + "\"");
                             }
                         }
+                        else if (choice.KeyChar == '6')
+                        {
+                            Console.Clear();
+                            ptEmp.Details();
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        {
+                            Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                            Console.ReadKey();
+                        }
                     }//PART TIME EMPLOYEE
                     #endregion PARTTIME
-                    else if (type == "Contract")
+                    else if (shortType == "CT")
                     {
+                        String type = "Contract";
                         String cStartDateStr, cEndDateStr, fixedContractAmtStr;
                         if (choice.KeyChar == '2')
                         {
                             cStartDateStr = SpecifyNameOrRateOrDateOrSIN("Contract Start Date", "Please Enter Contract Start Date of " + type);
                             if (ctEmp.SetContractStartDate(cStartDateStr))
                             {
-                                Console.WriteLine("Contract Start Date Successfully Set to " + ctEmp.GetContractStartDate());
+                                Console.WriteLine("Contract Start Date Successfully Set to \"" + ctEmp.GetContractStartDate() + "\"");
                             }
                             else
                             {
@@ -455,7 +490,7 @@ namespace Presentation
                             cEndDateStr = SpecifyNameOrRateOrDateOrSIN("Contract End Date", "Please Enter Contract End Date of " + type);
                             if (ctEmp.SetContractEndDate(cEndDateStr))
                             {
-                                Console.WriteLine("Contract End Date Successfully Set to " + ctEmp.GetContractEndDate());
+                                Console.WriteLine("Contract End Date Successfully Set to \"" + ctEmp.GetContractEndDate() + "\"");
                             }
                             else
                             {
@@ -467,17 +502,24 @@ namespace Presentation
                             fixedContractAmtStr = SpecifyNameOrRateOrDateOrSIN("Fixed Contract Amount", "Please Enter Fixed Contract Amount of " + type);
                             if (ctEmp.CheckFixedContractAmt(fixedContractAmtStr))
                             {
-                                Console.WriteLine("Contract Fixed Contract Amount Successfully Set to " + ctEmp.GetFixedContractAmt());
+                                Console.WriteLine("Contract Fixed Contract Amount Successfully Set to \"" + ctEmp.GetFixedContractAmt() + "\"");
                             }
                             else
                             {
                                 Console.WriteLine("Failed to Set Fixed Contract Amount to \"" + fixedContractAmtStr + "\"; Remain as \"" + ctEmp.GetFixedContractAmt() + "\"");
                             }
                         }
+                        else if (choice.KeyChar == '6')
+                        {
+                            Console.Clear();
+                            ctEmp.Details();
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        {
+                            Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                            Console.ReadKey();
+                        }
                     }
-
-                    Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
-                    Console.ReadKey();
                 }
             }
         }
@@ -1157,7 +1199,7 @@ namespace Presentation
         //        }
         //    }
         //}
-#endregion
+        #endregion
     }
 }
 

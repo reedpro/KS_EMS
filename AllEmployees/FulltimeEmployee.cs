@@ -29,7 +29,8 @@ namespace AllEmployees
         /// The FulltimeEmployee() method is a Constructor for the FulltimeEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public FulltimeEmployee() : base()
+        public FulltimeEmployee()
+            : base()
         {
             dateOfHire = null;
             dateOfTermination = null;
@@ -162,7 +163,7 @@ namespace AllEmployees
             }
             return retV;
         }
-        
+
         public bool CheckSalary(Decimal sal)
         {
             return sal > 0;
@@ -182,7 +183,7 @@ namespace AllEmployees
         public bool SetSalary(Decimal inSalary)
         {
             bool retV = false;
-            if(CheckSalary(inSalary) == true)
+            if (CheckSalary(inSalary) == true)
             {
                 log.writeLog(produceLogString("SET", salary.ToString("0.00"), inSalary.ToString("0.00"), "SUCCESS"));
                 salary = inSalary;
@@ -205,7 +206,7 @@ namespace AllEmployees
         {
             bool retV = false;
             Decimal newSal;
-            if(Decimal.TryParse(inSalary, out newSal))
+            if (Decimal.TryParse(inSalary, out newSal))
             {
                 SetSalary(newSal);
                 retV = true;
@@ -275,7 +276,7 @@ namespace AllEmployees
         {
             bool retV = false;
 
-            if(CheckSalary(salary) && salary != 0)
+            if (CheckSalary(salary) && salary != 0)
             {
                 log.writeLog(produceLogString("VALIDATE", "", salary.ToString("0.00"), "SUCCESS"));
                 retV = true;
@@ -283,7 +284,7 @@ namespace AllEmployees
             else
             {
                 log.writeLog(produceLogString("VALIDATE", "", salary.ToString("0.00"), "FAIL") + "\nDetails: Salary must be bigger than 0");
-                                
+
             }
             return retV;
         }
@@ -295,10 +296,10 @@ namespace AllEmployees
 
         protected override String ConsoleDetails()
         {
-            String output ="";
-            output += "\tDate of Hire:\t\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
-            output += "\tDate of Termination:\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
-            output += "\tSalary:\t\t\t" + salary.ToString("0.00");
+            String output = "";
+            output += "\n\tDate of Hire:\t\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\n\tDate of Termination:\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\n\tSalary:\t\t\t" + "\"" + salary.ToString("0.00") + "\"";
             return output;
         }
 
@@ -309,7 +310,7 @@ namespace AllEmployees
         {
             String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
             Console.WriteLine(consoleOutput);
-            log.writeLog(produceLogString("DETAILS", "", "", "")  + "\nInput: \n" + consoleOutput);
+            log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
         }
     }
 }

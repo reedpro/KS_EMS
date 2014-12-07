@@ -42,7 +42,8 @@ namespace AllEmployees
         /// The ParttimeEmployee() method is a Constructor for the ParttimeEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public ParttimeEmployee() : base()
+        public ParttimeEmployee()
+            : base()
         {
             dateOfHire = null;
             dateOfTermination = null;
@@ -98,7 +99,7 @@ namespace AllEmployees
             }
             return retV;
         }
-        
+
         public bool SetDateOfTermination(DateTime? tDate)
         {
             bool retV = false;
@@ -267,7 +268,7 @@ namespace AllEmployees
         {
             String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
             Console.WriteLine(consoleOutput);
-            log.writeLog(produceLogString("DETAILS", "", "", "")  + "\nInput: \n" + consoleOutput);
+            log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
         }
     }
 }
