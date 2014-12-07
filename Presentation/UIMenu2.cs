@@ -27,7 +27,7 @@ namespace Presentation
     /// Menus to the user. That the user will then interact with
     /// calling the functional meathods of the program
     /// </summary>
-    public class UIMenu
+    public class UIMenu2
     {
         ///<VAR choice="int">the choice made by the user 
         ///as a single number</VAR>
@@ -43,20 +43,12 @@ namespace Presentation
         SeasonalEmployee sn = new SeasonalEmployee();
         ParttimeEmployee pt = new ParttimeEmployee();
         Employee baseEmp = new Employee();
-        
+
         bool mainMenu = false;
         char empType = 'x';
         string input = "";
 
 
-        ///<summary>
-        ///Method:MenuOne
-        ///Purpose:The MenuOne meathod will display the first menu
-        ///the user will be interacting with
-        ///Depending on the users choice a diffrent menu will be called apon
-        ///Inputs:None
-        ///Returns:Void
-        ///</summary>
         public void MenuOne()
         {
             ///To DO: 
@@ -68,23 +60,23 @@ namespace Presentation
                 Console.WriteLine("Menu 1: Main Menu");
                 Console.WriteLine("1. Manage EMS DBase Files");
                 Console.WriteLine("2. Manage Employees");
-                Console.WriteLine("3.Quit");
+                Console.WriteLine("9. Quit");
 
                 choice = Console.ReadKey();
-                if (choice.KeyChar == '1')
+                if (choice.KeyChar == '1')  //Manage EMS DB File
                 {
                     MenuTwo();
+                    break;
                 }
-
-                if (choice.KeyChar == '2')
+                else if (choice.KeyChar == '2') //Manage Employees
                 {
                     MenuThree();
+                    break;
                 }
-
-                if (choice.KeyChar == '3')
+                else if (choice.KeyChar == '9') //Quit
                 {
-                    ///TO DO:
-                    ///Save and exit Program
+                    //TO DO:
+                    //Ask if want to quit for sure
                     break;
                 }
             }
@@ -92,16 +84,6 @@ namespace Presentation
         }
 
 
-
-        ///<summary>
-        ///Method:MenuTwo
-        ///Purpose:The MenuTwo Meathod will display the Second 
-        ///menu the user will interact with
-        ///This Menu will Allow the User to either Save Or 
-        ///Load a pre-existing DataBase
-        ///Inputs:None
-        ///Returns:Void
-        ///</summary>
         public void MenuTwo()
         {
             while (true)
@@ -114,34 +96,27 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
+                    ///Display File List (option to feed the file name to loadcontainer??)
                     company.LoadContainer();
-                    ///Display File
+                    break;
                 }
 
-                if (choice.KeyChar == '2')
+                else if (choice.KeyChar == '2')
                 {
-
                     ///Call to WriteFile()
                     company.SaveContainer();
+                    break;
                 }
 
-                if (choice.KeyChar == '9')
+                else if (choice.KeyChar == '9')
                 {
+                    MenuOne();
                     break;
                 }
             }
 
         }
 
-        ///<summary>
-        ///Method:MenuThree
-        ///Purpose:The MenuThree Meathod will display the third 
-        ///menu the user will interact with
-        ///This Menu will allow the user to Manage Employees
-        ///either creating,viewing or Deleting
-        ///Inputs:None
-        ///Returns:Void
-        ///</summary>
         public void MenuThree()
         {
             ///<VAR manType = "String">The users specified type of manipulation
@@ -158,69 +133,193 @@ namespace Presentation
                 Console.WriteLine("9. Return to Main Menu");
 
                 choice = Console.ReadKey();
-                if (choice.KeyChar == 1)
+                if (choice.KeyChar == '1')
                 {
-                    ///TO DO:
-                    ///Call Employee Set()
-                    ///Traverse Employees
-                    ///CAll Details()
+                    ///Traverse Employees Set and Call Details()
                 }
-
-
-                if (choice.KeyChar == '2')
+                else if (choice.KeyChar == '2')
                 {
                     manType = "Create";
                     MenuFour(manType);
+                    break;
                 }
 
-                if (choice.KeyChar == '3')
+                else if (choice.KeyChar == '3')
                 {
                     manType = "Remove";
                     MenuFour(manType);
+                    break;
                 }
-
-                if (choice.KeyChar == '4')
+                else if (choice.KeyChar == '4')
                 {
-
                     Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
-                    Console.WriteLine("Enter 1 for YES.");
-                    Console.WriteLine("Enter 2 for NO.");
-
-
+                    Console.WriteLine("Press 1 for YES.");
+                    Console.WriteLine("Press 2 for NO.");
                     if (choice.KeyChar == '1')
                     {
                         ///TO DO Call RemoveEmployee()
                         Console.WriteLine("Employee Removed Successfully.");
                         MenuThree();
+                        break;
                     }
-                    if (choice.KeyChar == '2')
+                    else if (choice.KeyChar == '2')
                     {
                         Console.WriteLine("Employee Was NOT Removed");
                         MenuThree();
+                        break;
                     }
-
-
                 }
-
-                if (choice.KeyChar == '9')
+                else if (choice.KeyChar == '9')
                 {
                     break;
                 }
             }
         }
 
-        ///<summary>
-        ///Method:MenuFour
-        ///Purpose:The MenuFour Meathod will display the forth
-        ///menu the user will interact with
-        ///This Menu will Allow a user to Delete an existing Employee
-        ///Or Create a new one. If creating an Employee the user will
-        ///be prompted Appropriatly for the type of Employee being added
-        ///Inputs:String,ManType
-        ///Return:Void
-        ///</summary>
-        ///<param name="ManType">This paramater is either Create Or Delete Specifying if the user 
-        ///wishes to create or delte an Employee</param>
+       
+
+        
+        public void PrintMenuFourOptions(String type)
+        {
+            Console.Clear();
+            Console.WriteLine("Menu 4: Employee Details Menu");
+            Console.WriteLine("1. Specify Base Employee Details");
+
+            switch (type)
+            {
+                case "FT":
+                    Console.WriteLine("2. Set Full Time Employee Date Of Hire");
+                    Console.WriteLine("3. Set Full Time Employee Date Of Termination");
+                    Console.WriteLine("4. Set Full Time Employee Salary");
+                    goto default;
+                case "PT":
+                    Console.WriteLine("2. Set Part Time Employee Date Of Hire");
+                    Console.WriteLine("3. Set Part Time Employee Date Of Termination");
+                    Console.WriteLine("4. Set Part Time Employee Hourly rate");
+                    goto default;
+                case "CT":
+                    Console.WriteLine("2. Set Contract Employee Contract Start Date");
+                    Console.WriteLine("3. Set Contract Employee Contract Stop Date");
+                    Console.WriteLine("4. Set Contract Employee Fixed Contract Amount");
+                    goto default;
+                case "SN":
+                    Console.WriteLine("2. Set Seasonal Employee Season");
+                    Console.WriteLine("3. Set Seasonal Employee Piece Pay");
+                    goto default;
+                default:
+                    Console.WriteLine("");
+                    Console.WriteLine("6. Preview Employee Data Entered So Far");
+                    Console.WriteLine("7. Discard Employee Data Entered So Far");
+                    Console.WriteLine("8. Add Employee Data Entered to Employee Set");
+                    Console.WriteLine("9. Return to Employee Management Menu");
+                    break;
+            }
+        }
+
+        public DateTime? SpecifyDate(String question)
+        {
+            String input = "";
+            DateTime date;
+            var formats = new[] {   "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
+                                    "yyyy-MM-dd", "yyyy-MM-d", "yyyy-M-dd", "yyyy-M-d", 
+                                    "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy", "d/M/yyyy",
+                                    "yyyy/MM/dd", "yyyy/MM/d", "yyyy/M/dd", "yyyy/M/d"};
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(question);
+                Console.WriteLine("Month must occur between Year and Day. Use '-' or '/' to separate sections");
+                Console.WriteLine("To leave as blank for now, press Enter without any input");
+                Console.Write(">>");
+                input = Console.ReadLine();
+                input = input.Trim();
+                input = input.Replace(" ", "");
+                if(input == "")
+                {
+                    return null;
+                }
+                if (DateTime.TryParseExact(input, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    Console.WriteLine("You entered " + date.ToString("yyyy-MM-dd"));
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Input cannot be recognized as a valid date. Press any key to try again");
+                    Console.ReadKey();
+                }
+            }
+            return date;
+        }
+
+        public String SpecifyNameOrSIN(String what, String question)
+        {
+            String input = "";
+            Console.Clear();
+            Console.WriteLine(question);
+            Console.Write(">> " + what + ":\t");
+            input = Console.ReadLine();
+            input = input.Trim();
+            return input;
+        }
+
+        public String SpecifySeason()
+        {
+            String input = "";
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Specify Season for the Contract Employee");
+                Console.WriteLine("\t1. Winter");
+                Console.WriteLine("\t2. Spring");
+                Console.WriteLine("\t3. Summer");
+                Console.WriteLine("\t4. Fall");
+                char c = Console.ReadKey().KeyChar;
+                switch(c)
+                {
+                    case '1':
+                        input = "WINTER";
+                        break;
+                    case '2':
+                        input = "SPRING";
+                        break;
+                    case '3':
+                        input = "SUMMER";
+                        break;
+                    case '4':
+                        input = "FALL";
+                        break;
+                }
+                if (input != "") break;
+            }
+            return input;
+        }
+
+        public String SpecifyRate(String what, String question)
+        {
+            String input = "";
+            Console.Clear();
+            Console.WriteLine(question);
+            Console.Write(">> " + what + ":\t");
+            input = Console.ReadLine();
+            input = input.Trim();
+            input = input.Replace(" ", "");
+
+
+
+            return input;
+        }
+        public void MenuFourToCreate(String type)
+        {
+            PrintMenuFourOptions(type);
+
+        }
+        public void MenuFourToModify(String SIN)
+        {
+
+        }
+
+
         public void MenuFour(String ManType)
         {
             while (mainMenu != true)
@@ -241,7 +340,7 @@ namespace Presentation
                     choice = Console.ReadKey();
                     if (choice.KeyChar == '1')
                     {
-                        createBase();            
+                        createBase();
                     }
 
                     if (choice.KeyChar == '9')
@@ -251,7 +350,6 @@ namespace Presentation
                 }
             }
         }
-
         public void createBase()
         {
             while (true)
@@ -393,64 +491,12 @@ namespace Presentation
                 }
             }
         }
-        public void PrintMenuFourOptions(String type)
-        {
-                    Console.Clear();
-                    Console.WriteLine("Menu 4: Employee Details Menu");
-                    Console.WriteLine("1. Specify Base Employee Details");
-
-            switch(type)
-            {
-                case "FT":
-                    Console.WriteLine("2. Set Full Time Employee Date Of Hire");
-                    Console.WriteLine("3. Set Full Time Employee Date Of Termination");
-                    Console.WriteLine("4. Set Full Time Employee Salary");
-                    goto default;
-                case "PT":
-                    Console.WriteLine("2. Set Part Time Employee Date Of Hire");
-                    Console.WriteLine("3. Set Part Time Employee Date Of Termination");
-                    Console.WriteLine("4. Set Part Time Employee Hourly rate");
-                    goto default;
-                case "CT":
-                    Console.WriteLine("2. Set Contract Employee Contract Start Date");
-                    Console.WriteLine("3. Set Contract Employee Contract Stop Date");
-                    Console.WriteLine("4. Set Contract Employee Fixed Contract Amount");
-                    goto default;
-                case "SN":
-                    Console.WriteLine("2. Set Seasonal Employee Season");
-                    Console.WriteLine("3. Set Seasonal Employee Piece Pay");
-                    goto default;
-                default:
-                    Console.WriteLine("");
-                    Console.WriteLine("6. Preview Employee Data Entered So Far");
-                    Console.WriteLine("7. Discard Employee Data Entered So Far");
-                    Console.WriteLine("8. Add Employee Data Entered to Employee Set");
-                    Console.WriteLine("9. Return to Employee Management Menu");
-                    break;
-            }
-        }
-
-        public void MenuFourToCreate(String type)
-        {
-
-        }
-        public void MenuFourToModify(String type)
-        {
-
-        }
-
-
-
-
-        /// <summary>
-        /// Menu 4 for fulltime employee
-        /// </summary>
         public void menuFourFT()
         {
             DateTime tempTime = new DateTime();
-            while(mainMenu != true)
+            while (mainMenu != true)
             {
-                                Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Menu 4: Employee Details Menu");
                 Console.WriteLine("1. Specify Base Employee");
                 Console.WriteLine("2. Set Employee Date Of Hire");
@@ -464,7 +510,7 @@ namespace Presentation
                     //create base employee
                     createBase();
                 }
-                else if(choice.KeyChar == '2')
+                else if (choice.KeyChar == '2')
                 {
                     //set date of hire
                     while (true)
@@ -472,7 +518,7 @@ namespace Presentation
                         Console.WriteLine("Please Enter date of hire (YYYY-MM-DD");
                         input = Console.ReadLine();
                         if (val.date(input))
-                        {               
+                        {
                             tempTime = DateTime.ParseExact(input, "yyyy-mm-dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
                             if (tempTime > DateTime.Now)
                             {
@@ -530,14 +576,14 @@ namespace Presentation
                         }
                     }
                 }
-                else if(choice.KeyChar == '4')
+                else if (choice.KeyChar == '4')
                 {
                     //set employee salary
-                    while(true)
+                    while (true)
                     {
                         Console.WriteLine("Please enter salary");
                         input = Console.ReadLine();
-                        if(val.rate(input))
+                        if (val.rate(input))
                         {
                             ft.SetSalary(Convert.ToDecimal(input));
                             break;
@@ -549,10 +595,10 @@ namespace Presentation
                         }
                     }
                 }
-                else if(choice.KeyChar == '9')
+                else if (choice.KeyChar == '9')
                 {
                     mainMenu = true;
-                    while(true)
+                    while (true)
                     {
                         Console.WriteLine("Would you like to save? 'y' or 'n'");
                         choice = Console.ReadKey();
@@ -561,7 +607,7 @@ namespace Presentation
                             company.AddFullTimeEmployee(ft);
                             break;
                         }
-                        else if(choice.KeyChar == 'n')
+                        else if (choice.KeyChar == 'n')
                         {
                             break;
                         }
@@ -570,9 +616,6 @@ namespace Presentation
                 }
             }
         }
-        /// <summary>
-        /// menu 4 for part time
-        /// </summary>
         public void menuFourPT()
         {
             DateTime tempTime = new DateTime();
@@ -676,7 +719,7 @@ namespace Presentation
                         }
                     }
                 }
-                else if(choice.KeyChar == '9')
+                else if (choice.KeyChar == '9')
                 {
                     mainMenu = true;
                     while (true)
@@ -697,9 +740,6 @@ namespace Presentation
                 }
             }
         }
-        /// <summary>
-        /// menu 4 for contract
-        /// </summary>
         public void menuFourCT()
         {
             DateTime tempTime = new DateTime();
@@ -814,9 +854,6 @@ namespace Presentation
                 }
             }
         }
-        /// <summary>
-        /// menu 4 for seasonal
-        /// </summary>
         public void menuFourSN()
         {
             DateTime tempTime = new DateTime();
@@ -843,7 +880,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         input = input.ToLower();
                         input = input.Trim();
-                        if(input == "summer" || input == "winter" || input == "fall" || input == "spring")
+                        if (input == "summer" || input == "winter" || input == "fall" || input == "spring")
                         {
                             sn.SetSeason(input);
                             break;

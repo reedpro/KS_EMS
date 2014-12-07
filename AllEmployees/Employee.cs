@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+
 using Supporting;
 
 
@@ -195,6 +197,50 @@ namespace AllEmployees
             return retV;
         }
 
+
+        /// <summary>
+        /// Takes in the string that contains date info (NOT "N/A") and parse into DateTime? variable
+        /// </summary>
+        /// <param name="dateStr"></param>
+        /// <returns>Return DateTime variable if contain valid DateTime information; otherwise null</returns>
+        public DateTime? ReturnDate(String dateStr)
+        {
+            DateTime date = DateTime.MinValue;
+            DateTime? dateNull = null;
+            var formats = new[] {   "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy", "d-M-yyyy",
+                                    "yyyy-MM-dd", "yyyy-MM-d", "yyyy-M-dd", "yyyy-M-d", 
+                                    "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy", "d/M/yyyy",
+                                    "yyyy/MM/dd", "yyyy/MM/d", "yyyy/M/dd", "yyyy/M/d"};
+            dateStr = dateStr.Trim();
+            dateStr = dateStr.Replace(" ", "");
+            if (DateTime.TryParseExact(dateStr, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                return date;
+            }
+            else
+            {
+                return dateNull;
+            }
+
+        }
+
+        public bool SetDOB(String dateStr)
+        {
+            bool retV = false;
+            DateTime? date = null;
+            if(dateStr == "N/A")
+            {
+                retV = SetDOB(date);
+                retV = true;
+            }
+            else if((date = ReturnDate(dateStr)) != null)
+            {
+                retV = SetDOB(date);
+                retV = true;
+            }
+            return retV;
+        }
+        
         /// <summary>
         /// A method checking if the input date is within valid date range
         /// </summary>

@@ -111,6 +111,13 @@ namespace AllEmployees
             return retV;
         }
 
+        public bool SetDateOfHire(String hDate)
+        {
+            return true;
+        }
+
+
+
         /// <summary>
         /// The setter for dateOfTermination
         /// </summary>
@@ -134,6 +141,12 @@ namespace AllEmployees
             return sal > 0;
         }
 
+        public bool CheckSalary(String sal)
+        {
+            Decimal newSal;
+            return Decimal.TryParse(sal, out newSal) && CheckSalary(newSal);
+        }
+
         /// <summary>
         /// The setter for salary
         /// </summary>
@@ -152,6 +165,23 @@ namespace AllEmployees
             {
                 log.writeLog(produceLogString("SET", salary.ToString("0.00"), inSalary.ToString("0.00"), "FAIL")
                     + "\nDetail: Salary cannot be lower than zero");
+            }
+            return retV;
+        }
+
+        /// <summary>
+        /// The setter for salary
+        /// </summary>
+        /// <param name="inSalary">The string to set the salary variable to</param>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool SetSalary(String inSalary)
+        {
+            bool retV = false;
+            Decimal newSal;
+            if(Decimal.TryParse(inSalary, out newSal))
+            {
+                SetSalary(newSal);
+                retV = true;
             }
             return retV;
         }
