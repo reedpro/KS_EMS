@@ -27,7 +27,8 @@ namespace AllEmployees
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public SeasonalEmployee() : base()
+        public SeasonalEmployee()
+            : base()
         {
             SetSeason("");
             SetPiecePay(0);
@@ -45,7 +46,7 @@ namespace AllEmployees
         /// <param name="DOB">The date to initialize the dateOfBirth variable to</param>
         /// <param name="whatSeason">The string to initialize the season variable to</param>
         /// <param name="whatPiecePay">The string to initialize the piecePay variable to</param>
-        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, Decimal whatPiecePay) 
+        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, Decimal whatPiecePay)
             : base(first, last, SIN, DOB)
         {
             SetSeason(whatSeason);
@@ -108,20 +109,26 @@ namespace AllEmployees
         /// <summary>
         /// check the input piecepay for valid values
         /// </summary>
-        /// <param name="input">String indicating piecepay to check</param>
+        /// <param name="input">the decimal indicating piecepay to check</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool CheckPiecePay(Decimal input)
         {
-            bool retV = false;
-            if (input >= 0)
-            {
-                retV = false;
-            }
-            return retV;
+            return input > 0;
         }
 
         /// <summary>
-        /// The setter for the piecePay variable
+        /// check the input piecepay string for valid values
+        /// </summary>
+        /// <param name="input">the string idnicating piecepay to check</param>
+        /// <returns></returns>
+        public bool CheckPiecePay(String input)
+        {
+            Decimal newSal;
+            return Decimal.TryParse(input, out newSal) && CheckPiecePay(newSal);
+        }
+
+        /// <summary>
+        /// The setter for the piecePay variable (decimal)
         /// </summary>
         /// <param name="whatPiecePay">The string indicating what value to set the piecePay variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
@@ -139,6 +146,47 @@ namespace AllEmployees
                 log.writeLog(produceLogString("SET", piecePay.ToString("0.00"), input.ToString("0.00"), "FAIL") + "\nDetail:Invalid piece pay format");
             }
             return retV;
+        }
+
+        /// <summary>
+        /// The setter for piecepay (string)
+        /// </summary>
+        /// <param name="input">input value to set piecepay to</param>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool SetPiecePay(String input)
+        {
+            bool retV = false;
+            Decimal newPiecePay;
+            if (Decimal.TryParse(input, out newPiecePay))
+            {
+                SetPiecePay(newPiecePay);
+                retV = true;
+            }
+            return retV;
+        }
+
+        /// <summary>
+        /// validate piecepay
+        /// </summary>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool ValidatePiecePay()
+        {
+            bool retV = false;
+            if (CheckPiecePay(piecePay) && piecePay != 0)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", piecePay.ToString("0.00"), "SUCCESS"));
+                retV = true;
+            }
+            return retV;
+        }
+
+        /// <summary>
+        /// Seasonal employee validate method, validates all fields to determine if employee is a valid object
+        /// </summary>
+        /// <returns>A bool to indicate whether the employee is in fact valid</returns>
+        public override bool Validate()
+        {
+            return base.Validate() && ValidatePiecePay();
         }
 
         /// <summary>
