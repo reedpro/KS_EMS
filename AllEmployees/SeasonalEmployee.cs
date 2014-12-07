@@ -106,6 +106,21 @@ namespace AllEmployees
             return retV;
         }
 
+        public bool ValidateSeason()
+        {
+            bool retV = false;
+            if (CheckSeason(season) == true)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", season, "SUCCESS"));
+                retV = true;
+            }
+            else
+            {
+                log.writeLog(produceLogString("VALIDATE", "", season, "FAILURE") + "\nDetails: Season is invalid");
+            }
+            return retV;
+        }
+
         /// <summary>
         /// check the input piecepay for valid values
         /// </summary>
@@ -186,7 +201,15 @@ namespace AllEmployees
         /// <returns>A bool to indicate whether the employee is in fact valid</returns>
         public override bool Validate()
         {
-            return base.Validate() && ValidatePiecePay();
+            return base.Validate() && ValidatePiecePay() && ValidateSeason();
+        }
+
+        protected override String ConsoleDetails()
+        {
+            String output = "";
+            output += "\tSeason:\t\t" + season;
+            output += "\tPiece Pay:\t" + piecePay.ToString("0.00");
+            return output;
         }
 
         /// <summary>
@@ -194,12 +217,9 @@ namespace AllEmployees
         /// </summary>
         public override void Details()
         {
-            Console.Write(firstName + "\n" +
-                lastName + "\n" +
-                socialInsuranceNumber + "\n" +
-                dateOfBirth + "\n" +
-                season + "\n" +
-                piecePay);
+            String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
+            Console.WriteLine(consoleOutput);
+            log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
         }
     }
 }
