@@ -263,13 +263,16 @@ namespace Presentation
             {
                 Console.Clear();
                 Console.WriteLine("Menu 4.1: Specify Base Employee Details");
-                Console.WriteLine("1. Set Firt Name");
+                if (type != "Contract")
+                {
+                    Console.WriteLine("1. Set Firt Name");
+                }
                 Console.WriteLine("2. Set Last Name");
                 Console.WriteLine("3. Set Date Of Birth");
                 Console.WriteLine("4. Set Social Insurance Number");
                 Console.WriteLine("5. Go Back to Employee Details Menu");
                 choice = Console.ReadKey();
-                if (choice.KeyChar == '1')
+                if ((choice.KeyChar == '1') && (type != "Contract"))
                 {
                     fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
                     if(baseEmp.SetFirstName(fName))
@@ -455,7 +458,7 @@ namespace Presentation
                         else if (choice.KeyChar == '4')
                         {
                             fixedContractAmtStr = SpecifyNameOrRateOrDateOrSIN("Fixed Contract Amount", "Please Enter Fixed Contract Amount of " + type);
-                            if (ctEmp.SetFixedContractAmt(fixedContractAmtStr))
+                            if (ctEmp.CheckFixedContractAmt(fixedContractAmtStr))
                             {
                                 Console.WriteLine("Contract Fixed Contract Amount Successfully Set to " + ctEmp.GetFixedContractAmt());
                             }

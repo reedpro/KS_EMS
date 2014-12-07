@@ -763,7 +763,7 @@ namespace Presentation
                             }
                             else
                             {
-                                ct.SetDateOfTermination(tempTime);
+                                ct.SetContractEndDate(tempTime);
                                 break;
                             }
                         }
@@ -783,7 +783,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         if (val.rate(input))
                         {
-                            ct.SetHourlyRate(input);
+                            ct.SetFixedContractAmt(input);
                             break;
                         }
                         else
@@ -864,7 +864,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         if (val.rate(input))
                         {
-                            ct.SetHourlyRate(input); //TODO change contract to use a string instead of double
+                            ct.SetFixedContractAmt(input); //TODO change contract to use a string instead of double
                             break;
                         }
                         else

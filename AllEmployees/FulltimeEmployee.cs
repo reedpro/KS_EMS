@@ -224,19 +224,21 @@ namespace AllEmployees
             else
             {
                 DateTime newDOH = (DateTime)dateOfHire;
-                DateTime DOH_MaxDate = (dateOfBirth.HasValue ? (DateTime)dateOfBirth : DateTime.Now);
-                if (CheckDateRange(DateTime.MinValue, DOH_MaxDate, newDOH) == true)
+                DateTime DOH_MinDate = (DateTime)dateOfBirth;
+                DateTime DOH_MaxDate = (dateOfTermination.HasValue ? (DateTime)dateOfTermination : DateTime.Now);
+
+                if (CheckDateRange(DOH_MinDate, DOH_MaxDate, newDOH) == true)
                 {
                     log.writeLog(
-                        produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Date Of Hire comes before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                        produceLogString("VALIDATE", "", newDOH.ToString("yyyy-MM-dd"), "SUCCESS")
+                                        + "\nDetails: Date Of Hire comes after " + DOH_MinDate.ToString("yyyy-MM-dd") + "& before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Date Of Hire must come before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Hire must come after " + DOH_MinDate.ToString("yyyy-MM-dd") + ", before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
                 }
             }
             return retV;
@@ -251,23 +253,20 @@ namespace AllEmployees
             }
             else
             {
-                DateTime DOT_MinDate = (dateOfHire.HasValue ? (DateTime)dateOfHire
-                                                             : (dateOfBirth.HasValue
-                                                                        ? (DateTime)dateOfBirth
-                                                                        : DateTime.Now));
+                DateTime DOT_MinDate = (DateTime)dateOfHire;
 
                 if (CheckDateRange(DOT_MinDate, DateTime.MaxValue, (DateTime)dateOfTermination) == true)
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Date Of Hire comes after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Termination comes after " + DOT_MinDate.ToString("yyyy-MM-dd"));
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Date Of Hire must come after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Termination must come after " + DOT_MinDate.ToString("yyyy-MM-dd"));
                 }
             }
             return retV;

@@ -22,7 +22,7 @@ namespace AllEmployees
     {
         private DateTime? contractStartDate;
         private DateTime? contractEndDate;
-        private String fixedContractAmt;
+        private Decimal fixedContractAmt;
 
         /// <summary>
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
@@ -32,7 +32,7 @@ namespace AllEmployees
         {
             contractStartDate = null;
             contractEndDate = null;
-            fixedContractAmt = "0";
+            fixedContractAmt = 0.00M;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ContractEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime startDate, DateTime endDate, string rate)
+            DateTime startDate, DateTime endDate, Decimal rate)
             : base(first, last, SIN, DOB)
         {
             contractStartDate = startDate;
@@ -63,7 +63,7 @@ namespace AllEmployees
         {
             return contractEndDate;
         }
-        public String GetFixedContractAmt()
+        public Decimal GetFixedContractAmt()
         {
             return fixedContractAmt;
         }
@@ -71,37 +71,106 @@ namespace AllEmployees
         public bool SetContractStartDate(DateTime? cStartDate)
         {
             bool retV = false;
-
+            log.writeLog(
+                produceLogString("SET",
+                                (contractStartDate.HasValue ? contractStartDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (cStartDate.HasValue ? cStartDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            contractStartDate = cStartDate;
+            retV = true;
             return retV;
         }
 
-
-        public bool SetContractEndDate(DateTime cEndDate)
+        public bool SetContractStartDate(String cStartDateStr)
         {
             bool retV = false;
-
+            DateTime? date = null;
+            if (cStartDateStr == "N/A")
+            {
+                retV = SetContractStartDate(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(cStartDateStr)) != null)
+            {
+                retV = SetContractStartDate(date);
+                retV = true;
+            }
             return retV;
         }
-
-
-        public bool SetFixedContractAmt(string fAmt)
+        public bool SetContractEndDate(DateTime? cEndDate)
         {
             bool retV = false;
+            log.writeLog(
+                produceLogString("SET",
+                                (contractEndDate.HasValue ? contractEndDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (cEndDate.HasValue ? cEndDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            contractEndDate = cEndDate;
+            retV = true;
             return retV;
         }
 
-        /// <summary>
-        /// Method is called upon to output (to the screen) all attribute values for the class.
-        /// </summary>
-        public override void Details()
+        public bool SetContractEndDate(String cEndDateStr)
         {
-            Console.Write(firstName + "\n" +
-                lastName + "\n" +
-                socialInsuranceNumber + "\n" +
-                dateOfBirth + "\n" +
-                contractStartDate + "\n" +
-                contractEndDate + "\n" +
-                fixedContractAmt);
+            bool retV = false;
+            DateTime? date = null;
+            if (cEndDateStr == "N/A")
+            {
+                retV = SetContractEndDate(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(cEndDateStr)) != null)
+            {
+                retV = SetContractEndDate(date);
+                retV = true;
+            }
+            return retV;
         }
+
+
+
+
+        public bool CheckFixedContractAmt(Decimal fAmt)
+        {
+            return fAmt > 0;
+        }
+
+        public bool CheckFixedContractAmt(String fAmtStr)
+        {
+            Decimal newFixedAmount;
+            return Decimal.TryParse(fAmtStr, out newFixedAmount) && CheckFixedContractAmt(newFixedAmount);
+        }
+
+        public bool SetFixedContractAmt(Decimal fAmt)
+        {
+            bool retV = false;
+            if (CheckFixedContractAmt(fAmt) == true)
+            {
+                log.writeLog(produceLogString("SET", fixedContractAmt.ToString("0.00"), fAmt.ToString("0.00"), "SUCCESS"));
+                fixedContractAmt = fAmt;
+                retV = true;
+            }
+            else
+            {
+                log.writeLog(produceLogString("SET", fixedContractAmt.ToString("0.00"), fAmt.ToString("0.00"), "FAIL")
+                    + "\nDetail: Fixed Contract Amoung cannot be lower than zero");
+            }
+            return retV;
+        }
+
+        public bool SetFixedContractAmt(String fAmtStr)
+        {
+            bool retV = false;
+            Decimal newFixedContractAmt;
+            if (Decimal.TryParse(fAmtStr, out newFixedContractAmt))
+            {
+                SetFixedContractAmt(newFixedContractAmt);
+                retV = true;
+            }
+            return retV;
+        }
+
+
+       
     }
 }
