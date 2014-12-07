@@ -236,7 +236,11 @@ namespace TheCompany
         {
             bool result = false;
             string[] employeeInfo = null;
-            // TODO: fill the string[] with the contents of the employee object 
+            // TODO: fill the string[] with the contents of the employee object
+            foreach (Employee emp in container)
+            {
+                employeeInfo = emp.DatabaseDetails().ToArray();
+            }
             dbFile.dBaseOpen_W(employeeInfo);
             return result;
         }
