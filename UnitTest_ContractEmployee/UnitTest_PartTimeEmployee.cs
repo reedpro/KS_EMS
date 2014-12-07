@@ -34,7 +34,13 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetHourlyRate_NormalTest1()
         {
+            Decimal input = 18.50m;
+            bool expected = true;
+            bool actual = false;
 
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetHourlyRate(input);
+            Assert.AreEqual(expected, actual, "Did not accept valid hourly rate");
         }
 
         ///
@@ -50,6 +56,13 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetHourlyRate_NormalTest2()
         {
+            Decimal input = 15;
+            bool expected = true;
+            bool actual = false;
+
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetHourlyRate(input);
+            Assert.AreEqual(expected, actual, "Did not accept valid hourly rate");
 
         }
 
@@ -66,6 +79,13 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetHourlyRate_ExceptionTest1()
         {
+            string input = "fifteen";
+            bool expected = false;
+            bool actual = true;
+
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetHourlyRate(input);
+            Assert.AreEqual(expected, actual, "Allowed invalid data");
 
         }
 
@@ -82,7 +102,13 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetHourlyRate_ExceptionTest2()
         {
+            string input = "0";
+            bool expected = false;
+            bool actual = true;
 
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetHourlyRate(input);
+            Assert.AreEqual(expected, actual, "Allowed invalid data");
         }
     }
 }
