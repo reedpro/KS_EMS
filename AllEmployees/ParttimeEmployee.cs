@@ -24,7 +24,6 @@ namespace AllEmployees
         private DateTime? dateOfTermination;
         private Decimal hourlyRate;
 
-        //public FulltimeEmployee fte;
         public DateTime? GetDateOfHire()
         {
             return dateOfHire;
@@ -43,12 +42,8 @@ namespace AllEmployees
         /// The ParttimeEmployee() method is a Constructor for the ParttimeEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public ParttimeEmployee()
+        public ParttimeEmployee() : base()
         {
-            SetFirstName("");
-            SetLastName("");
-            SetSIN("");
-            SetDOB(new DateTime());
             dateOfHire = null;
             dateOfTermination = null;
             hourlyRate = 0.00M;
@@ -68,16 +63,11 @@ namespace AllEmployees
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ParttimeEmployee(String first, String last, String SIN, DateTime? DOB, DateTime? hDate, DateTime? tDate, Decimal rate)
+            : base(first, last, SIN, DOB)
         {
-            SetFirstName(first);
-            SetLastName(last);
-            SetSIN(SIN);
-            SetDOB(DOB);
             dateOfHire = hDate;
             dateOfTermination = tDate;
             hourlyRate = rate;
-
-            //fte = new FulltimeEmployee(first, last, SIN, DOB, hDate, tDate, 0.00M);
         }
 
         public bool SetDateOfHire(String hDateStr)
@@ -115,11 +105,6 @@ namespace AllEmployees
         }
 
 
-        /// <summary>
-        /// The setter for dateOfHire
-        /// </summary>
-        /// <param name="date">The date to set the dateOfHire variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfHire(DateTime? hDate)
         {
             bool retV = false;
@@ -133,11 +118,6 @@ namespace AllEmployees
             return retV;
         }
 
-        /// <summary>
-        /// The setter for dateOfTermination
-        /// </summary>
-        /// <param name="date">The date to set the dateOfTermination variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfTermination(DateTime? tDate)
         {
             bool retV = false;
@@ -179,11 +159,6 @@ namespace AllEmployees
             return retV;
         }
 
-        /// <summary>
-        /// The setter for salary
-        /// </summary>
-        /// <param name="hRateStr">The string to set the salary variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetHourlyRate(String hRateStr)
         {
             bool retV = false;
