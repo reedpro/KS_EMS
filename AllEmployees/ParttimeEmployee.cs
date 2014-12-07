@@ -196,18 +196,106 @@ namespace AllEmployees
             return retV;
         }
 
+
+        private bool validateDOH()
+        {
+            bool retV = false;
+            if (dateOfHire == null)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
+                                            + "\nDetails: Date of Hire cannot be NULL");
+            }
+            else
+            {
+                DateTime newDOH = (DateTime)dateOfHire;
+                DateTime DOH_MaxDate = (dateOfBirth.HasValue ? (DateTime)dateOfBirth : DateTime.Now);
+                if (CheckDateRange(DateTime.MinValue, DOH_MaxDate, newDOH) == true)
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "SUCCESS")
+                                        + "\nDetails: Date Of Hire comes before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
+                                        + "\nDetails: Date Of Hire must come before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                }
+            }
+            return retV;
+        }
+        private bool validateDOT()
+        {
+            bool retV = false;
+            if (dateOfTermination == null)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "SUCCESS"));
+                retV = true;
+            }
+            else
+            {
+                DateTime DOT_MinDate = (dateOfHire.HasValue ? (DateTime)dateOfHire
+                                                             : (dateOfBirth.HasValue
+                                                                        ? (DateTime)dateOfBirth
+                                                                        : DateTime.Now));
+
+                if (CheckDateRange(DOT_MinDate, DateTime.MaxValue, (DateTime)dateOfTermination) == true)
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "SUCCESS")
+                                        + "\nDetails: Date Of Hire comes after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "FAIL")
+                                        + "\nDetails: Date Of Hire must come after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                }
+            }
+            return retV;
+        }
+        private bool validateHourlyRate()
+        {
+            bool retV = false;
+
+            if (CheckHourlyRate(hourlyRate) && hourlyRate != 0)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", hourlyRate.ToString("0.00"), "SUCCESS"));
+                retV = true;
+            }
+            else
+            {
+                log.writeLog(produceLogString("VALIDATE", "", hourlyRate.ToString("0.00"), "FAIL") + "\nDetails: Hourly Rate must be bigger than 0");
+
+            }
+            return retV;
+        }
+
+        public override bool Validate()
+        {
+            return base.Validate() && validateDOH() && validateDOT() && validateHourlyRate();
+        }
+
+        protected override String ConsoleDetails()
+        {
+            String output = "";
+            output += "\tDate of Hire:\t\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
+            output += "\tDate of Termination:\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
+            output += "\tHourly Rate:\t\t" + hourlyRate.ToString("0.00");
+            return output;
+        }
+
+
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
         public override void Details()
         {
-            Console.Write(firstName + "\n" +
-                lastName + "\n" +
-                socialInsuranceNumber + "\n" +
-                dateOfBirth + "\n" +
-                dateOfHire + "\n" +
-                dateOfTermination + "\n" +
-                hourlyRate);
+            String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
+            Console.WriteLine(consoleOutput);
+            log.writeLog(produceLogString("DETAILS", "", "", "")  + "\nInput: \n" + consoleOutput);
         }
     }
 }
