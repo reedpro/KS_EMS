@@ -429,7 +429,7 @@ namespace Presentation
                                 log.writeLog(input + ": You can't have been hired before the current date");
                                 Console.WriteLine(input + ": You can't have been hired before the current date");
                             }
-                            else if (ft.dateOfTermination != null && ft.dateOfTermination < tempTime)
+                            else if (ft.GetDateOfTermination() != null && ft.GetDateOfTermination() < tempTime)
                             {
                                 log.writeLog(input + ": You can't have been hired before you've been terminated");
                                 Console.WriteLine(input + ": You can't have been hired before you've been terminated");
@@ -462,7 +462,7 @@ namespace Presentation
                                 log.writeLog(input + ": You can't have been terminated before the current date");
                                 Console.WriteLine(input + ": You can't have been terminated before the current date");
                             }
-                            else if (ft.dateOfHire != null && ft.dateOfHire > tempTime)
+                            else if (ft.GetDateOfHire() != null && ft.GetDateOfHire() > tempTime)
                             {
                                 log.writeLog(input + ": You can't have been hired before you've been terminated");
                                 Console.WriteLine(input + ": You can't have been hired before you've been terminated");
@@ -489,7 +489,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         if(val.rate(input))
                         {
-                            ft.SetSalary(input);
+                            ft.SetSalary(Convert.ToDouble(input));
                             break;
                         }
                         else

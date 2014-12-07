@@ -119,7 +119,7 @@ namespace AllEmployees
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
-        public void Details()
+        public override void Details()
         {
             Console.Write(firstName + "\n" +
                 lastName + "\n" +

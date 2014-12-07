@@ -20,8 +20,8 @@ namespace AllEmployees
     /// </summary>
     public class SeasonalEmployee : Employee
     {
-        private string season { public get; private set;}
-        private double piecePay { public get; private set;}
+        private string season;
+        private double piecePay;
 
         /// <summary>
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
@@ -45,13 +45,25 @@ namespace AllEmployees
         /// <param name="DOB">The date to initialize the dateOfBirth variable to</param>
         /// <param name="whatSeason">The string to initialize the season variable to</param>
         /// <param name="whatPiecePay">The string to initialize the piecePay variable to</param>
-        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB,
-            String whatSeason, double whatPiecePay) : base(first, last, SIN, DOB)
+        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, double whatPiecePay) 
+            : base(first, last, SIN, DOB)
         {
             SetSeason(whatSeason);
             SetPiecePay(whatPiecePay);
             SetType("SN");
         }
+
+        public String GetSeason()
+        {
+            return season;
+        }
+        public Double GetPiecePay()
+        {
+            return piecePay;
+        }
+
+
+
 
         /// <summary>
         /// Method checks if the input season is a valid season
@@ -132,7 +144,7 @@ namespace AllEmployees
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
-        public void Details()
+        public override void Details()
         {
             Console.Write(firstName + "\n" +
                 lastName + "\n" +
