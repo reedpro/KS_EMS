@@ -29,7 +29,7 @@ namespace TheCompany
         /// <summary>
         /// The container holding any number and any type of employee-type classes
         /// </summary>
-        public List<Employee> container;
+        public List<Object> container;
 
         /// <summary>
         /// reference to database file connecting to database access layer
@@ -46,7 +46,7 @@ namespace TheCompany
         /// </summary>
         public Container()
         {
-            container = new List<Employee>();
+            container = new List<Object>();
             dbFile = new FileIO();
             logFile = new Logging();
         }
@@ -59,23 +59,17 @@ namespace TheCompany
         /// </summary>
         /// <param name="newEmployee">This parameter is an object passed in that can be any 1 of the 4 types of employees.</param>
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        public bool AddEmployee(Employee newEmployee)
+        public bool AddEmployee(Object newEmployee)
         {
-            bool result = false;
-            // To do
-            return result;
-        }
-
-        /// <summary>
-        /// Method Name: SetBaseEmployee
-        /// This function is called to set shared attributes of the base employee class object from the user input.
-        /// </summary>
-        /// <param name="employ">This parameter is an object passed in that can be any 1 of the 4 types of employees.</param>
-        /// <returns>A boolean indicating whether the adding operation was successful</returns>
-        private bool SetBaseEmployee(Employee employ)        
-        {
-            bool result = false;
-            // To do
+            bool result = true;
+            try
+            {
+                container.Add(newEmployee);
+            }
+            catch (Exception e)
+            {
+                result = false;
+            }
             return result;
         }
 
@@ -87,7 +81,7 @@ namespace TheCompany
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
         public bool AddFullTimeEmployee(FulltimeEmployee ft)
         {
-            bool result = false;
+            bool result = AddEmployee(ft);
             // To do
             return result;
         }
@@ -100,7 +94,7 @@ namespace TheCompany
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
         public bool AddPartTimeEmployee(ParttimeEmployee pt)
         {
-            bool result = false;
+            bool result = AddEmployee(pt);
             // To do
             return result;
         }
@@ -113,7 +107,7 @@ namespace TheCompany
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
         public bool AddSeasonalEmployee(SeasonalEmployee sn)
         {
-            bool result = false;
+            bool result = AddEmployee(sn);
             // To do
             return result;
         }
@@ -126,7 +120,7 @@ namespace TheCompany
         /// <returns>A boolean indicating whether the adding operation was successful</returns>
         public bool AddContractEmployee(ContractEmployee ct)
         {
-            bool result = false;
+            bool result = AddEmployee(ct);
             // To do
             return result;
         }
@@ -135,13 +129,46 @@ namespace TheCompany
         /// Method Name: FindEmployee
         /// This function is called to find all the employee objects that matches the passed in filter criteria.
         /// </summary>
-        /// <param name="type">the type of attribute that will be searched for</param>
+        /// <param name="type">the type of attribute that will be searched for: firstName, lastName, dateOfBirth, SIN, employeeType</param>
         /// <param name="value">the value of attribute that will be searched for</param>
         /// <returns>A list of Employee-type objects that matches the filter criteria (if no match, empty list); otherwise NULL</returns>
-        public List<Employee> FindEmployee(String type, String value)
+        public List<Object> FindEmployee(String type, String value)
         {
-            List<Employee> results = new List<Employee>();
-            // To do
+            List<Object> results = new List<Object>();
+            Employee e = new Employee();
+            if (type == "firstName")
+            {
+                foreach (Object r in container)
+                {
+                    e = (Employee)r;
+                    if (e.GetFirstName() == value)
+                    {
+                        results.Add(r);
+                    }
+                }
+            }
+            else if (type == "lastName")
+            {
+                foreach (Object r in container)
+                {
+                    e = (Employee)r;
+                    if (e.GetLastName() == value)
+                    {
+                        results.Add(r);
+                    }
+                }
+            }
+            else if (type == "SIN")
+            {
+                foreach (Object r in container)
+                {
+                    e = (Employee)r;
+                    if (e.GetSIN() == value)
+                    {
+                        results.Add(r);
+                    }
+                }
+            }
             return results;
         }
 
