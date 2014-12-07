@@ -298,7 +298,7 @@ namespace AllEmployees
         {
             String output = "";
             output += "\n\tDate of Hire:\t\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
-            output += "\n\tDate of Termination:\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\n\tDate of Termination:\t" + "\"" + (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
             output += "\n\tSalary:\t\t\t" + "\"" + salary.ToString("0.00") + "\"";
             return output;
         }

@@ -409,6 +409,15 @@ namespace Presentation
                             Console.Clear();
                             ftEmp.Details();
                         }
+                        else if (choice.KeyChar == '7')
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
+                            ftEmp.Details();
+                            ConsoleKeyInfo c = new ConsoleKeyInfo();
+                            c = Console.ReadKey();
+                            if (c.KeyChar == 'y') ftEmp = new FulltimeEmployee();
+                        }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
