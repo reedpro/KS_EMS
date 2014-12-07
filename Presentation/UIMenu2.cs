@@ -279,7 +279,6 @@ namespace Presentation
                     if(baseEmp.SetFirstName(fName))
                     {
                         Console.WriteLine("First Name Successfully Set to " + baseEmp.GetFirstName());
-                        baseEmp.Details();
                     }
                     else
                     {
@@ -326,6 +325,8 @@ namespace Presentation
                 {
                     break;
                 }
+                baseEmp.Details();
+
                 Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                 Console.ReadKey();
             }
