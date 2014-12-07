@@ -53,8 +53,8 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         public Employee(string first, string last)
         {
-            firstName = "";
-            lastName = "";
+            SetFirstName(first);
+            SetLastName(last);
 
             log = new Logging();
         }
@@ -67,10 +67,8 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to set initialize socialInsuranceNumber variable to</param>
         /// <param name="DOB">The string to initialize the dateOfBirth variable to</param>
-        public Employee(string first, string last, string SIN, DateTime DOB)
+        public Employee(string first, string last, string SIN, DateTime DOB) : this(first, last)
         {
-            SetFirstName(first);
-            SetLastName(last);
             SetSIN(SIN);
             SetDOB(DOB);
             

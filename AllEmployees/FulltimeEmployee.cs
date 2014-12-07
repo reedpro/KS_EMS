@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Supporting;
 
 namespace AllEmployees
 {
@@ -20,23 +21,21 @@ namespace AllEmployees
     /// </summary>
     public class FulltimeEmployee : Employee
     {
-        public DateTime? dateOfHire { get; private set; }
-        public DateTime? dateOfTermination { get; private set; }
-        public string salary { get; private set; }
+        private DateTime dateOfHire;
+        private DateTime dateOfTermination;
+        private String salary;
 
         /// <summary>
         /// The FulltimeEmployee() method is a Constructor for the FulltimeEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public FulltimeEmployee()
+        public FulltimeEmployee() : base()
         {
-            SetFirstName("");
-            SetLastName("");
-            SetSIN("");
-            SetDOB(new DateTime());
-            dateOfHire = null;
-            dateOfTermination = null;
+            dateOfHire = new DateTime(0);
+            dateOfTermination = new DateTime(0);
             salary = "0";
+
+            SetType("FT");
         }
 
         /// <summary>
@@ -47,48 +46,62 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to initialize the socialInsuranceNumber variable to</param>
         /// <param name="DOB">The date to set the dateOfBirth variable to</param>
-        /// <param name="hireDate">The date to set the dateOfHire variable to</param>
-        /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
-        /// <param name="newSalary">The string to set the Salary variable to</param>
-        public FulltimeEmployee(string first, string last, string SIN, DateTime DOB, DateTime hireDate,
-            DateTime terminationDate, string inSalary)
+        /// <param name="hDate">The date to set the dateOfHire variable to</param>
+        /// <param name="tDate">The date to set the dateOfTermination variable to</param>
+        /// <param name="inSalary">The string to set the Salary variable to</param>
+        public FulltimeEmployee(String first, String last, String SIN, DateTime DOB, DateTime hDate, 
+            DateTime tDate, String inSalary) : base(first, last, SIN, DOB)
         {
-            SetFirstName(first);
-            SetLastName(last);
-            SetSIN(SIN);
-            SetDOB(DOB);
-            dateOfHire = hireDate;
-            dateOfTermination = terminationDate;
-            salary = inSalary;
+            SetDateOfHire(hDate);
+            SetDateOfTermination(tDate);
+            SetSalary(inSalary);
+
+            SetType("FT");
+        }
+
+        public DateTime GetDateOfHire()
+        {
+            return dateOfHire;
+        }
+        public DateTime GetDateOfTermination()
+        {
+            return dateOfTermination;
+        }
+
+        public String GetSalary()
+        {
+            return salary;
         }
 
         /// <summary>
         /// The setter for dateOfHire
         /// </summary>
-        /// <param name="date">The date to set the dateOfHire variable to</param>
+        /// <param name="hDate">The date to set the dateOfHire variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfHire(DateTime date)
+        public bool SetDateOfHire(DateTime hDate)
         {
-            dateOfHire = date;
-            if (dateOfHire == date)
+            bool retV = false;
+            if(CheckDateRange(dateOfBirth, dateOfTermination, hDate) == true)
             {
-                return true;
+                //log.writeLog(produceLogString("SET", hDate.ToString("yyyy-MM-dd"), 
+                //dateOfHire = hDate;
             }
             else
             {
-                return false;
+
             }
+            return retV;
         }
 
         /// <summary>
         /// The setter for dateOfTermination
         /// </summary>
-        /// <param name="date">The date to set the dateOfTermination variable to</param>
+        /// <param name="tDate">The date to set the dateOfTermination variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfTermination(DateTime date)
+        public bool SetDateOfTermination(DateTime tDate)
         {
-            dateOfTermination = date;
-            if (dateOfTermination == date)
+            dateOfTermination = tDate;
+            if (dateOfTermination == tDate)
             {
                 return true;
             }
@@ -103,7 +116,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="inSalary">The string to set the salary variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetSalary(string inSalary)
+        public bool SetSalary(String inSalary)
         {
             salary = inSalary;
             if (salary == inSalary)
