@@ -23,11 +23,11 @@ namespace AllEmployees
     /// </summary>
     public class Employee
     {
-        protected string firstName; /// Employee First Name
-        protected string lastName; /// Employee Last Name
-        protected string socialInsuranceNumber; /// Employee Social Insurance Number
-        protected DateTime? dateOfBirth; /// Employee Date of Birth
-        private String employeeType; /// Employee Type
+        protected string firstName { public get; set; } /// Employee First Name
+        protected string lastName { public get; set; } /// Employee Last Name
+        protected string socialInsuranceNumber { public get; set; } /// Employee Social Insurance Number
+        protected DateTime? dateOfBirth { public get; set; } /// Employee Date of Birth
+        private String employeeType { public get; set; } /// Employee Type
 
         public Logging log;
 
