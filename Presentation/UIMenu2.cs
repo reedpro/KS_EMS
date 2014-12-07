@@ -385,7 +385,14 @@ namespace Presentation
                             tDateStr = SpecifyNameOrRateOrDateOrSIN("Termination Date", "Please Enter Termination Date of " + type);
                             if (ftEmp.SetDateOfTermination(tDateStr))
                             {
-                                Console.WriteLine("Termination Date Successfully Set to \"" + ftEmp.GetDateOfTermination() + "\"");
+                                if (tDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Termination Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Termination Date Successfully Set to \"" + ftEmp.GetDateOfTermination() + "\"");
+                                }
                             }
                             else
                             {
@@ -416,9 +423,21 @@ namespace Presentation
                             ftEmp.Details();
                             ConsoleKeyInfo c = new ConsoleKeyInfo();
                             c = Console.ReadKey();
-                            if (c.KeyChar == 'y') ftEmp = new FulltimeEmployee();
+                            if (c.KeyChar == 'y')
+                            {
+                                Console.Clear();
+                                ftEmp = new FulltimeEmployee();
+                                Console.WriteLine(type + "Employee data has been successfully reset");
+                                ftEmp.Details();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee data has NOT been reset");
+                                ftEmp.Details();
+                            }
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
@@ -435,7 +454,14 @@ namespace Presentation
                             hDateStr = SpecifyNameOrRateOrDateOrSIN("Hiring Date", "Please Enter Hiring Date of " + type);
                             if (ptEmp.SetDateOfHire(hDateStr))
                             {
-                                Console.WriteLine("Hiring Date Successfully Set to \"" + ptEmp.GetDateOfHire() + "\"");
+                                if (hDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Hiring Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ptEmp.GetDateOfHire() + "\"");
+                                }
                             }
                             else
                             {
@@ -447,7 +473,14 @@ namespace Presentation
                             tDateStr = SpecifyNameOrRateOrDateOrSIN("Termination Date", "Please Enter Termination Date of " + type);
                             if (ptEmp.SetDateOfTermination(tDateStr))
                             {
-                                Console.WriteLine("Termination Date Successfully Set to \"" + ptEmp.GetDateOfTermination() + "\"");
+                                if (tDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Termination Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Termination Date Successfully Set to \"" + ptEmp.GetDateOfTermination() + "\"");
+                                }
                             }
                             else
                             {
@@ -471,6 +504,27 @@ namespace Presentation
                             Console.Clear();
                             ptEmp.Details();
                         }
+                        else if (choice.KeyChar == '7')
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
+                            ftEmp.Details();
+                            ConsoleKeyInfo c = new ConsoleKeyInfo();
+                            c = Console.ReadKey();
+                            if (c.KeyChar == 'y')
+                            {
+                                Console.Clear();
+                                ptEmp = new ParttimeEmployee();
+                                Console.WriteLine(type + "Employee data has been successfully reset");
+                                ptEmp.Details();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee data has NOT been reset");
+                                ptEmp.Details();
+                            }
+                        }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
@@ -487,7 +541,14 @@ namespace Presentation
                             cStartDateStr = SpecifyNameOrRateOrDateOrSIN("Contract Start Date", "Please Enter Contract Start Date of " + type);
                             if (ctEmp.SetContractStartDate(cStartDateStr))
                             {
-                                Console.WriteLine("Contract Start Date Successfully Set to \"" + ctEmp.GetContractStartDate() + "\"");
+                                if (cStartDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Contract Start Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Contract Start Date Successfully Set to \"" + ctEmp.GetContractStartDate() + "\"");
+                                }
                             }
                             else
                             {
@@ -499,7 +560,14 @@ namespace Presentation
                             cEndDateStr = SpecifyNameOrRateOrDateOrSIN("Contract End Date", "Please Enter Contract End Date of " + type);
                             if (ctEmp.SetContractEndDate(cEndDateStr))
                             {
-                                Console.WriteLine("Contract End Date Successfully Set to \"" + ctEmp.GetContractEndDate() + "\"");
+                                if (cEndDateStr == "N/A")
+                                {
+                                    Console.WriteLine("Contract End Date Successfully Set to \"N/A\"");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Contract End Date Successfully Set to \"" + ctEmp.GetContractEndDate() + "\"");
+                                }
                             }
                             else
                             {
@@ -523,7 +591,28 @@ namespace Presentation
                             Console.Clear();
                             ctEmp.Details();
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        else if (choice.KeyChar == '7')
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
+                            ctEmp.Details();
+                            ConsoleKeyInfo c = new ConsoleKeyInfo();
+                            c = Console.ReadKey();
+                            if (c.KeyChar == 'y')
+                            {
+                                Console.Clear();
+                                ctEmp = new ContractEmployee();
+                                Console.WriteLine(type + "Employee data has been successfully reset");
+                                ctEmp.Details();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee data has NOT been reset");
+                                ctEmp.Details();
+                            }
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();

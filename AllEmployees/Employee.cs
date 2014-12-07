@@ -432,7 +432,7 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the obejct is valid employee object or not</returns>
         public virtual bool Validate()
         {
-            return validateFirstName() && validateLastName() && validateDOB() && validateDOB();
+            return validateFirstName() && validateLastName() && validateDOB() && validateSIN();
         }
 
         /// <summary>
