@@ -60,6 +60,22 @@ namespace AllEmployees
         }
 
         /// <summary>
+        /// Employee Copy constructor.
+        /// This version of the constructor copies the value of passed Employee object
+        /// </summary>
+        /// <param name="employee">Employee object to copy from</param>
+        public Employee(Employee employee)
+        {
+            SetFirstName(employee.firstName);
+            SetLastName(employee.lastName);
+            SetDOB(employee.dateOfBirth);
+            SetSIN(employee.socialInsuranceNumber);
+            SetType(employee.employeeType);
+
+            log = new Logging();
+        }
+
+        /// <summary>
         /// Overloaded Employee constructor.
         /// This version of the constructor sets all variables to the input parameter values.
         /// </summary>
@@ -118,6 +134,13 @@ namespace AllEmployees
             }
             return retV;
         }
+        public bool CheckSIN(String s)
+        {
+            bool retV = false;
+            retV = (s.Length != 9 && s == "") || (s.Length == 9 && CheckDigit(s));
+            return retV;
+         }
+
 
         /// <summary>
         /// A method checking if the input string valid Canadian SIN nubmer format
@@ -127,19 +150,14 @@ namespace AllEmployees
         /// </summary>
         /// <param name="s">The input string to be examined</param>
         /// <returns>bool - whether the input is valid or not</returns>
-        public bool CheckSIN(String sin)
+        private bool validateSIN(String sin)
         {
             bool retV = false;
             sin = sin.Trim();
             sin = sin.Replace(" ", "");
 
             //basic validations
-            if (sin.Length != 9)
-            {
-                if (sin == "") retV = true;
-            }
-            else if ((CheckDigit(sin))
-                   || (sin[0] != '0')) //Canadian SIN number doesn't start with 0
+            if (sin.Length == 9 && CheckSIN(sin) && sin[0] != 0)
             {
                 int multiplier = 0;
                 int sum = 0;
@@ -215,9 +233,22 @@ namespace AllEmployees
             
             if (this.employeeType.ToUpper() == "CT")
             {
-                log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Contract Employee has blank first name");
+                if (fName != "")
+                {
+                    log.writeLog(
+                        produceLogString("SET", firstName, fName, "FAIL") 
+                                        + "\nDetail: Contract Employee's first name must be blank");
+                }
+                else 
+                {
+                    log.writeLog(
+                        produceLogString("SET", firstName, fName, "SUCCESS") 
+                                         + "\nDetail: Called to set type to Contract Employee thus blank first name");
+                    firstName = fName;
+                    retV = true;
+                }
             }
-            else
+            else //Other employee types than CT
             {
                 if (CheckName(fName) == true)
                 {
@@ -227,7 +258,7 @@ namespace AllEmployees
                 }
                 else
                 {
-                    log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Contains invalid characters");
+                    log.writeLog(produceLogString("SET", firstName, fName, "FAIL") + "\nDetail: Name Contains invalid characters");
                 }
             }
             return retV;
@@ -245,12 +276,12 @@ namespace AllEmployees
             if (CheckName(lName) == true)
             {
                 log.writeLog(produceLogString("SET", lastName, lName, "SUCCESS"));
-                firstName = lName;
+                lastName = lName;
                 retV = true;
             }
             else
             {
-                log.writeLog(produceLogString("SET", lastName, lName, "FAIL") + "\nDetail: Contains invalid characters");
+                log.writeLog(produceLogString("SET", lastName, lName, "FAIL") + "\nDetail: Name Contains invalid characters");
             }
             return retV;
         }
@@ -263,6 +294,9 @@ namespace AllEmployees
         public bool SetSIN(string SIN)
         {
             bool retV = false;
+            SIN = SIN.Trim();
+            SIN = SIN.Replace(" ", "");
+
             if (CheckSIN(SIN) == true)
             {
                 log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "SUCCESS"));
@@ -271,7 +305,8 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "FAIL"));
+                log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "FAIL") 
+                                            + "\nDetails: SIN Should be blank or 9 digits");
             }
             return retV;
         }
@@ -291,30 +326,20 @@ namespace AllEmployees
                                     (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
                                     "N/A", 
                                     "SUCCESS"));
+                dateOfBirth = null;
                 retV = true;
             }
             else
             {
                 DateTime newDOB = (DateTime)dob;
-                
-                if (CheckDateRange(DateTime.MinValue, DateTime.Now, newDOB) == true)
-                {
-                    log.writeLog(
-                        produceLogString("SET", 
-                                        (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                        newDOB.ToString("yyyy-MM-dd"), 
-                                        "SUCCESS") );
-                    dateOfBirth = dob;
-                    retV = true;
-                }
-                else
-                {
-                    log.writeLog(
-                        produceLogString("SET",
-                                        (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                        newDOB.ToString("yyyy-MM-dd"),
-                                        "FAIL") + "\nDetails: Need to come before Now");
-                }
+
+                log.writeLog(
+                    produceLogString("SET", 
+                                    (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                    newDOB.ToString("yyyy-MM-dd"), 
+                                    "SUCCESS") );
+                dateOfBirth = dob;
+                retV = true;
             }
             return retV;
         }
@@ -327,6 +352,10 @@ namespace AllEmployees
         protected bool SetType(String type)
         {
             employeeType = type;
+            if (type == "CT")
+            {
+                SetFirstName("");
+            }
             return true;
         }
 
@@ -359,10 +388,10 @@ namespace AllEmployees
                     }
                     else
                     {
-                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name cannot be BLANK");
+                        log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name cannot be blank");
                     }
                 }
-                else
+                else //First Name not empty string
                 {
                     if (CheckName(firstName) == true)
                     {
@@ -375,7 +404,7 @@ namespace AllEmployees
                     }
                 }
             }
-            else
+            else //First Name NULL
             {
                 log.writeLog(produceLogString("VALIDATE", "", firstName, "FAIL") + "\nDetail: Name cannot be NULL");
             }
@@ -393,7 +422,7 @@ namespace AllEmployees
             {
                 if (lastName == "")
                 {
-                    log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "\nDetail: Name cannot be BLANK");
+                    log.writeLog(produceLogString("VALIDATE", "", lastName, "FAIL") + "\nDetail: Name cannot be blank");
                 }
                 else
                 {
@@ -425,15 +454,20 @@ namespace AllEmployees
 
             if (dateOfBirth != null)
             {
-                if (CheckDateRange(new DateTime(0), DateTime.Now, (DateTime) dateOfBirth) == true)
+                if (CheckDateRange(DateTime.MinValue, DateTime.Now, (DateTime) dateOfBirth) == true)
                 {
                     log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "SUCCESS"));
                     retV = true;
                 }
                 else
                 {
-                    log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "FAIL"));
+                    log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "FAIL")
+                                    + "\nDetails: Date of Birth must come before Now");
                 }
+            }
+            else
+            {
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL") + "\nDetail: Date of Birth cannot be NULL");
             }
             return retV;
         }
@@ -445,14 +479,14 @@ namespace AllEmployees
         private bool validateSIN()
         {
             bool retV = false;
-            if (CheckSIN(socialInsuranceNumber) == true)
+            if (validateSIN(socialInsuranceNumber) == true)
             {
                 log.writeLog(produceLogString("VALIDATE", "", socialInsuranceNumber, "SUCCESS"));
                 retV = true;
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", socialInsuranceNumber, "SUCCESS"));
+                log.writeLog(produceLogString("VALIDATE", "", socialInsuranceNumber, "FAIL") + "\nDetails: Invalid SIN number");
             }
             return retV;
         }
