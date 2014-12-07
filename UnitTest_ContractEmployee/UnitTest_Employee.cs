@@ -25,15 +25,22 @@ namespace UnitTest_AllEmployees
         /// <para><b>Unique Identifier</b> - AE.E.SDH.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set SIN number of the Employee object</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "123456789"</para>
-        /// <para><b>Expected outputs</b> - "123456789" set correctly for SIN of that employee</para>
+        /// <para><b>Input data</b> - "193 456 787"</para>
+        /// <para><b>Expected outputs</b> - "193 456 787" set correctly for SIN of that employee</para>
         /// <para><b>Observed outputs</b> - TO DO at project completion</para>
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         /// 
         [TestMethod]
         public void SetSIN_NormalTest1()
         {
+            Employee val = new Employee();
+            string input = "193 456 787";
+            bool expected = true;
+            bool actual = false;
 
+            actual = val.SetSIN(input);
+
+            Assert.AreEqual(expected, actual, "Did not accept valid sin");
         }
 
         ///
@@ -49,6 +56,7 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetFirstName_NormalTest1()
         {
+
 
         }
 
