@@ -33,3 +33,6 @@ C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\bin\Debug\Supporting.pdb
 C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
 C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.dll
 C:\Users\Jay\Desktop\EMS\KS_EMS\AllEmployees\obj\Debug\AllEmployees.pdb
+C:\Users\Christoph\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.csprojResolveAssemblyReference.cache
+C:\Users\Christoph\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.dll
+C:\Users\Christoph\Documents\GitHub\KS_EMS\AllEmployees\obj\Debug\AllEmployees.pdb

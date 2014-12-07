@@ -21,9 +21,9 @@ namespace AllEmployees
     /// </summary>
     public class FulltimeEmployee : Employee
     {
-        private DateTime dateOfHire;
-        private DateTime dateOfTermination;
-        private String salary;
+        private DateTime? dateOfHire;
+        private DateTime? dateOfTermination;
+        private Double salary;
 
         /// <summary>
         /// The FulltimeEmployee() method is a Constructor for the FulltimeEmployee Class.
@@ -31,9 +31,9 @@ namespace AllEmployees
         /// </summary>
         public FulltimeEmployee() : base()
         {
-            dateOfHire = new DateTime(0);
-            dateOfTermination = new DateTime(0);
-            salary = "0";
+            dateOfHire = null;
+            dateOfTermination = null;
+            salary = 0.00;
 
             SetType("FT");
         }
@@ -49,8 +49,9 @@ namespace AllEmployees
         /// <param name="hDate">The date to set the dateOfHire variable to</param>
         /// <param name="tDate">The date to set the dateOfTermination variable to</param>
         /// <param name="inSalary">The string to set the Salary variable to</param>
-        public FulltimeEmployee(String first, String last, String SIN, DateTime DOB, DateTime hDate, 
-            DateTime tDate, String inSalary) : base(first, last, SIN, DOB)
+        public FulltimeEmployee(String first, String last, String SIN, DateTime? DOB, DateTime? hDate,
+            DateTime? tDate, Double inSalary)
+            : base(first, last, SIN, DOB)
         {
             SetDateOfHire(hDate);
             SetDateOfTermination(tDate);
@@ -59,16 +60,16 @@ namespace AllEmployees
             SetType("FT");
         }
 
-        public DateTime GetDateOfHire()
+        public DateTime? GetDateOfHire()
         {
             return dateOfHire;
         }
-        public DateTime GetDateOfTermination()
+        public DateTime? GetDateOfTermination()
         {
             return dateOfTermination;
         }
 
-        public String GetSalary()
+        public Double GetSalary()
         {
             return salary;
         }
@@ -78,17 +79,33 @@ namespace AllEmployees
         /// </summary>
         /// <param name="hDate">The date to set the dateOfHire variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfHire(DateTime hDate)
+        public bool SetDateOfHire(DateTime? hDate)
         {
             bool retV = false;
-            if(CheckDateRange(dateOfBirth, dateOfTermination, hDate) == true)
+            if (hDate == null)
             {
-                //log.writeLog(produceLogString("SET", hDate.ToString("yyyy-MM-dd"), 
-                //dateOfHire = hDate;
+                log.writeLog(
+                    produceLogString("SET",
+                                    (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                    "N/A",
+                                    "SUCCESS"));
+                retV = true;
             }
             else
             {
+                DateTime newDOH = (DateTime)hDate;
 
+                //if(CheckDateRange(dateOfBirth, dateOfTermination, newDOH) == true)
+                //{
+                //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), hDate.ToString("yyyy-MM-dd"), "SUCCESS"));
+                //    dateOfHire = hDate;
+                //    retV = true;
+                //}
+                //else
+                //{
+                //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), hDate.ToString("yyyy-MM-dd"), "FAIL")
+                //       + "\nDetail: Should come after Birthday and before Termination Date");
+                //}
             }
             return retV;
         }
@@ -100,15 +117,24 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfTermination(DateTime tDate)
         {
-            dateOfTermination = tDate;
-            if (dateOfTermination == tDate)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            bool retV = false;
+            //if (CheckDateRange(dateOfHire, DateTime.MaxValue, dateOfTermination) == true)
+            //{
+            //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), tDate.ToString("yyyy-MM-dd"), "SUCCESS"));
+            //    dateOfHire = tDate;
+            //    retV = true;
+            //}
+            //else
+            //{
+            //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), tDate.ToString("yyyy-MM-dd"), "FAIL")
+            //        + "\nDetail: Should come after Hiring date and before \"9999-12-31\"");
+            //}
+            return retV;
+        }
+
+        public bool CheckSalary(Double sal)
+        {
+            return sal > 0;
         }
 
         /// <summary>
@@ -116,32 +142,64 @@ namespace AllEmployees
         /// </summary>
         /// <param name="inSalary">The string to set the salary variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetSalary(String inSalary)
+        public bool SetSalary(Double inSalary)
         {
-            salary = inSalary;
-            if (salary == inSalary)
+            bool retV = false;
+            if(CheckSalary(inSalary) == true)
             {
-                return true;
+                log.writeLog(produceLogString("SET", salary.ToString("0.00"), inSalary.ToString("0.00"), "SUCCESS"));
+                salary = inSalary;
+                retV = true;
             }
             else
             {
-                return false;
+                log.writeLog(produceLogString("SET", salary.ToString("0.00"), inSalary.ToString("0.00"), "FAIL")
+                    + "\nDetail: Cannot be lower than zero");
             }
+            return retV;
+        }
 
+        private bool validateDOH()
+        {
+            bool retV = false;
+
+            return retV;
+        }
+        private bool validateDOT()
+        {
+            bool retV = false;
+
+            return retV;
+        }
+        private bool validateSalary()
+        {
+            bool retV = false;
+
+            return retV;
+        }
+
+        public bool Validate()
+        {
+            return base.Validate() && validateDOH() && validateDOT() && validateSalary();
+        }
+
+        protected override String ConsoleDetails()
+        {
+            String output ="";
+            output += "\tDate of Hire:\t\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
+            output += "\tDate of Termination:\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
+            output += "\tSalary:\t\t\t" + salary.ToString("0.00");
+            return output;
         }
 
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
-        public void Details()
+        public override void Details()
         {
-            Console.Write(firstName + "\n" +
-                lastName + "\n" +
-                socialInsuranceNumber + "\n" +
-                dateOfBirth + "\n" +
-                dateOfHire + "\n" +
-                dateOfTermination + "\n" +
-                salary);
+            String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
+            Console.WriteLine(consoleOutput);
+            log.writeLog(produceLogString("DETAILS", "", "", "")  + "\nInput: \n" + consoleOutput);
         }
     }
 }

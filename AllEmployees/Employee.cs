@@ -24,7 +24,7 @@ namespace AllEmployees
         protected string firstName; /// Employee First Name
         protected string lastName; /// Employee Last Name
         protected string socialInsuranceNumber; /// Employee Social Insurance Number
-        protected DateTime dateOfBirth; /// Employee Date of Birth
+        protected DateTime? dateOfBirth; /// Employee Date of Birth
         private String employeeType; /// Employee Type
 
         public Logging log;
@@ -39,7 +39,7 @@ namespace AllEmployees
             firstName = "";
             lastName = "";
             socialInsuranceNumber = "";
-            dateOfBirth = new DateTime(0);
+            dateOfBirth = null;
 
             log = new Logging();
         }
@@ -67,7 +67,7 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         /// <param name="SIN">The string to set initialize socialInsuranceNumber variable to</param>
         /// <param name="DOB">The string to initialize the dateOfBirth variable to</param>
-        public Employee(string first, string last, string SIN, DateTime DOB) : this(first, last)
+        public Employee(string first, string last, string SIN, DateTime? DOB) : this(first, last)
         {
             SetSIN(SIN);
             SetDOB(DOB);
@@ -281,18 +281,40 @@ namespace AllEmployees
         /// </summary>
         /// <param name="dob">The string to set the dateOfBirth to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDOB(DateTime dob)
+        public bool SetDOB(DateTime? dob)
         {
             bool retV = false;
-            if (CheckDateRange(new DateTime(0), DateTime.Now, dob) == true)
+            if (dob == null)
             {
-                log.writeLog(produceLogString("SET", dateOfBirth.ToString("yyyy-MM-dd"), dob.ToString("yyyy-MM-dd"), "SUCCESS"));
-                dateOfBirth = dob;
+                log.writeLog(
+                    produceLogString("SET",
+                                    (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                    "N/A", 
+                                    "SUCCESS"));
                 retV = true;
             }
             else
             {
-                log.writeLog(produceLogString("SET", dateOfBirth.ToString("yyyy-MM-dd"), dob.ToString("yyyy-MM-dd"), "FAIL"));
+                DateTime newDOB = (DateTime)dob;
+                
+                if (CheckDateRange(DateTime.MinValue, DateTime.Now, newDOB) == true)
+                {
+                    log.writeLog(
+                        produceLogString("SET", 
+                                        (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                        newDOB.ToString("yyyy-MM-dd"), 
+                                        "SUCCESS") );
+                    dateOfBirth = dob;
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(
+                        produceLogString("SET",
+                                        (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                        newDOB.ToString("yyyy-MM-dd"),
+                                        "FAIL") + "\nDetails: Need to come before Now");
+                }
             }
             return retV;
         }
@@ -400,14 +422,18 @@ namespace AllEmployees
         private bool validateDOB()
         {
             bool retV = false;
-            if (CheckDateRange(new DateTime(0), DateTime.Now, dateOfBirth) == true)
+
+            if (dateOfBirth != null)
             {
-                log.writeLog(produceLogString("VALIDATE", "", dateOfBirth.ToString("yyyy-MM-dd"), "SUCCESS"));
-                retV = true;
-            }
-            else
-            {
-                log.writeLog(produceLogString("VALIDATE", "", dateOfBirth.ToString("yyyy-MM-dd"), "FAIL"));
+                if (CheckDateRange(new DateTime(0), DateTime.Now, (DateTime) dateOfBirth) == true)
+                {
+                    log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "SUCCESS"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "FAIL"));
+                }
             }
             return retV;
         }
@@ -452,10 +478,10 @@ namespace AllEmployees
                         output += "<Seasonal Employee>\n";
                         goto default;
                     default:
-                        output += "\tLast Name:\t" + lastName;
-                        output += "\tFirst Name:\t" + firstName;
-                        output += "\tSIN:\t" + socialInsuranceNumber.Insert(4, " ").Insert(8, " ");
-                        output += "\tDate of Birth:\t" + dateOfBirth.ToString("yyyy-MM-dd");
+                        output += "\tLast Name:\t\t" + lastName;
+                        output += "\tFirst Name:\t\t" + firstName;
+                        output += "\tSIN:\t\t" + socialInsuranceNumber.Insert(4, " ").Insert(8, " ");
+                        output += "\tDate of Birth:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
                         break;
                 }
             }
@@ -464,7 +490,7 @@ namespace AllEmployees
                 output += "<Contract Employee>\n";
                 output += "\tBusiness Name:\t\t" + lastName;
                 output += "\tBusiness Number:\t\t" + socialInsuranceNumber.Insert(5, " ");
-                output += "\tDate of Incorporation:\t" + dateOfBirth.ToString("yyyy-MM-dd");
+                output += "\tDate of Incorporation:\t" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A");
             }
             return output;
         }
@@ -473,24 +499,33 @@ namespace AllEmployees
         /// A virtual function that will be called to print details of employee object to database file.
         /// </summary>
         /// <returns>A String containinng the detailed information of the employee object that will be printed to the database file</returns>
-        public virtual String DatabaseDetails()
+        public virtual List<String> DatabaseDetails()
         {
-            String output = "";
+            List<String> output = new List<String>();
+
             if (employeeType == "FT")
             {
-                output += "FT|" + lastName + "|" + firstName + "|" + socialInsuranceNumber + "|" + dateOfBirth.ToString("yyyy-MM-dd") + "|";
+                output.AddRange(
+                    new String[] {"FT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") });
             }
             else if (employeeType == "PT")
             {
-                output += "PT|" + lastName + "|" + firstName + "|" + socialInsuranceNumber + "|" + dateOfBirth.ToString("yyyy-MM-dd") + "|";
+                output.AddRange(
+                    new String[] {"PT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") });
             }
             else if (employeeType == "CT")
             {
-                output += "CT|" + lastName + "|" + socialInsuranceNumber + "|" + dateOfBirth.ToString("yyyy-MM-dd") + "|";
+                output.AddRange(
+                    new String[] {"CT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") });
             }
             else if (employeeType == "SN")
             {
-                output += "SN|" + lastName + "|" + firstName + "|" + socialInsuranceNumber + "|" + dateOfBirth.ToString("yyyy-MM-dd") + "|";
+                output.AddRange(
+                    new String[] {"SN", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") });
             }
 
             return output;
@@ -504,7 +539,6 @@ namespace AllEmployees
         {
             String consoleOutput = ConsoleDetails();
             Console.WriteLine(consoleOutput);
-            log.writeLog(produceLogString("VALIDATE", "", "", "")  + "\nInput: \n" + consoleOutput);
         }
     }
 }
