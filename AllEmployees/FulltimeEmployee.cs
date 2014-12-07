@@ -289,9 +289,26 @@ namespace AllEmployees
             return retV;
         }
 
-        public override bool Validate()
+        public String ValidateStr()
         {
-            return base.Validate() && validateDOH() && validateDOT() && validateSalary();
+            String output = "";
+            if(base.Validate() == false)
+            {
+                output += base.ValidateStr();
+            }
+            if(validateDOH() == false)
+            {
+                output += "Incorrect Date of Hire\n";
+            }
+            if(validateDOH() == false)
+            {
+                output += "Incorrect Date of Termination\n";
+            }
+            if(validateDOH() == false)
+            {
+                output += "Incorrect Salary\n";
+            }
+            return output;
         }
 
         protected override String ConsoleDetails()

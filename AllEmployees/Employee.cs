@@ -171,32 +171,83 @@ namespace AllEmployees
         /// </summary>
         /// <param name="s">The input string to be examined</param>
         /// <returns>bool - whether the input is valid or not</returns>
-        private bool validateSIN(String sin)
+        private bool validateSIN(String inSin)
         {
-            bool retV = false;
-            sin = sin.Trim();
-            sin = sin.Replace(" ", "");
-
-            //basic validations
-            if (sin.Length == 9 && CheckSIN(sin) && sin[0] != 0)
+            bool returnVal = false;
+            bool even = false;
+            int[] sin;
+            int[] doubled;
+            doubled = new int[4];
+            sin = new int[8];
+            string sum1 = "";
+            int sum2 = 0;
+            int total = 0;
+            int subtractNum = 0;
+            int checksum;
+            int i = 0;
+            int j = 0;
+            if (inSin == "")
             {
-                int multiplier = 0;
-                int sum = 0;
-                foreach (int d in sin.Select(c => (int)c))
+                returnVal = true;
+            }
+            else
+            {
+                for (i = 0; i < (inSin.Length - 1); i++)
                 {
-                    // multiply odd position with 1, even with 2
-                    // add each digit of the resulting number and get the total of resulting digits
-                    sum += (d * ((multiplier % 2) + 1)).ToString().Select(c => (int)c).Sum();
-                    multiplier++;
+                    if (char.IsDigit(inSin[i]) && j < 8)
+                    {
+                        sin[j++] = (int)Char.GetNumericValue(inSin[i]);
+                    }
                 }
-                if ((sum + sin[8]) % 10 == 0)  // if the sum and the last digit of sin number is a multiple of 10, valid sin
+                if (sin.Length == 8)
                 {
-                    retV = true;
+                    checksum = (int)Char.GetNumericValue(inSin[inSin.Length - 1]);
+                    foreach (int x in sin)
+                    {
+                        if (even == false)
+                        {
+                            sum2 += x;
+                            even = true;
+                        }
+                        else
+                        {
+                            sum1 += x.ToString();
+                            even = false;
+                        }
+                    }
+                    for (i = 0; i < sum1.Length; i++)
+                    {
+                        doubled[i] = (2 * (int)Char.GetNumericValue(sum1[i]));
+                    }
+                    sum1 = "";
+                    foreach (int y in doubled)
+                    {
+                        sum1 += y.ToString();
+                    }
+                    for (i = 0; i < sum1.Length; i++)
+                    {
+                        total += (int)Char.GetNumericValue(sum1[i]);
+                    }
+                    total += sum2;
+                    if (total % 10 == 0)
+                    {
+                        subtractNum = total;
+                    }
+                    else
+                    {
+                        while ((total + subtractNum) % 10 != 0)
+                        {
+                            subtractNum++;
+                        }
+                        subtractNum += total;
+                    }
+                    if ((subtractNum - total) == checksum)
+                    {
+                        returnVal = true;
+                    }
                 }
             }
-            //else false;
-
-            return retV;
+            return returnVal;
         }
 
         /// <summary>
@@ -433,6 +484,27 @@ namespace AllEmployees
         public virtual bool Validate()
         {
             return validateFirstName() && validateLastName() && validateDOB() && validateSIN();
+        }
+        public virtual string ValidateStr()
+        {
+            String output = "";
+            if (validateFirstName() == false)
+            {
+                output += "Invalid First Name";
+            }
+            if (validateLastName() == false)
+            {
+                output += "Invalid Last Name";
+            }
+            if (validateSIN() == false)
+            {
+                output += "Invalid SIN";
+            }
+            if (validateDOB() == false)
+            {
+                output += "Invalid Date of Birth";
+            }
+            return output;
         }
 
         /// <summary>

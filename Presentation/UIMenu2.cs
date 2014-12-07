@@ -286,7 +286,7 @@ namespace Presentation
                 else if (choice.KeyChar == '2')
                 {
                     lName = SpecifyNameOrRateOrDateOrSIN("Last Name", "Please Enter Last Name of " + type);
-                    if (baseEmp.SetFirstName(lName))
+                    if (baseEmp.SetLastName(lName))
                     {
                         Console.WriteLine("Last Name Successfully Set to \"" + baseEmp.GetLastName() + "\"");
                     }
@@ -311,7 +311,7 @@ namespace Presentation
                     }
                     else
                     {
-                        Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \"" + baseEmp.GetDOB() + "\"");
+                        Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
                     }
                 }
                 else if (choice.KeyChar == '4')
@@ -323,7 +323,9 @@ namespace Presentation
                     }
                     else
                     {
-                        Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \"" + baseEmp.GetSIN() + "\"");
+                        Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \""
+                                     + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
+
                     }
                 }
                 else if (choice.KeyChar == '5')
@@ -353,6 +355,24 @@ namespace Presentation
                 if (choice.KeyChar == '1')
                 {
                     baseEmp = SpecifiyBaseEmployee(shortType);
+                    ftEmp.SetFirstName(baseEmp.GetFirstName());
+                    ptEmp.SetFirstName(baseEmp.GetFirstName());
+                    snEmp.SetFirstName(baseEmp.GetFirstName());
+                    
+                    ftEmp.SetLastName(baseEmp.GetLastName());
+                    ptEmp.SetLastName(baseEmp.GetLastName());
+                    snEmp.SetLastName(baseEmp.GetLastName());
+                    ctEmp.SetLastName(baseEmp.GetFirstName());
+
+                    ftEmp.SetDOB(baseEmp.GetDOB());
+                    ptEmp.SetDOB(baseEmp.GetDOB());
+                    snEmp.SetDOB(baseEmp.GetDOB());
+                    ctEmp.SetDOB(baseEmp.GetDOB());
+
+                    ftEmp.SetSIN(baseEmp.GetSIN());
+                    ptEmp.SetSIN(baseEmp.GetSIN());
+                    snEmp.SetSIN(baseEmp.GetSIN());
+                    ctEmp.SetSIN(baseEmp.GetSIN());
                 }
                 else
                 {
@@ -372,12 +392,13 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ftEmp.GetDateOfHire() + "\"");
+                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ((DateTime)ftEmp.GetDateOfHire()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Hiring Date to \"" + hDateStr + "\"; Remain as \"" + ftEmp.GetDateOfHire() + "\"");
+                                Console.WriteLine("Failed to Set Hiring Date to \"" + hDateStr + "\"; Remain as \""
+                                     + (ftEmp.GetDateOfHire().HasValue ? ((DateTime)ftEmp.GetDateOfHire()).ToString("yyyy-MM-dd") : "N/A") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '3')
@@ -391,12 +412,13 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Termination Date Successfully Set to \"" + ftEmp.GetDateOfTermination() + "\"");
+                                    Console.WriteLine("Termination Date Successfully Set to \"" + ((DateTime)ftEmp.GetDateOfTermination()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Termination Date to \"" + tDateStr + "\"; Remain as \"" + ftEmp.GetDateOfTermination() + "\"");
+                                Console.WriteLine("Failed to Set Termination Date to \"" + tDateStr + "\"; Remain as \""
+                                     + (ftEmp.GetDateOfTermination().HasValue ? ((DateTime)ftEmp.GetDateOfTermination()).ToString("yyyy-MM-dd") : "N/A") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '4')
@@ -437,7 +459,26 @@ namespace Presentation
                                 ftEmp.Details();
                             }
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
+                        else if (choice.KeyChar == '8')
+                        {
+                            if((ftEmp.ValidateStr()).Length <= 0)
+                            {
+                                company.AddFullTimeEmployee(ftEmp);
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                ftEmp.Details();
+                                ftEmp = new FulltimeEmployee();
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine(ftEmp.ValidateStr());
+                                Console.WriteLine(type + "Employee data has NOT been added");
+                                
+                            }
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
@@ -547,12 +588,14 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Contract Start Date Successfully Set to \"" + ctEmp.GetContractStartDate() + "\"");
+                                    Console.WriteLine("Contract Start Date Successfully Set to \"" + ((DateTime)ctEmp.GetContractStartDate()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Contract Start Date to \"" + cStartDateStr + "\"; Remain as \"" + ctEmp.GetContractStartDate() + "\"");
+                                Console.WriteLine("Failed to Set Contract Start Date to \"" + cStartDateStr + "\"; Remain as \"" 
+                                    + (ctEmp.GetContractStartDate().HasValue ? ((DateTime)ctEmp.GetContractStartDate() ).ToString("yyyy-MM-dd") : "N/A") + "\"");
+
                             }
                         }
                         else if (choice.KeyChar == '3')
@@ -566,12 +609,15 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Contract End Date Successfully Set to \"" + ctEmp.GetContractEndDate() + "\"");
+                                    Console.WriteLine("Contract End Date Successfully Set to \"" + ((DateTime)ctEmp.GetContractEndDate()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Contract End Date to \"" + cEndDateStr + "\"; Remain as \"" + ctEmp.GetContractEndDate() + "\"");
+                                Console.WriteLine("Failed to Set Contract End Date to \"" + cEndDateStr + "\"; Remain as \"" 
+                                    + (ctEmp.GetContractEndDate().HasValue ? ((DateTime)ctEmp.GetContractEndDate() ).ToString("yyyy-MM-dd") : "N/A") + "\"");
+
+
                             }
                         }
                         else if (choice.KeyChar == '4')
@@ -579,11 +625,11 @@ namespace Presentation
                             fixedContractAmtStr = SpecifyNameOrRateOrDateOrSIN("Fixed Contract Amount", "Please Enter Fixed Contract Amount of " + type);
                             if (ctEmp.CheckFixedContractAmt(fixedContractAmtStr))
                             {
-                                Console.WriteLine("Contract Fixed Contract Amount Successfully Set to \"" + ctEmp.GetFixedContractAmt() + "\"");
+                                Console.WriteLine("Contract Fixed Contract Amount Successfully Set to \"" + ctEmp.GetFixedContractAmt().ToString("0.00") + "\"");
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Fixed Contract Amount to \"" + fixedContractAmtStr + "\"; Remain as \"" + ctEmp.GetFixedContractAmt() + "\"");
+                                Console.WriteLine("Failed to Set Fixed Contract Amount to \"" + fixedContractAmtStr + "\"; Remain as \"" + ctEmp.GetFixedContractAmt().ToString("0.00") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '6')
@@ -613,6 +659,66 @@ namespace Presentation
                             }
                         }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
+                        {
+                            Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                            Console.ReadKey();
+                        }
+                    }//CONTRACT
+                    else if (shortType == "SN")
+                    {
+                        String type = "Seasonal";
+                        String season, piecePay;
+                        if (choice.KeyChar == '2')
+                        {
+                            season = SpecifySeason().ToUpper();
+                            if (snEmp.SetSeason(season))
+                            {
+                                Console.WriteLine("Season Successfully Set to \"" + snEmp.GetSeason() + "\"");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Failed to Set Season to \"" + season + "\"; Remain as \"" + snEmp.GetSeason() + "\"");
+                            }
+                        }
+                        else if (choice.KeyChar == '3')
+                        {
+                            piecePay = SpecifyNameOrRateOrDateOrSIN("Piece Pay", "Please Enter Piece Pay of " + type);
+                            if (ctEmp.SetContractEndDate(piecePay))
+                            {
+                                Console.WriteLine("Contract End Date Successfully Set to \"" + snEmp.GetPiecePay().ToString("0.00") + "\"");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Failed to Set Contract End Date to \"" + piecePay + "\"; Remain as \"" + snEmp.GetPiecePay().ToString("0.00") + "\"");
+                            }
+                        }
+                        else if (choice.KeyChar == '6')
+                        {
+                            Console.Clear();
+                            snEmp.Details();
+                        }
+                        else if (choice.KeyChar == '7')
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
+                            snEmp.Details();
+                            ConsoleKeyInfo c = new ConsoleKeyInfo();
+                            c = Console.ReadKey();
+                            if (c.KeyChar == 'y')
+                            {
+                                Console.Clear();
+                                snEmp = new SeasonalEmployee();
+                                Console.WriteLine(type + "Employee data has been successfully reset");
+                                snEmp.Details();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee data has NOT been reset");
+                                snEmp.Details();
+                            }
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
