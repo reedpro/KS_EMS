@@ -27,14 +27,12 @@ namespace AllEmployees
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public SeasonalEmployee()
+        public SeasonalEmployee() : base()
         {
-            SetFirstName("");
-            SetLastName("");
-            SetSIN("");
-            SetDOB(new DateTime());
             SetSeason("");
             SetPiecePay(0);
+
+            SetType("SN");
         }
 
         /// <summary>
@@ -47,15 +45,12 @@ namespace AllEmployees
         /// <param name="DOB">The date to initialize the dateOfBirth variable to</param>
         /// <param name="whatSeason">The string to initialize the season variable to</param>
         /// <param name="whatPiecePay">The string to initialize the piecePay variable to</param>
-        public SeasonalEmployee(string first, string last, string SIN, DateTime DOB,
-            string whatSeason, double whatPiecePay)
+        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB,
+            String whatSeason, double whatPiecePay) : base(first, last, SIN, DOB)
         {
-            SetFirstName(first);
-            SetLastName(last);
-            SetSIN(SIN);
-            SetDOB(DOB);
             SetSeason(whatSeason);
             SetPiecePay(whatPiecePay);
+            SetType("SN");
         }
 
         /// <summary>
