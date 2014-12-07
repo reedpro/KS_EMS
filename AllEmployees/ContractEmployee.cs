@@ -260,9 +260,27 @@ namespace AllEmployees
             return retV;
         }
 
-        public override bool Validate()
+        public override String Validate()
         {
-            return base.Validate() && validateCSD() && validateCED() && validateFixedContractAmt();
+            String output = "";
+            String msg = "";
+            if ((msg = base.Validate()).Length > 0)
+            {
+                output += msg;
+            }
+            if (validateCSD() == false)
+            {
+                output += "\nIncorrect Contract Start Date:\t\"" + (contractStartDate.HasValue ? ((DateTime)contractStartDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            if (validateCED() == false)
+            {
+                output += "\nIncorrect Contract End Date:\t\"" + (contractEndDate.HasValue ? ((DateTime)contractEndDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            if (validateFixedContractAmt() == false)
+            {
+                output += "\nIncorrect Fixed Contract Amount:\t\"" + fixedContractAmt.ToString("0.00") + "\"";
+            }
+            return output;
         }
 
     }

@@ -481,28 +481,25 @@ namespace AllEmployees
         /// Ultimate validation that is called before the object is added to the container.
         /// </summary>
         /// <returns>A boolean indicating whether the obejct is valid employee object or not</returns>
-        public virtual bool Validate()
-        {
-            return validateFirstName() && validateLastName() && validateDOB() && validateSIN();
-        }
-        public virtual string ValidateStr()
+
+        public virtual string Validate()
         {
             String output = "";
             if (validateFirstName() == false)
             {
-                output += "Invalid First Name";
+                output += "\nInvalid First Name:\t\"" + firstName + "\"";
             }
             if (validateLastName() == false)
             {
-                output += "Invalid Last Name";
+                output += "\nInvalid Last Name:\t\"" + lastName + "\"";
             }
             if (validateSIN() == false)
             {
-                output += "Invalid SIN";
+                output += "\nInvalid SIN:\t\"" + socialInsuranceNumber + "\"";
             }
             if (validateDOB() == false)
             {
-                output += "Invalid Date of Birth";
+                output += "\nInvalid Date of Birth:\t\"" + (dateOfBirth.HasValue ? ((DateTime)dateOfBirth).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
             return output;
         }

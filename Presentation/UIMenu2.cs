@@ -311,7 +311,8 @@ namespace Presentation
                     }
                     else
                     {
-                        Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
+                        Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \""
+                            + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
                     }
                 }
                 else if (choice.KeyChar == '4')
@@ -323,8 +324,7 @@ namespace Presentation
                     }
                     else
                     {
-                        Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \""
-                                     + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
+                        Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \"" + baseEmp.GetSIN() + "\"");
 
                     }
                 }
@@ -461,7 +461,7 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
-                            if((ftEmp.ValidateStr()).Length <= 0)
+                            if((ftEmp.Validate()).Length <= 0)
                             {
                                 company.AddFullTimeEmployee(ftEmp);
                                 Console.Clear();
@@ -473,7 +473,7 @@ namespace Presentation
                             {
                                 Console.Clear();
 
-                                Console.WriteLine(ftEmp.ValidateStr());
+                                Console.WriteLine(ftEmp.Validate());
                                 Console.WriteLine(type + "Employee data has NOT been added");
                                 
                             }
@@ -568,7 +568,7 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
-                            if ((ptEmp.ValidateStr()).Length <= 0)
+                            if ((ptEmp.Validate()).Length <= 0)
                             {
                                 company.AddPartTimeEmployee(ptEmp);
                                 Console.Clear();
@@ -580,7 +580,7 @@ namespace Presentation
                             {
                                 Console.Clear();
 
-                                Console.WriteLine(ptEmp.ValidateStr());
+                                Console.WriteLine(ptEmp.Validate());
                                 Console.WriteLine(type + "Employee data has NOT been added");
                             }
                         }
@@ -677,7 +677,7 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
-                            if ((ctEmp.ValidateStr()).Length <= 0)
+                            if ((ctEmp.Validate()).Length <= 0)
                             {
                                 company.AddContractEmployee(ctEmp);
                                 Console.Clear();
@@ -689,7 +689,7 @@ namespace Presentation
                             {
                                 Console.Clear();
 
-                                Console.WriteLine(ctEmp.ValidateStr());
+                                Console.WriteLine(ctEmp.Validate());
                                 Console.WriteLine(type + "Employee data has NOT been added");
 
                             }

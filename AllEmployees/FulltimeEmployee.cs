@@ -225,7 +225,7 @@ namespace AllEmployees
             else
             {
                 DateTime newDOH = (DateTime)dateOfHire;
-                DateTime DOH_MinDate = (DateTime)dateOfBirth;
+                DateTime DOH_MinDate = (dateOfBirth.HasValue ? (DateTime)dateOfBirth : DateTime.Now);
                 DateTime DOH_MaxDate = (dateOfTermination.HasValue ? (DateTime)dateOfTermination : DateTime.Now);
 
                 if (CheckDateRange(DOH_MinDate, DOH_MaxDate, newDOH) == true)
@@ -289,24 +289,26 @@ namespace AllEmployees
             return retV;
         }
 
-        public String ValidateStr()
+
+        public override String Validate()
         {
             String output = "";
-            if(base.Validate() == false)
+            String msg = "";
+            if ((msg = base.Validate()).Length > 0)
             {
-                output += base.ValidateStr();
+                output += msg;
             }
-            if(validateDOH() == false)
+            if (validateDOH() == false)
             {
-                output += "Incorrect Date of Hire\n";
+                output += "\nIncorrect Date of Hire:\t\"" + (dateOfHire.HasValue ? ((DateTime)dateOfHire).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
-            if(validateDOH() == false)
+            if (validateDOT() == false)
             {
-                output += "Incorrect Date of Termination\n";
+                output += "\nIncorrect Date of Termination:\t\"" + (dateOfTermination.HasValue ? ((DateTime)dateOfTermination).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
-            if(validateDOH() == false)
+            if (validateSalary() == false)
             {
-                output += "Incorrect Salary\n";
+                output += "\nIncorrect Salary:\t\"" + salary.ToString("0.00") + "\"";
             }
             return output;
         }

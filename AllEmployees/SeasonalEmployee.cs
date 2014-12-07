@@ -199,9 +199,23 @@ namespace AllEmployees
         /// Seasonal employee validate method, validates all fields to determine if employee is a valid object
         /// </summary>
         /// <returns>A bool to indicate whether the employee is in fact valid</returns>
-        public override bool Validate()
+        public override String Validate()
         {
-            return base.Validate() && ValidatePiecePay() && ValidateSeason();
+            String output = "";
+            String msg = "";
+            if ((msg = base.Validate()).Length > 0)
+            {
+                output += msg;
+            }
+            if (ValidatePiecePay() == false)
+            {
+                output += "\nIncorrect Piece Pay:\t\"" + piecePay.ToString("0.00") + "\"";
+            }
+            if (ValidateSeason() == false)
+            {
+                output += "\nIncorrect Season:\t\"" + season + "\"";
+            }
+            return output;
         }
 
         protected override String ConsoleDetails()

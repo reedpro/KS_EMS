@@ -246,9 +246,27 @@ namespace AllEmployees
             return retV;
         }
 
-        public override bool Validate()
+        public override String Validate()
         {
-            return base.Validate() && validateDOH() && validateDOT() && validateHourlyRate();
+            String output = "";
+            String msg = "";
+            if ((msg = base.Validate()).Length > 0)
+            {
+                output += msg;
+            }
+            if (validateDOH() == false)
+            {
+                output += "\nIncorrect Date of Hire:\t\"" + (dateOfHire.HasValue ? ((DateTime)dateOfHire).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            if (validateDOT() == false)
+            {
+                output += "\nIncorrect Date of Termination:\t\"" + (dateOfTermination.HasValue ? ((DateTime)dateOfTermination).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            if (validateHourlyRate() == false)
+            {
+                output += "\nIncorrect Hourly Rate:\t\"" + hourlyRate.ToString("0.00") + "\"";
+            }
+            return output;
         }
 
         protected override String ConsoleDetails()
