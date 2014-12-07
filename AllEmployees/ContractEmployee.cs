@@ -171,6 +171,98 @@ namespace AllEmployees
         }
 
 
+        private bool validateCSD()
+        {
+            bool retV = false;
+            if (contractStartDate == null)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
+                                            + "\nDetails: Contract Start Date cannot be NULL");
+            }
+            else
+            {
+                DateTime newCSD = (DateTime)contractStartDate;
+                DateTime CSD_MinDate = (DateTime)dateOfBirth;
+                DateTime CSD_MaxDate = (DateTime)contractEndDate;
+
+                if (CheckDateRange(CSD_MinDate, CSD_MaxDate, newCSD) == true)
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", newCSD.ToString("yyyy-MM-dd"), "SUCCESS")
+                                        + "\nDetails: Contract Start Date comes after " + CSD_MinDate.ToString("yyyy-MM-dd") + "& before " + CSD_MaxDate.ToString("yyyy-MM-dd"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
+                                        + "\nDetails: Contract Start Date must come after " + CSD_MinDate.ToString("yyyy-MM-dd") + ", before " + CSD_MaxDate.ToString("yyyy-MM-dd"));
+                }
+            }
+            return retV;
+        }
+        private bool validateCED()
+        {
+            bool retV = false;
+            if (contractEndDate == null)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
+                                            + "\nDetails: Contract End Date cannot be NULL");
+            }
+            else
+            {
+                DateTime newCED = (DateTime)contractEndDate;
+                DateTime CED_MinDate = (DateTime)contractStartDate;
+                DateTime CED_MaxDate = DateTime.MaxValue;
+
+                if (CheckDateRange(CED_MinDate, CED_MaxDate, newCED) == true)
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", newCED.ToString("yyyy-MM-dd"), "SUCCESS")
+                                        + "\nDetails: Contract End Date comes after " + CED_MinDate.ToString("yyyy-MM-dd") + "& before " + CED_MaxDate.ToString("yyyy-MM-dd"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(
+                        produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
+                                        + "\nDetails: Contract End Date must come after " + CED_MinDate.ToString("yyyy-MM-dd") + ", before " + CED_MaxDate.ToString("yyyy-MM-dd"));
+                }
+            }
+            return retV;
+        }
+
+        private bool validateFixedContractAmt()
+        {
+            bool retV = false;
+
+            if (CheckFixedContractAmt(fixedContractAmt) && fixedContractAmt != 0)
+            {
+                log.writeLog(produceLogString("VALIDATE", "", fixedContractAmt.ToString("0.00"), "SUCCESS"));
+                retV = true;
+            }
+            else
+            {
+                log.writeLog(produceLogString("VALIDATE", "", fixedContractAmt.ToString("0.00"), "FAIL") 
+                                            + "\nDetails: Fixed Contract Amount must be bigger than 0");
+
+            }
+            return retV;
+        }
+
+        private bool validateBusinessNumber()
+        {
+            bool retV = false;
+
+
+
+            return retV;
+        }
+
+        public override bool Validate()
+        {
+            return base.Validate() && validateCSD() && validateCED() && validateFixedContractAmt();
+        }
        
     }
 }
