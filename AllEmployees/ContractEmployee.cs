@@ -18,7 +18,7 @@ namespace AllEmployees
     /// <summary>
     /// The ContractEmployee Class, a child class of Employee
     /// </summary>
-    public class ContractEmployee : Employee
+    public sealed class ContractEmployee : Employee
     {
         public DateTime? contractStartDate { get; private set; }
         public DateTime? dateOfTermination { get; private set; }

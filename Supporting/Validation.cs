@@ -75,7 +75,7 @@ namespace Supporting
         public bool rate(string inRate)
         {
             bool returnVal = false;
-            decimal newRate;
+            Decimal newRate;
             if(inRate.Any(c => char.IsSymbol(c) || char.IsLetter(c)))
             {
                 errorMsg = "The rate must only contain a numeric value";

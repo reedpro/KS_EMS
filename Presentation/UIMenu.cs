@@ -489,7 +489,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         if(val.rate(input))
                         {
-                            ft.SetSalary(Convert.ToDouble(input));
+                            ft.SetSalary(Convert.ToDecimal(input));
                             break;
                         }
                         else
@@ -556,7 +556,7 @@ namespace Presentation
                                 log.writeLog(input + ": You can't have been hired before the current date");
                                 Console.WriteLine(input + ": You can't have been hired before the current date");
                             }
-                            else if (pt.dateOfTermination != null && pt.dateOfTermination < tempTime)
+                            else if (pt.GetDateOfTermination() != null && pt.GetDateOfTermination() < tempTime)
                             {
                                 log.writeLog(input + ": You can't have been hired before you've been terminated");
                                 Console.WriteLine(input + ": You can't have been hired before you've been terminated");
@@ -589,7 +589,7 @@ namespace Presentation
                                 log.writeLog(input + ": You can't have been terminated before the current date");
                                 Console.WriteLine(input + ": You can't have been terminated before the current date");
                             }
-                            else if (pt.dateOfHire != null && pt.dateOfHire > tempTime)
+                            else if (pt.GetDateOfHire() != null && pt.GetDateOfHire() > tempTime)
                             {
                                 log.writeLog(input + ": You can't have been hired before you've been terminated");
                                 Console.WriteLine(input + ": You can't have been hired before you've been terminated");
@@ -616,7 +616,7 @@ namespace Presentation
                         input = Console.ReadLine();
                         if (val.rate(input))
                         {
-                            pt.SetHourlyRate(input);
+                            pt.SetHourlyRate(Convert.ToDecimal(input));
                             break;
                         }
                         else

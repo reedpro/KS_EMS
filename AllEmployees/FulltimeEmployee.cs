@@ -19,11 +19,11 @@ namespace AllEmployees
     /// <summary>
     /// The FulltimeEmployee Class, a child class of Employee
     /// </summary>
-    public class FulltimeEmployee : Employee
+    public sealed class FulltimeEmployee : Employee
     {
         private DateTime? dateOfHire;
         private DateTime? dateOfTermination;
-        private Double salary;
+        private Decimal salary;
 
         /// <summary>
         /// The FulltimeEmployee() method is a Constructor for the FulltimeEmployee Class.
@@ -33,7 +33,7 @@ namespace AllEmployees
         {
             dateOfHire = null;
             dateOfTermination = null;
-            salary = 0.00;
+            salary = 0.00M;
 
             SetType("FT");
         }
@@ -50,7 +50,7 @@ namespace AllEmployees
         /// <param name="tDate">The date to set the dateOfTermination variable to</param>
         /// <param name="inSalary">The string to set the Salary variable to</param>
         public FulltimeEmployee(String first, String last, String SIN, DateTime? DOB, DateTime? hDate,
-            DateTime? tDate, Double inSalary)
+            DateTime? tDate, Decimal inSalary)
             : base(first, last, SIN, DOB)
         {
             SetDateOfHire(hDate);
@@ -68,7 +68,7 @@ namespace AllEmployees
         /// <param name="hDate">The date to set the dateOfHire variable to</param>
         /// <param name="tDate">The date to set the dateOfTermination variable to</param>
         /// <param name="inSalary">The string to set the Salary variable to</param>
-        public FulltimeEmployee(Employee employee, DateTime? hDate, DateTime? tDate, Double inSalary)
+        public FulltimeEmployee(Employee employee, DateTime? hDate, DateTime? tDate, Decimal inSalary)
             : base(employee)
         {
             SetDateOfHire(hDate);
@@ -88,7 +88,7 @@ namespace AllEmployees
             return dateOfTermination;
         }
 
-        public Double GetSalary()
+        public Decimal GetSalary()
         {
             return salary;
         }
@@ -127,22 +127,9 @@ namespace AllEmployees
             dateOfHire = tDate;
             retV = true;
             return retV;
-
-            //if (CheckDateRange(dateOfHire, DateTime.MaxValue, dateOfTermination) == true)
-            //{
-            //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), tDate.ToString("yyyy-MM-dd"), "SUCCESS"));
-            //    dateOfHire = tDate;
-            //    retV = true;
-            //}
-            //else
-            //{
-            //    log.writeLog(produceLogString("SET", dateOfHire.ToString("yyyy-MM-dd"), tDate.ToString("yyyy-MM-dd"), "FAIL")
-            //        + "\nDetail: Should come after Hiring date and before \"9999-12-31\"");
-            //}
-            //return retV;
         }
 
-        public bool CheckSalary(Double sal)
+        public bool CheckSalary(Decimal sal)
         {
             return sal > 0;
         }
@@ -152,7 +139,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="inSalary">The string to set the salary variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetSalary(Double inSalary)
+        public bool SetSalary(Decimal inSalary)
         {
             bool retV = false;
             if(CheckSalary(inSalary) == true)

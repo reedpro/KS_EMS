@@ -18,11 +18,26 @@ namespace AllEmployees
     /// <summary>
     /// The ParttimeEmployee Class, a child class of Employee
     /// </summary>
-    public class ParttimeEmployee : Employee
+    public sealed class ParttimeEmployee : Employee
     {
-        public DateTime? dateOfHire { get; private set; }
-        public DateTime? dateOfTermination { get; private set; }
-        public string hourlyRate { get; private set; }
+        private DateTime? dateOfHire;
+        private DateTime? dateOfTermination;
+        private Decimal hourlyRate;
+
+        //public FulltimeEmployee fte;
+        public DateTime? GetDateOfHire()
+        {
+            return dateOfHire;
+        }
+        public DateTime? GetDateOfTermination()
+        {
+            return dateOfTermination;
+        }
+
+        public Decimal GetHourlyRate()
+        {
+            return hourlyRate;
+        }
 
         /// <summary>
         /// The ParttimeEmployee() method is a Constructor for the ParttimeEmployee Class.
@@ -36,7 +51,9 @@ namespace AllEmployees
             SetDOB(new DateTime());
             dateOfHire = null;
             dateOfTermination = null;
-            hourlyRate = "0";
+            hourlyRate = 0.00M;
+
+            //fte = new FulltimeEmployee();
         }
 
         /// <summary>
@@ -50,16 +67,17 @@ namespace AllEmployees
         /// <param name="hireDate">The date to set the dateOfHire variable to</param>
         /// <param name="terminationDate">The date to set the dateOfTermination variable to</param>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
-        public ParttimeEmployee(string first, string last, string SIN, DateTime DOB,
-            DateTime hireDate, DateTime terminationDate, string rate)
+        public ParttimeEmployee(String first, String last, String SIN, DateTime? DOB, DateTime? hDate, DateTime? tDate, Decimal rate)
         {
             SetFirstName(first);
-            SetFirstName(last);
+            SetLastName(last);
             SetSIN(SIN);
             SetDOB(DOB);
-            dateOfHire = hireDate;
-            dateOfTermination = terminationDate;
+            dateOfHire = hDate;
+            dateOfTermination = tDate;
             hourlyRate = rate;
+
+            //fte = new FulltimeEmployee(first, last, SIN, DOB, hDate, tDate, 0.00M);
         }
 
         /// <summary>
@@ -67,17 +85,20 @@ namespace AllEmployees
         /// </summary>
         /// <param name="date">The date to set the dateOfHire variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfHire(DateTime date)
+        public bool SetDateOfHire(DateTime? hDate)
         {
-            dateOfHire = date;
-            if (dateOfHire == date)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            bool retV = false;
+            //if (fte.SetDateOfHire(hDate))
+            //{
+            //    dateOfHire = hDate;
+            //    log.writeLog(
+            //    produceLogString("SET",
+            //                    (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
+            //                    (hDate.HasValue ? hDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+            //                    "SUCCESS"));
+            //}
+
+            return retV;
         }
 
         /// <summary>
@@ -103,7 +124,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetHourlyRate(string rate)
+        public bool SetHourlyRate(Decimal rate)
         {
             hourlyRate = rate;
             if (hourlyRate == rate)

@@ -18,10 +18,10 @@ namespace AllEmployees
     /// <summary>
     /// The SeasonalEmployee Class, a child class of Employee
     /// </summary>
-    public class SeasonalEmployee : Employee
+    public sealed class SeasonalEmployee : Employee
     {
         private string season;
-        private double piecePay;
+        private Decimal piecePay;
 
         /// <summary>
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
@@ -45,7 +45,7 @@ namespace AllEmployees
         /// <param name="DOB">The date to initialize the dateOfBirth variable to</param>
         /// <param name="whatSeason">The string to initialize the season variable to</param>
         /// <param name="whatPiecePay">The string to initialize the piecePay variable to</param>
-        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, double whatPiecePay) 
+        public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, Decimal whatPiecePay) 
             : base(first, last, SIN, DOB)
         {
             SetSeason(whatSeason);
@@ -57,7 +57,7 @@ namespace AllEmployees
         {
             return season;
         }
-        public Double GetPiecePay()
+        public Decimal GetPiecePay()
         {
             return piecePay;
         }
@@ -110,7 +110,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="input">String indicating piecepay to check</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool CheckPiecePay(double input)
+        public bool CheckPiecePay(Decimal input)
         {
             bool retV = false;
             if (input >= 0)
@@ -125,7 +125,7 @@ namespace AllEmployees
         /// </summary>
         /// <param name="whatPiecePay">The string indicating what value to set the piecePay variable to</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetPiecePay(double input)
+        public bool SetPiecePay(Decimal input)
         {
             bool retV = false;
             if (CheckPiecePay(input) == true)
