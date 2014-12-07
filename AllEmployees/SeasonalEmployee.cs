@@ -20,8 +20,8 @@ namespace AllEmployees
     /// </summary>
     public class SeasonalEmployee : Employee
     {
-        public string season { get; private set; }
-        public string piecePay { get; private set; }
+        private string season { public get; private set;}
+        private double piecePay { public get; private set;}
 
         /// <summary>
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
@@ -33,8 +33,8 @@ namespace AllEmployees
             SetLastName("");
             SetSIN("");
             SetDOB(new DateTime());
-            string season = "";
-            piecePay = "0";
+            SetSeason("");
+            SetPiecePay(0);
         }
 
         /// <summary>
@@ -48,50 +48,90 @@ namespace AllEmployees
         /// <param name="whatSeason">The string to initialize the season variable to</param>
         /// <param name="whatPiecePay">The string to initialize the piecePay variable to</param>
         public SeasonalEmployee(string first, string last, string SIN, DateTime DOB,
-            string whatSeason, string whatPiecePay)
+            string whatSeason, double whatPiecePay)
         {
             SetFirstName(first);
             SetLastName(last);
             SetSIN(SIN);
             SetDOB(DOB);
-            season = whatSeason;
-            piecePay = whatPiecePay;
+            SetSeason(whatSeason);
+            SetPiecePay(whatPiecePay);
+        }
+
+        /// <summary>
+        /// Method checks if the input season is a valid season
+        /// </summary>
+        /// <param name="input">input string to be checked</param>
+        /// <returns></returns>
+        public bool CheckSeason(string input)
+        {
+            bool retV = false;
+            string[] validSeasons = { "spring", "summer", "fall", "winter", "" };
+            foreach (string s in validSeasons)
+            {
+                if (input.ToLower() == s)
+                {
+                    retV = true;
+                }
+            }
+            return retV;
         }
 
         /// <summary>
         /// The setter for the season variable
         /// </summary>
         /// <param name="whatSeason">The string indicating what value to set the season variable to</param>
-        /// <returns></returns>
-        public bool SetSeason(string whatSeason)
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool SetSeason(string input)
         {
-            season = whatSeason;
-            if (season == whatSeason)
+            bool retV = false;
+            if (CheckSeason(input) == true)
             {
-                return true;
+                log.writeLog(produceLogString("SET", season, input, "SUCCESS"));
+                season = input;
+                retV = true;
             }
             else
             {
-                return false;
+                log.writeLog(produceLogString("SET", season, input, "FAIL") + "\nDetail:Invalid season");
             }
+            return retV;
+        }
+
+        /// <summary>
+        /// check the input piecepay for valid values
+        /// </summary>
+        /// <param name="input">String indicating piecepay to check</param>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool CheckPiecePay(double input)
+        {
+            bool retV = false;
+            if (input >= 0)
+            {
+                retV = false;
+            }
+            return retV;
         }
 
         /// <summary>
         /// The setter for the piecePay variable
         /// </summary>
         /// <param name="whatPiecePay">The string indicating what value to set the piecePay variable to</param>
-        /// <returns></returns>
-        public bool SetPiecePay(string whatPiecePay)
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+        public bool SetPiecePay(double input)
         {
-            piecePay = whatPiecePay;
-            if (piecePay == whatPiecePay)
+            bool retV = false;
+            if (CheckPiecePay(input) == true)
             {
-                return true;
+                log.writeLog(produceLogString("SET", piecePay.ToString("0.00"), input.ToString("0.00"), "SUCCESS"));
+                piecePay = input;
+                retV = true;
             }
             else
             {
-                return false;
+                log.writeLog(produceLogString("SET", piecePay.ToString("0.00"), input.ToString("0.00"), "FAIL") + "\nDetail:Invalid piece pay format");
             }
+            return retV;
         }
 
         /// <summary>
