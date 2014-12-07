@@ -28,12 +28,8 @@ namespace AllEmployees
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
         /// This version of the constructor initializes all values to default (blank/0).
         /// </summary>
-        public ContractEmployee()
+        public ContractEmployee() : base()
         {
-            SetFirstName("");
-            SetLastName("");
-            SetSIN("");
-            SetDOB(new DateTime());
             contractStartDate = null;
             contractEndDate = null;
             fixedContractAmt = "0";
@@ -52,11 +48,8 @@ namespace AllEmployees
         /// <param name="rate">The value to set the hourlyRate variable to</param>
         public ContractEmployee(string first, string last, string SIN, DateTime DOB,
             DateTime startDate, DateTime endDate, string rate)
+            : base(first, last, SIN, DOB)
         {
-            SetFirstName(first);
-            SetLastName(last);
-            SetSIN(SIN);
-            SetDOB(DOB);
             contractStartDate = startDate;
             contractEndDate = endDate;
             fixedContractAmt = rate;
@@ -74,33 +67,23 @@ namespace AllEmployees
         {
             return fixedContractAmt;
         }
-        /// <summary>
-        /// The setter for the contractStartDate variable
-        /// </summary>
-        /// <param name="date">The date to set the contractStartDate variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetContractStartDate(DateTime date)
+
+        public bool SetContractStartDate(DateTime? cStartDate)
         {
             bool retV = false;
+
             return retV;
         }
 
-        /// <summary>
-        /// The setter for the dateOfTermination variable
-        /// </summary>
-        /// <param name="date">The date to set the dateOfTermination variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
-        public bool SetDateOfTermination(DateTime date)
+
+        public bool SetContractEndDate(DateTime cEndDate)
         {
             bool retV = false;
+
             return retV;
         }
 
-        /// <summary>
-        /// The setter for the hourlyRate variable
-        /// </summary>
-        /// <param name="rate">The value to set the hourlyRate variable to</param>
-        /// <returns>A boolean indicating whether the setting operation was successful</returns>
+
         public bool SetFixedContractAmt(string fAmt)
         {
             bool retV = false;

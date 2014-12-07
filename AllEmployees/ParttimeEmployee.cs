@@ -69,6 +69,18 @@ namespace AllEmployees
             dateOfTermination = tDate;
             hourlyRate = rate;
         }
+        public bool SetDateOfHire(DateTime? hDate)
+        {
+            bool retV = false;
+            log.writeLog(
+                produceLogString("SET",
+                                (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (hDate.HasValue ? hDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            dateOfHire = hDate;
+            retV = true;
+            return retV;
+        }
 
         public bool SetDateOfHire(String hDateStr)
         {
@@ -86,6 +98,19 @@ namespace AllEmployees
             }
             return retV;
         }
+        
+        public bool SetDateOfTermination(DateTime? tDate)
+        {
+            bool retV = false;
+            log.writeLog(
+                produceLogString("SET",
+                                (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                (tDate.HasValue ? tDate.Value.ToString("yyyy-MM-dd") : "N/A"),
+                                "SUCCESS"));
+            dateOfTermination = tDate;
+            retV = true;
+            return retV;
+        }
 
         public bool SetDateOfTermination(String tDateStr)
         {
@@ -101,33 +126,6 @@ namespace AllEmployees
                 retV = SetDateOfTermination(date);
                 retV = true;
             }
-            return retV;
-        }
-
-
-        public bool SetDateOfHire(DateTime? hDate)
-        {
-            bool retV = false;
-            log.writeLog(
-                produceLogString("SET",
-                                (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                (hDate.HasValue ? hDate.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                "SUCCESS"));
-            dateOfHire = hDate;
-            retV = true;
-            return retV;
-        }
-
-        public bool SetDateOfTermination(DateTime? tDate)
-        {
-            bool retV = false;
-            log.writeLog(
-                produceLogString("SET",
-                                (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                (tDate.HasValue ? tDate.Value.ToString("yyyy-MM-dd") : "N/A"),
-                                "SUCCESS"));
-            dateOfTermination = tDate;
-            retV = true;
             return retV;
         }
 

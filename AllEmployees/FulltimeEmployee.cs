@@ -128,24 +128,6 @@ namespace AllEmployees
             return retV;
         }
 
-        public bool SetDateOfTermination(String tDateStr)
-        {
-            bool retV = false;
-            DateTime? date = null;
-            if (tDateStr == "N/A")
-            {
-                retV = SetDateOfTermination(date);
-                retV = true;
-            }
-            else if ((date = ReturnDateIfValid(tDateStr)) != null)
-            {
-                retV = SetDateOfTermination(date);
-                retV = true;
-            }
-            return retV;
-        }
-
-
         /// <summary>
         /// The setter for dateOfTermination
         /// </summary>
@@ -164,6 +146,23 @@ namespace AllEmployees
             return retV;
         }
 
+        public bool SetDateOfTermination(String tDateStr)
+        {
+            bool retV = false;
+            DateTime? date = null;
+            if (tDateStr == "N/A")
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            else if ((date = ReturnDateIfValid(tDateStr)) != null)
+            {
+                retV = SetDateOfTermination(date);
+                retV = true;
+            }
+            return retV;
+        }
+        
         public bool CheckSalary(Decimal sal)
         {
             return sal > 0;
