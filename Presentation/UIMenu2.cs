@@ -566,13 +566,32 @@ namespace Presentation
                                 ptEmp.Details();
                             }
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6'))
+                        else if (choice.KeyChar == '8')
+                        {
+                            if ((ptEmp.ValidateStr()).Length <= 0)
+                            {
+                                company.AddPartTimeEmployee(ptEmp);
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                ptEmp.Details();
+                                ptEmp = new ParttimeEmployee();
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine(ptEmp.ValidateStr());
+                                Console.WriteLine(type + "Employee data has NOT been added");
+                            }
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
                         }
                     }//PART TIME EMPLOYEE
                     #endregion PARTTIME
+                    #region CONTRACT
                     else if (shortType == "CT")
                     {
                         String type = "Contract";
@@ -616,8 +635,6 @@ namespace Presentation
                             {
                                 Console.WriteLine("Failed to Set Contract End Date to \"" + cEndDateStr + "\"; Remain as \"" 
                                     + (ctEmp.GetContractEndDate().HasValue ? ((DateTime)ctEmp.GetContractEndDate() ).ToString("yyyy-MM-dd") : "N/A") + "\"");
-
-
                             }
                         }
                         else if (choice.KeyChar == '4')
@@ -658,12 +675,33 @@ namespace Presentation
                                 ctEmp.Details();
                             }
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
+                        else if (choice.KeyChar == '8')
+                        {
+                            if ((ctEmp.ValidateStr()).Length <= 0)
+                            {
+                                company.AddContractEmployee(ctEmp);
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                ctEmp.Details();
+                                ctEmp = new ContractEmployee();
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine(ctEmp.ValidateStr());
+                                Console.WriteLine(type + "Employee data has NOT been added");
+
+                            }
+                        }
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
                         }
                     }//CONTRACT
+                    #endregion
+                    #region SEASONAL
                     else if (shortType == "SN")
                     {
                         String type = "Seasonal";
@@ -718,12 +756,15 @@ namespace Presentation
                                 snEmp.Details();
                             }
                         }
-                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '6') || (choice.KeyChar == '7'))
+
+                        if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                             Console.ReadKey();
                         }
-                    }
+                    }//SEASONAL
+                    #endregion
+
                 }
             }
         }
