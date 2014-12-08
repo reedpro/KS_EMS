@@ -34,7 +34,16 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void AddEmployee_NormalTest1(Employee newEmployee)
         {
+            Employee input = new Employee();
+            TheCompany.Container Cont = new TheCompany.Container();
 
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.AddEmployee(input);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
+            
         }
 
         ///
@@ -64,9 +73,19 @@ namespace UnitTest_AllEmployees
         /// <para><b>If Failed</b> - corrupt data might be used to find employee which will fail and/or no logging activity</para>
         /// 
         [TestMethod]
-        public void FindEmployee_ExceptionTest1(Int32 input)
+        public void FindEmployee_ExceptionTest1()
         {
+           
+            TheCompany.Container Cont = new TheCompany.Container();
 
+            String input1 = "firstName";
+            String input2 = "Fail";
+            bool expected = false;
+            bool actual = true;
+
+            actual = Cont.FindAndDisplay(input1,input2);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
         }
 
         ///
@@ -76,14 +95,24 @@ namespace UnitTest_AllEmployees
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - String SIN</para>
         /// <para><b>Expected outputs</b> - Throws an exception notifying that the passed in SIN is not in the correct format and logs about it</para>
-        /// <para><b>Observed outputs</b> - TO DO at project completion</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
         /// <para><b>If Failed</b> - wrong entry might be modified with corrupt data and/or no logging activity</para>
         /// 
         [TestMethod]
         public void ModifyEmployee_ExceptionTest1(String SIN)
         {
+            TheCompany.Container Cont = new TheCompany.Container();
 
+            String input = "123 123 123";
+        
+            bool expected = false;
+            bool actual = true;
+
+            actual = Cont.ModifyEmployee(input);
+
+            Assert.AreEqual(expected, actual, "Found Improper SIN");
         }
 
     }
 }
+ 
