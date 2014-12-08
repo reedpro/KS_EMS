@@ -423,7 +423,7 @@ namespace AllEmployees
             else
             {
                 log.writeLog(produceLogString("SET", socialInsuranceNumber, SIN, "FAIL")
-                                            + "\nDetails: SIN Should be blank or 9 digits");
+                                            + "\nDetails: SIN Should be blank or 9 digits\n");
             }
             return retV;
         }
@@ -597,12 +597,12 @@ namespace AllEmployees
                 else
                 {
                     log.writeLog(produceLogString("VALIDATE", "", ((DateTime)dateOfBirth).ToString("yyyy-MM-dd"), "FAIL")
-                                    + "\nDetails: Date of Birth must come before Now");
+                                    + "\nDetails: Date of Birth must come before Now\n");
                 }
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL") + "\nDetail: Date of Birth cannot be NULL");
+                log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL") + "\nDetail: Date of Birth cannot be NULL\n");
             }
             return retV;
         }
@@ -621,7 +621,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", socialInsuranceNumber, "FAIL") + "\nDetails: Invalid SIN number");
+                log.writeLog(produceLogString("VALIDATE", "", socialInsuranceNumber, "FAIL") + "\nDetails: Invalid SIN number\n");
             }
             return retV;
         }

@@ -22,9 +22,12 @@ namespace EMS
     {
         static void Main(string[] args)
         {
+            Logging log = new Logging();
+            log.writeLog("test");
             UIMenu UI = new UIMenu();
             //UI.MenuFourToCreate("FT");
             UI.MenuOne();
+
         }
     }
 }

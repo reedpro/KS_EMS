@@ -116,7 +116,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", season, "FAILURE") + "\nDetails: Season is invalid");
+                log.writeLog(produceLogString("VALIDATE", "", season, "FAILURE") + "\nDetails: Season is invalid\n");
             }
             return retV;
         }

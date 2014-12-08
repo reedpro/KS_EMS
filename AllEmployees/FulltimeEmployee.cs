@@ -201,7 +201,7 @@ namespace AllEmployees
             if (dateOfHire == null)
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
-                                            + "\nDetails: Date of Hire cannot be NULL");
+                                            + "\nDetails: Date of Hire cannot be NULL\n");
             }
             else
             {
@@ -213,14 +213,14 @@ namespace AllEmployees
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", newDOH.ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Date Of Hire comes after " + DOH_MinDate.ToString("yyyy-MM-dd") + "& before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Hire comes after " + DOH_MinDate.ToString("yyyy-MM-dd") + "& before " + DOH_MaxDate.ToString("yyyy-MM-dd") + "\n");
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Date Of Hire must come after " + DOH_MinDate.ToString("yyyy-MM-dd") + ", before " + DOH_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Hire must come after " + DOH_MinDate.ToString("yyyy-MM-dd") + ", before " + DOH_MaxDate.ToString("yyyy-MM-dd") + "\n");
                 }
             }
             return retV;
@@ -241,14 +241,14 @@ namespace AllEmployees
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Date Of Termination comes after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Termination comes after " + DOT_MinDate.ToString("yyyy-MM-dd") + "\n");
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Date Of Termination must come after " + DOT_MinDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Date Of Termination must come after " + DOT_MinDate.ToString("yyyy-MM-dd") + "\n");
                 }
             }
             return retV;
@@ -264,7 +264,7 @@ namespace AllEmployees
             }
             else
             {
-                log.writeLog(produceLogString("VALIDATE", "", salary.ToString("0.00"), "FAIL") + "\nDetails: Salary must be bigger than 0");
+                log.writeLog(produceLogString("VALIDATE", "", salary.ToString("0.00"), "FAIL") + "\nDetails: Salary must be bigger than 0\n");
 
             }
             return retV;

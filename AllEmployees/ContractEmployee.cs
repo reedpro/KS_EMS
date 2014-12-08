@@ -190,14 +190,14 @@ namespace AllEmployees
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", newCSD.ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Contract Start Date comes after " + CSD_MinDate.ToString("yyyy-MM-dd") + "& before " + CSD_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Contract Start Date comes after " + CSD_MinDate.ToString("yyyy-MM-dd") + "& before " + CSD_MaxDate.ToString("yyyy-MM-dd") + "\n");
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Contract Start Date must come after " + CSD_MinDate.ToString("yyyy-MM-dd") + ", before " + CSD_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Contract Start Date must come after " + CSD_MinDate.ToString("yyyy-MM-dd") + ", before " + CSD_MaxDate.ToString("yyyy-MM-dd") + "\n");
                 }
             }
             return retV;
@@ -208,7 +208,7 @@ namespace AllEmployees
             if (contractEndDate == null)
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
-                                            + "\nDetails: Contract End Date cannot be NULL");
+                                            + "\nDetails: Contract End Date cannot be NULL\n");
             }
             else
             {
@@ -220,14 +220,14 @@ namespace AllEmployees
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", newCED.ToString("yyyy-MM-dd"), "SUCCESS")
-                                        + "\nDetails: Contract End Date comes after " + CED_MinDate.ToString("yyyy-MM-dd") + "& before " + CED_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Contract End Date comes after " + CED_MinDate.ToString("yyyy-MM-dd") + "& before " + CED_MaxDate.ToString("yyyy-MM-dd") + "\n");
                     retV = true;
                 }
                 else
                 {
                     log.writeLog(
                         produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
-                                        + "\nDetails: Contract End Date must come after " + CED_MinDate.ToString("yyyy-MM-dd") + ", before " + CED_MaxDate.ToString("yyyy-MM-dd"));
+                                        + "\nDetails: Contract End Date must come after " + CED_MinDate.ToString("yyyy-MM-dd") + ", before " + CED_MaxDate.ToString("yyyy-MM-dd") + "\n");
                 }
             }
             return retV;
@@ -245,7 +245,7 @@ namespace AllEmployees
             else
             {
                 log.writeLog(produceLogString("VALIDATE", "", fixedContractAmt.ToString("0.00"), "FAIL")
-                                            + "\nDetails: Fixed Contract Amount must be bigger than 0");
+                                            + "\nDetails: Fixed Contract Amount must be bigger than 0\n");
 
             }
             return retV;
