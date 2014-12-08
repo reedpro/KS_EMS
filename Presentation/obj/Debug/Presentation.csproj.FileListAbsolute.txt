@@ -66,3 +66,12 @@ C:\Users\Christoph\Documents\GitHub\KS_EMS\Presentation\obj\Debug\Presentation.d
 C:\Users\Christoph\Documents\GitHub\KS_EMS\Presentation\obj\Debug\Presentation.pdb
 C:\Users\owner\Source\Repos\KS_EMS\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
 C:\Users\owner\Source\Repos\KS_EMS\Presentation\obj\Debug\Presentation.dll
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\Presentation.dll
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\Presentation.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\AllEmployees.dll
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\Supporting.dll
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\TheCompany.dll
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\AllEmployees.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\Supporting.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\bin\Debug\TheCompany.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Presentation\obj\Debug\Presentation.pdb

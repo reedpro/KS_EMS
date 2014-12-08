@@ -28,3 +28,8 @@ C:\Users\Christoph\Documents\GitHub\KS_EMS\Supporting\bin\Debug\Supporting.pdb
 C:\Users\Christoph\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
 C:\Users\Christoph\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.dll
 C:\Users\Christoph\Documents\GitHub\KS_EMS\Supporting\obj\Debug\Supporting.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Supporting\bin\Debug\Supporting.dll
+C:\Users\owner\Source\Repos\KS_EMS\Supporting\bin\Debug\Supporting.pdb
+C:\Users\owner\Source\Repos\KS_EMS\Supporting\obj\Debug\Supporting.csprojResolveAssemblyReference.cache
+C:\Users\owner\Source\Repos\KS_EMS\Supporting\obj\Debug\Supporting.dll
+C:\Users\owner\Source\Repos\KS_EMS\Supporting\obj\Debug\Supporting.pdb
