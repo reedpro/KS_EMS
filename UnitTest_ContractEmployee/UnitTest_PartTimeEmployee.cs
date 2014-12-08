@@ -110,5 +110,75 @@ namespace UnitTest_AllEmployees
             actual = partE.SetHourlyRate(input);
             Assert.AreEqual(expected, actual, "Allowed invalid data");
         }
+
+        ///
+        /// <para><b>Test Identifier</b> - SetDateOfHire_NormalTest1()</para>
+        /// <para><b>Unique Identifier</b> - AE.PTE.SDOH.N.1</para>
+        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the hourlyRate variable to an illegal value</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - "2010/03/03"</para>
+        /// <para><b>Expected outputs</b> - "2013/03/03" to be rejected as input</para>
+        /// <para><b>Observed outputs</b> - "Test passed" to be rejected as input</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
+        /// 
+        [TestMethod]
+        public void SetDateOfHire_NormalTest1()
+        {
+            DateTime input = new DateTime(2010/03/03);
+            bool expected = true;
+            bool actual = false;
+
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetDateOfHire(input);
+            Assert.AreEqual(expected, actual, "Does not accept proper data");
+        }
+
+        ///
+        /// <para><b>Test Identifier</b> - SetDateOfTermination_NormalTest1()</para>
+        /// <para><b>Unique Identifier</b> - AE.PTE.SDOt.N.1</para>
+        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the hourlyRate variable to an illegal value</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - "2010/03/03"</para>
+        /// <para><b>Expected outputs</b> - "2013/03/03" to be rejected as input</para>
+        /// <para><b>Observed outputs</b> - "Test passed" to be rejected as input</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
+        /// 
+        [TestMethod]
+        public void SetDateOfTermination_NormalTest1()
+        {
+            DateTime input = new DateTime(2010 / 03 / 03);
+            bool expected = true;
+            bool actual = false;
+
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.SetDateOfTermination(input);
+            Assert.AreEqual(expected, actual, "Does not accept proper data");
+        }
+
+
+        ///
+        /// <para><b>Test Identifier</b> - CheckHourlyRate_NormalTest1()</para>
+        /// <para><b>Unique Identifier</b> - AE.PTE.CHR.N.1</para>
+        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the hourlyRate variable to an illegal value</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - "13.00"</para>
+        /// <para><b>Expected outputs</b> - "13.00" to be rejected as input</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
+        /// 
+        [TestMethod]
+        public void CheckHourlyRate_NormalTest1()
+        {
+            Decimal input = 13.00m;
+            bool expected = true;
+            bool actual =false;
+
+            ParttimeEmployee partE = new ParttimeEmployee();
+            actual = partE.CheckHourlyRate(input);
+            Assert.AreEqual(expected, actual, "Did not allow valid data");
+        }
+
+
+
     }
 }
