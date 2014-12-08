@@ -33,6 +33,16 @@ namespace AllEmployees
             return dateOfHire;
         }
 
+        public ParttimeEmployee(ParttimeEmployee prev)
+            : base(prev)
+        {
+            dateOfHire = prev.GetDateOfHire();
+            dateOfTermination = prev.GetDateOfTermination();
+            hourlyRate = prev.GetHourlyRate();
+
+            SetType("SN");
+        }
+
         /// <summary>
         /// getter for dateOfTermination
         /// </summary>

@@ -37,6 +37,16 @@ namespace AllEmployees
             SetType("CT");
         }
 
+        public ContractEmployee(ContractEmployee prev)
+            : base(prev)
+        {
+            contractStartDate = prev.GetContractStartDate();
+            contractEndDate = prev.GetContractEndDate();
+            fixedContractAmt = prev.GetFixedContractAmt();
+
+            SetType("CT");
+        }
+
         /// <summary>
         /// The ContractEmployee() method is a Constructor for the ContractEmployee Class.
         /// This version of the constructor initializes all values to input parameter values.

@@ -27,7 +27,7 @@ namespace AllEmployees
         protected string lastName; /// Employee Last Name
         protected string socialInsuranceNumber; /// Employee Social Insurance Number
         protected DateTime? dateOfBirth; /// Employee Date of Birth
-        private String employeeType; /// Employee Type
+        private String employeeType { set; get; } /// Employee Type
 
         public Logging log;
 
@@ -45,6 +45,7 @@ namespace AllEmployees
 
             log = new Logging();
         }
+
 
         /// <summary>
         /// Overloaded Employee constructor.

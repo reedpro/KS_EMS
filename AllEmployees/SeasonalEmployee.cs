@@ -36,6 +36,14 @@ namespace AllEmployees
             SetType("SN");
         }
 
+        public SeasonalEmployee(SeasonalEmployee prev)
+            : base(prev)
+        {
+            season = prev.GetSeason();
+            piecePay = prev.GetPiecePay();
+
+            SetType("SN");
+        }
         /// <summary>
         /// The SeasonalEmployee() method is a Constructor for the SeasonalEmployee Class.
         /// This version of the constructor initializes all values to input parameter values.

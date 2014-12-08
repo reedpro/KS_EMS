@@ -39,6 +39,16 @@ namespace AllEmployees
             SetType("FT");
         }
 
+        public FulltimeEmployee(FulltimeEmployee prev)
+            : base(prev)
+        {
+            dateOfHire = prev.GetDateOfHire();
+            dateOfTermination = prev.GetDateOfTermination();
+            salary = prev.GetSalary();
+
+            SetType("FT");
+        }
+
         /// <summary>
         /// Overloaded  FulltimeEmployee constructor.
         /// This version of the constructor sets all variables to parameter values
