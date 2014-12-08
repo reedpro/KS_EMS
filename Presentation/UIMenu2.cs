@@ -327,7 +327,8 @@ namespace Presentation
         /// Method:PrintMenuFourOptions
         /// Will display the Employee detail menu and
         /// allow user to input fields of an employee based on its type
-        ///
+        ///<VAR type="String">the choice made by the user 
+        ///of what type of employee will be added</VAR>
         /// </summary>
         public void PrintMenuFourOptions(String type)
         {
@@ -433,6 +434,8 @@ namespace Presentation
         /// <summary>
         /// Method: SpecifiyBaseEmployee()
         /// Will Diaply the base atributes of all employees
+        ///<VAR type="String">the choice made by the user 
+        ///of what type of employee will be added</VAR>
         /// </summary>
         public Employee SpecifiyBaseEmployee(String type)
         {
@@ -608,6 +611,12 @@ namespace Presentation
         /// <summary>
         /// Method: MenuFourToCreate()
         /// Creates instance of a new employee and sets the attributs to what the user has previously defined
+        ///<VAR shortType="String">the choice made by the user 
+        ///of what type of employee will be added</VAR>
+        ///<VAR toDelete="Object">the choice made by the user 
+        ///of what type of employee will be deleted</VAR>
+        ///<VAR modify="Bool">A true of false check to see if employee will be
+        ///Deleted or modify</VAR>
         /// </summary>
         public void MenuFourToCreate(String shortType, Object toDelete, bool modify)
         {
