@@ -222,11 +222,27 @@ namespace TheCompany
                 
                 list.Add(e.DatabaseDetails().ToArray());
             }
-            foreach (var emp in list)
+            if (container.Count == 0 || list.Count == 0)
             {
-                dbFile.dBaseOpen_W(emp, true);
+                ConsoleKeyInfo c = new ConsoleKeyInfo();
+                Console.Clear();
+                Console.WriteLine("\n\n[ ! ] The Container is Empty and and DB File will be overwritten with EMPTY File");
+                Console.WriteLine("\tAre You Sure You Would Like To Save the Current Container?");
+                Console.WriteLine("\tYES[y] No[any_key]");
+                c = Console.ReadKey();
+                if (c.KeyChar == 'y')
+                {
+                    dbFile.dBaseEmpty();
+                }
             }
-            result = (list.Count == container.Count);
+            else
+            {
+                foreach (var emp in list)
+                {
+                    dbFile.dBaseOpen_W(emp, true);
+                }
+                result = (list.Count == container.Count);
+            }
             return result;
         }
 

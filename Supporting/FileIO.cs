@@ -73,6 +73,7 @@ namespace Supporting
             if (System.IO.File.Exists(dbFilePath) || overwrite == true)
             {
                 System.IO.File.Delete(dbFilePath); //try/catch exception handling needs to be implemented
+                System.IO.File.Create(dbFilePath); 
             }
 
             // write to dbase file (formatted)
@@ -85,6 +86,20 @@ namespace Supporting
                 }
                 dBase_W.Write("\n"); // end of current entry, add new line
                 dBase_W.Close();
+            }
+        }
+        public void dBaseEmpty()
+        {
+            // create the DBase folder if it doesn't already exist
+            if (!Directory.Exists(Path.Combine(dbasePath, "DBase")))
+            {
+                Directory.CreateDirectory(Path.Combine(dbasePath, "DBase"));
+            }
+
+            if (System.IO.File.Exists(dbFilePath))
+            {
+                System.IO.File.Delete(dbFilePath); //try/catch exception handling needs to be implemented
+                System.IO.File.Create(dbFilePath);
             }
         }
     }

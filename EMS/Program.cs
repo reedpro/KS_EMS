@@ -22,6 +22,7 @@ namespace EMS
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(150, 35);
             Logging log = new Logging();
             log.writeLog("test");
             UIMenu UI = new UIMenu();

@@ -126,13 +126,15 @@ namespace Presentation
                 ///Call to WriteFile()
                 if(company.SaveContainer())
                 {
+                    Console.Clear();
                     Console.WriteLine("\nDatabase Successfully Saved");
                     Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
                     Console.ReadKey();
                 }
                 else
                 {
-                    Console.WriteLine("\nDatabase Failed");
+                    Console.Clear();
+                    Console.WriteLine("\nZERO entries Saved");
                     Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
                     Console.ReadKey();
                 }
