@@ -45,7 +45,7 @@ namespace Supporting
                 foreach (string line in File.ReadLines(fileName))
                 {
                     // entry was found, write successful
-                    if (line.Contains(entry))
+                    if (line.Contains(logEvent))
                     {
                         succeeded = true;
                         break;
