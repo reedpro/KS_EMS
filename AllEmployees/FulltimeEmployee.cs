@@ -60,16 +60,28 @@ namespace AllEmployees
             SetType("FT");
         }
 
-
+        /// <summary>
+        /// getter for dateOfHire
+        /// </summary>
+        /// <returns>the dateOfHire value</returns>
         public DateTime? GetDateOfHire()
         {
             return dateOfHire;
         }
+
+        /// <summary>
+        /// getter for dateOfTermination
+        /// </summary>
+        /// <returns>the dateOfTermination variable</returns>
         public DateTime? GetDateOfTermination()
         {
             return dateOfTermination;
         }
 
+        /// <summary>
+        /// getter for salary
+        /// </summary>
+        /// <returns>salary variable</returns>
         public Decimal GetSalary()
         {
             return salary;
@@ -93,6 +105,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for dateOfHire
+        /// </summary>
+        /// <param name="hDateStr">the date in string format to set</param>
+        /// <returns></returns>
         public bool SetDateOfHire(String hDateStr)
         {
             bool retV = false;
@@ -102,6 +119,7 @@ namespace AllEmployees
                 retV = SetDateOfHire(date);
                 retV = true;
             }
+            /// validate it first
             else if ((date = ReturnDateIfValid(hDateStr)) != null)
             {
                 retV = SetDateOfHire(date);
@@ -111,9 +129,9 @@ namespace AllEmployees
         }
 
         /// <summary>
-        /// The setter for dateOfTermination
+        /// The setter for dateOfTermination (datetime)
         /// </summary>
-        /// <param name="tDate">The date to set the dateOfTermination variable to</param>
+        /// <param name="tDate">The date to set the dateOfTermination variable to in DateTime format</param>
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfTermination(DateTime? tDate)
         {
@@ -128,6 +146,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for dateOfTermination (string)
+        /// </summary>
+        /// <param name="tDateStr">the date to set the dateOfTermination variable to in string format</param>
+        /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool SetDateOfTermination(String tDateStr)
         {
             bool retV = false;
@@ -145,11 +168,21 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// check method for the salary field - field validation (decimal)
+        /// </summary>
+        /// <param name="sal">the decimal value of salary to check</param>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         public bool CheckSalary(Decimal sal)
         {
             return sal > 0;
         }
 
+        /// <summary>
+        /// check method for salary field - field validation (string)
+        /// </summary>
+        /// <param name="sal">the string value of salary to check</param>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         public bool CheckSalary(String sal)
         {
             Decimal newSal;
@@ -195,9 +228,14 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// validation method for dateOfHire
+        /// </summary>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         private bool validateDOH()
         {
             bool retV = false;
+            /// field can't be null
             if (dateOfHire == null)
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
@@ -208,9 +246,10 @@ namespace AllEmployees
                 DateTime newDOH = (DateTime)dateOfHire;
                 DateTime DOH_MinDate = (dateOfBirth.HasValue ? (DateTime)dateOfBirth : DateTime.Now);
                 DateTime DOH_MaxDate = (dateOfTermination.HasValue ? (DateTime)dateOfTermination : DateTime.Now);
-
+                /// check the range on the date
                 if (CheckDateRange(DOH_MinDate, DOH_MaxDate, newDOH) == true)
                 {
+                    /// log
                     log.writeLog(
                         produceLogString("VALIDATE", "", newDOH.ToString("yyyy-MM-dd"), "SUCCESS")
                                         + "\nDetails: Date Of Hire comes after " + DOH_MinDate.ToString("yyyy-MM-dd") + "& before " + DOH_MaxDate.ToString("yyyy-MM-dd") + "\n");
@@ -218,6 +257,7 @@ namespace AllEmployees
                 }
                 else
                 {
+                    /// log
                     log.writeLog(
                         produceLogString("VALIDATE", "", DateTime.Now.ToString("yyyy-MM-dd"), "FAIL")
                                         + "\nDetails: Date Of Hire must come after " + DOH_MinDate.ToString("yyyy-MM-dd") + ", before " + DOH_MaxDate.ToString("yyyy-MM-dd") + "\n");
@@ -225,9 +265,15 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validateion method for dateOfTermination
+        /// </summary>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         private bool validateDOT()
         {
             bool retV = false;
+            /// field can be null
             if (dateOfTermination == null)
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "SUCCESS"));
@@ -236,9 +282,10 @@ namespace AllEmployees
             else
             {
                 DateTime DOT_MinDate = (DateTime)dateOfHire;
-
+                /// check the range of the date
                 if (CheckDateRange(DOT_MinDate, DateTime.MaxValue, (DateTime)dateOfTermination) == true)
                 {
+                    /// log
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "SUCCESS")
                                         + "\nDetails: Date Of Termination comes after " + DOT_MinDate.ToString("yyyy-MM-dd") + "\n");
@@ -246,6 +293,7 @@ namespace AllEmployees
                 }
                 else
                 {
+                    /// log
                     log.writeLog(
                         produceLogString("VALIDATE", "", ((DateTime)dateOfTermination).ToString("yyyy-MM-dd"), "FAIL")
                                         + "\nDetails: Date Of Termination must come after " + DOT_MinDate.ToString("yyyy-MM-dd") + "\n");
@@ -253,10 +301,16 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validation method for Salary
+        /// </summary>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         private bool validateSalary()
         {
             bool retV = false;
 
+            // check it and compare it to 0
             if (CheckSalary(salary) && salary != 0)
             {
                 log.writeLog(produceLogString("VALIDATE", "", salary.ToString("0.00"), "SUCCESS"));
@@ -270,6 +324,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// A function that will be called to print details of employee object to database file.
+        /// </summary>
+        /// <returns>A String containinng the detailed information of the employee object that will be printed to the database file</returns>
         public override List<String> DatabaseDetails()
         {
             List<String> output = new List<String>();
@@ -280,6 +338,10 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// method to validate the fulltime employee object
+        /// </summary>
+        /// <returns>A boolean indicating whether the field is valid</returns>
         public override String Validate()
         {
             String output = "";
@@ -303,6 +365,10 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// method formats the console output for the class information
+        /// </summary>
+        /// <returns>returns the formatted string of data</returns>
         protected override String ConsoleDetails()
         {
             String output = "";
