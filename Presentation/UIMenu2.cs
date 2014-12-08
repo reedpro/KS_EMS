@@ -528,14 +528,31 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
+                            Employee e = new Employee();
+                            bool duplicate = false;
                             if ((ftEmp.Validate()).Length <= 0)
                             {
-                                company.container.Remove(toDelete);
-                                company.AddFullTimeEmployee(ftEmp);
-                                Console.Clear();
-                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ftEmp.Details(false);
-                                ftEmp = new FulltimeEmployee();
+                                foreach (Object o in company.container)
+                                {
+                                    e = (Employee)o;
+                                    if (e.GetSIN() == ftEmp.GetSIN())
+                                    {
+                                        duplicate = true;
+                                    }
+                                }
+                                if (duplicate == false)
+                                {
+                                    company.container.Remove(toDelete);
+                                    company.AddFullTimeEmployee(ftEmp);
+                                    Console.Clear();
+                                    Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                    ftEmp.Details(false);
+                                    ftEmp = new FulltimeEmployee();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                }
                             }
                             else
                             {
@@ -643,13 +660,30 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
+                            Employee e = new Employee();
+                            bool duplicate = false;
                             if ((ptEmp.Validate()).Length <= 0)
                             {
-                                company.AddPartTimeEmployee(ptEmp);
-                                Console.Clear();
-                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ptEmp.Details(false);
-                                ptEmp = new ParttimeEmployee();
+                                foreach (Object o in company.container)
+                                {
+                                    e = (Employee)o;
+                                    if (e.GetSIN() == ptEmp.GetSIN())
+                                    {
+                                        duplicate = true;
+                                    }
+                                }
+                                if (duplicate == false)
+                                {
+                                    company.AddPartTimeEmployee(ptEmp);
+                                    Console.Clear();
+                                    Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                    ptEmp.Details(false);
+                                    ptEmp = new ParttimeEmployee();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                }
                             }
                             else
                             {
@@ -759,13 +793,30 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '8')
                         {
+                            Employee e = new Employee();
+                            bool duplicate = false;
                             if ((ctEmp.Validate()).Length <= 0)
                             {
-                                company.AddContractEmployee(ctEmp);
-                                Console.Clear();
-                                Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ctEmp.Details(false);
-                                ctEmp = new ContractEmployee();
+                                 foreach (Object o in company.container)
+                                {
+                                    e = (Employee)o;
+                                    if (e.GetSIN() == ftEmp.GetSIN())
+                                    {
+                                        duplicate = true;
+                                    }
+                                }
+                                 if (duplicate == false)
+                                 {
+                                     company.AddContractEmployee(ctEmp);
+                                     Console.Clear();
+                                     Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                     ctEmp.Details(false);
+                                     ctEmp = new ContractEmployee();
+                                 }
+                                 else
+                                 {
+                                     Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                 }
                             }
                             else
                             {
