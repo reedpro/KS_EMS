@@ -54,28 +54,9 @@ namespace AllEmployees
             DateTime? tDate, Decimal inSalary)
             : base(first, last, SIN, DOB)
         {
-            SetDateOfHire(hDate);
-            SetDateOfTermination(tDate);
-            SetSalary(inSalary);
-
-            SetType("FT");
-        }
-
-        /// <summary>
-        /// Overloaded  FulltimeEmployee constructor.
-        /// This version of the constructor sets all variables to parameter values
-        /// </summary>
-
-        /// <param name="hDate">The date to set the dateOfHire variable to</param>
-        /// <param name="tDate">The date to set the dateOfTermination variable to</param>
-        /// <param name="inSalary">The string to set the Salary variable to</param>
-        public FulltimeEmployee(Employee employee, DateTime? hDate, DateTime? tDate, Decimal inSalary)
-            : base(employee)
-        {
-            SetDateOfHire(hDate);
-            SetDateOfTermination(tDate);
-            SetSalary(inSalary);
-
+            dateOfTermination = tDate;
+            dateOfHire = hDate;
+            salary = inSalary;
             SetType("FT");
         }
 

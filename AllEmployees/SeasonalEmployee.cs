@@ -30,8 +30,8 @@ namespace AllEmployees
         public SeasonalEmployee()
             : base()
         {
-            SetSeason("");
-            SetPiecePay(0);
+            season = "";
+            piecePay = 0.00M;
 
             SetType("SN");
         }
@@ -49,8 +49,8 @@ namespace AllEmployees
         public SeasonalEmployee(String first, String last, String SIN, DateTime? DOB, String whatSeason, Decimal whatPiecePay)
             : base(first, last, SIN, DOB)
         {
-            SetSeason(whatSeason);
-            SetPiecePay(whatPiecePay);
+            season = whatSeason;
+            piecePay = whatPiecePay;
             SetType("SN");
         }
 

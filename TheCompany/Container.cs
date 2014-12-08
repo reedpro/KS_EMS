@@ -190,12 +190,15 @@ namespace TheCompany
         /// <summary>
         /// Display function that list all the employee object details inside the container
         /// </summary>
-        public void Display()
+        public Int32 Display()
         {
+            int count = 0;
             foreach (Employee emp in container)
             {
                 emp.Details();
+                count++;
             }
+            return count;
         }
 
 

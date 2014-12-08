@@ -117,6 +117,34 @@ namespace Presentation
 
         }
 
+        public String AskForEmployeeType()
+        {
+            String employeeType = "";
+            Console.Clear();
+            Console.WriteLine("You must specify the type of employee you are interested in");
+            Console.WriteLine("\t1. Full Time Employee");
+            Console.WriteLine("\t2. Part Time Employee");
+            Console.WriteLine("\t3. Contract Employee");
+            Console.WriteLine("\t4. Seasonal Employee");
+            choice = Console.ReadKey();
+            switch(choice.KeyChar)
+            {
+                case '1':
+                    employeeType = "FT";
+                    break;
+                case '2':
+                    employeeType = "FT";
+                    break;
+                case '3':
+                    employeeType = "FT";
+                    break;
+                case '4':
+                    employeeType = "FT";
+                    break;
+            }
+            return employeeType;
+        }
+
         public void MenuThree()
         {
             ///<VAR manType = "String">The users specified type of manipulation
@@ -135,18 +163,19 @@ namespace Presentation
                 choice = Console.ReadKey();
                 if (choice.KeyChar == '1')
                 {
-                    company.Display();
+                    int count = company.Display();
+                    Console.WriteLine("Total " + count + "Number of Employ Records Stored");
                 }
                 else if (choice.KeyChar == '2')
                 {
                     manType = "Create";
-                    
+                    MenuFourToCreate(AskForEmployeeType());
                     break;
                 }
 
                 else if (choice.KeyChar == '3')
                 {
-                    manType = "Remove";
+                    manType = "Modify";
                     //MenuFour(manType);
                     break;
                 }
@@ -155,9 +184,10 @@ namespace Presentation
                     Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
                     Console.WriteLine("Press 1 for YES.");
                     Console.WriteLine("Press 2 for NO.");
+                    choice = Console.ReadKey();
                     if (choice.KeyChar == '1')
                     {
-                        ///TO DO Call RemoveEmployee()
+                        ///TO DO Call RemoveEmployee()      //////////////////////////////////////////////////
                         Console.WriteLine("Employee Removed Successfully.");
                         MenuThree();
                         break;
@@ -232,6 +262,7 @@ namespace Presentation
             Console.WriteLine("\t2. Spring");
             Console.WriteLine("\t3. Summer");
             Console.WriteLine("\t4. Fall");
+            Console.WriteLine("\t5. BLANK");
             char c = Console.ReadKey().KeyChar;
             switch (c)
             {
@@ -246,6 +277,9 @@ namespace Presentation
                     break;
                 case '4':
                     input = "FALL";
+                    break;
+                case '5':
+                    input = "";
                     break;
             }
             return input;

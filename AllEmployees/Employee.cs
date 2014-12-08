@@ -55,8 +55,8 @@ namespace AllEmployees
         /// <param name="last">The string to initialize the lastName variable to</param>
         public Employee(string first, string last)
         {
-            SetFirstName(first);
-            SetLastName(last);
+            firstName = first;
+            lastName = last;
 
             log = new Logging();
         }
@@ -68,10 +68,11 @@ namespace AllEmployees
         /// <param name="employee">Employee object to copy from</param>
         public Employee(Employee employee)
         {
-            SetFirstName(employee.firstName);
-            SetLastName(employee.lastName);
-            SetDOB(employee.dateOfBirth);
-            SetSIN(employee.socialInsuranceNumber);
+            firstName = employee.firstName;
+            lastName = employee.lastName;
+            dateOfBirth = employee.dateOfBirth;
+            socialInsuranceNumber = employee.socialInsuranceNumber;
+
             SetType(employee.employeeType);
 
             log = new Logging();
@@ -88,8 +89,8 @@ namespace AllEmployees
         public Employee(string first, string last, string SIN, DateTime? DOB)
             : this(first, last)
         {
-            SetSIN(SIN);
-            SetDOB(DOB);
+            socialInsuranceNumber = SIN;
+            dateOfBirth = DOB;
 
             log = new Logging();
         }

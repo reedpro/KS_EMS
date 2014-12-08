@@ -23,7 +23,8 @@ namespace EMS
         static void Main(string[] args)
         {
             UIMenu UI = new UIMenu();
-            UI.MenuFourToCreate("FT");
+            //UI.MenuFourToCreate("FT");
+            UI.MenuOne();
         }
     }
 }
