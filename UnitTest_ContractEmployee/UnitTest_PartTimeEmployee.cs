@@ -102,7 +102,7 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetHourlyRate_ExceptionTest2()
         {
-            string input = "0";
+            string input = "-13";
             bool expected = false;
             bool actual = true;
 
