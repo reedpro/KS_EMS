@@ -22,6 +22,7 @@ namespace Supporting
     /// </summary>
     public class FileIO
     {
+        Logging log = new Logging();
         string dbasePath = Directory.GetCurrentDirectory();
         string dbFilePath = Path.Combine(Directory.GetCurrentDirectory(), "DBase", "DB.csv");
 
@@ -51,6 +52,7 @@ namespace Supporting
             else
             {
                 //file doesn't exist
+                log.writeLog("OPEN DBFile - FAILED : File not found");
                 return null;
             }
         }
