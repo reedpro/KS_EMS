@@ -26,15 +26,15 @@ namespace UnitTest_AllEmployees
         /// <para><b>Unique Identifier</b> - AE.FTE.SDH.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the dateOfHire variable</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "11/31/2014"</para>
-        /// <para><b>Expected outputs</b> - "11/31/2014" set correctly for variable: dateOfHire</para>
-        /// <para><b>Observed outputs</b> - "11/31/2014" set correctly for variable: dateOfHire</para>
+        /// <para><b>Input data</b> - "2014/11/03"</para>
+        /// <para><b>Expected outputs</b> - "2014/11/03" set correctly for variable: dateOfHire</para>
+        /// <para><b>Observed outputs</b> - "2014/11/03" set correctly for variable: dateOfHire</para>
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         /// 
         [TestMethod]
         public void SetDateOfHire_NormalTest1()
         {
-            string input = "11/31/2014";
+            string input = "2014/11/03";
             bool expected = true;
             bool actual = false;
 
@@ -49,15 +49,15 @@ namespace UnitTest_AllEmployees
         /// <para><b>Unique Identifier</b> - AE.FTE.SDT.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the dateOfTermination variable</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "12/14/2014"</para>
-        /// <para><b>Expected outputs</b> - "12/14/2014" set correctly for variable: dateOfTermination</para>
-        /// <para><b>Observed outputs</b> - "12/14/2014" set correctly for variable: dateOfTermination</para>
+        /// <para><b>Input data</b> - "2011/06/10"</para>
+        /// <para><b>Expected outputs</b> - "2011/06/10" set correctly for variable: dateOfTermination</para>
+        /// <para><b>Observed outputs</b> - "2011/06/10" set correctly for variable: dateOfTermination</para>
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         ///
         [TestMethod]
         public void SetDateOfTermination_NormalTest1()
         {
-            string input = "12/14/2014";
+            string input = "2011/06/10";
             bool expected = true;
             bool actual = false;
 
