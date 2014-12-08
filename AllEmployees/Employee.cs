@@ -159,7 +159,7 @@ namespace AllEmployees
         public bool CheckSIN(String s)
         {
             bool retV = false;
-            retV = (s.Length != 9 && s == "") || (s.Length == 9 && CheckDigit(s));
+            retV = validateSIN(s);
             return retV;
         }
 
