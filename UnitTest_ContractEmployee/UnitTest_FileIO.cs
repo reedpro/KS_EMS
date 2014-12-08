@@ -29,15 +29,15 @@ namespace UnitTest_FileIO
         /// <para><b>Expected outputs</b> - "File opened safely</para>
         /// <para><b>Observed outputs</b> - "File opened</para>
         /// <para><b>If Failed</b> - Displays failed message regarding opening the file</para>
-        /// 
-        [TestMethod]
-        public void dBaseOpen_W_NormalTest1()
-        {
-            String[] input = { "test1" ,"test2" };
-            FileIO file = new FileIO();
-            file.dBaseOpen_W(input);
-           //This Test must be manually checked to ensure that the test strings have been written to a file
-        }
+        ///// 
+        //[TestMethod]
+        //public void dBaseOpen_W_NormalTest1()
+        //{
+        //    String[] input = { "test1" ,"test2" };
+        //    FileIO file = new FileIO();
+        //    file.dBaseOpen_W(input);
+        //   //This Test must be manually checked to ensure that the test strings have been written to a file
+        //}
 
         ///
         /// <para><b>Test Identifier</b> - readDataBase_Normal1()</para>
