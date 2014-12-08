@@ -159,7 +159,7 @@ namespace AllEmployees
         /// <returns>A boolean indicating whether the setting operation was successful</returns>
         public bool CheckPiecePay(Decimal input)
         {
-            return input > 0;
+            return input > 0m;
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace AllEmployees
         public bool ValidatePiecePay()
         {
             bool retV = false;
-            if (CheckPiecePay(piecePay) && piecePay != 0)
+            if (CheckPiecePay(piecePay) && piecePay != 0m)
             {
                 log.writeLog(produceLogString("VALIDATE", "", piecePay.ToString("0.00"), "SUCCESS"));
                 retV = true;

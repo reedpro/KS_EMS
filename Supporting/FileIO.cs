@@ -73,7 +73,6 @@ namespace Supporting
             if (System.IO.File.Exists(dbFilePath) || overwrite == true)
             {
                 System.IO.File.Delete(dbFilePath); //try/catch exception handling needs to be implemented
-                System.IO.File.Create(dbFilePath); 
             }
 
             // write to dbase file (formatted)

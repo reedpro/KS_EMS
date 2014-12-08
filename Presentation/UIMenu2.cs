@@ -123,33 +123,58 @@ namespace Presentation
 
             else if (choice.KeyChar == '2')
             {
-                ///Call to WriteFile()
-                if(company.SaveContainer())
+                if (company.container.Count == 0)
                 {
                     while (true)
                     {
                         Console.Clear();
-                        Console.WriteLine("\n\n[ ! ] The Container is Empty and and DB File will be overwritten with EMPTY File");
+                        Console.WriteLine("\n\n[ ! ] The Container is Empty and DB File will be overwritten with EMPTY File");
                         Console.WriteLine("\tAre You Sure You Would Like To Save the Current Container?");
-                        Console.WriteLine("\tYES[y] No[any_key]");
+                        Console.WriteLine("\tYES[y] No[n]");
                         choice = Console.ReadKey();
                         if (choice.KeyChar == 'y')
                         {
-                            company.container.Clear();
+                            if (company.SaveContainer())
+                            {
+                                Console.Clear();
+                                Console.WriteLine("\nDatabase Successfully Saved");
+                                Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("\nZERO entries Saved");
+                                Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                                Console.ReadKey();
+                            }
+                            break;
+                        }
+                        else if (choice.KeyChar == 'n')
+                        {
+                            break;
                         }
                     }
-                    Console.Clear();
-                    Console.WriteLine("\nDatabase Successfully Saved");
-                    Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
-                    Console.ReadKey();
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("\nZERO entries Saved");
-                    Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
-                    Console.ReadKey();
+                    if (company.SaveContainer())
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\nDatabase Successfully Saved");
+                        Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\nZERO entries Saved");
+                        Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                        Console.ReadKey();
+                    }
                 }
+                ///Call to WriteFile()
+
             }
 
             else if (choice.KeyChar == '9')
@@ -364,87 +389,157 @@ namespace Presentation
         public Employee SpecifiyBaseEmployee(String type)
         {
             String fName, lName, dob, SIN;
-            while (true)
+            if (type != "CT")
             {
-                Console.Clear();
-                Console.WriteLine("Menu 4.1: Specify Base Employee Details");
-                if (type != "CT")
+                while (true)
                 {
+                    Console.Clear();
+                    Console.WriteLine("Menu 4.1: Specify Base Employee Details");
                     Console.WriteLine("1. Set First Name");
-                }
-                Console.WriteLine("2. Set Last Name");
-                Console.WriteLine("3. Set Date Of Birth");
-                Console.WriteLine("4. Set Social Insurance Number");
-                Console.WriteLine("5. Go Back to Employee Details Menu");
-                choice = Console.ReadKey();
-                if ((choice.KeyChar == '1') && (type != "CT"))
-                {
-                    fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
-                    Console.WriteLine("You wrote " + fName);
-                    if (baseEmp.SetFirstName(fName))
+                    Console.WriteLine("2. Set Last Name");
+                    Console.WriteLine("3. Set Date Of Birth");
+                    Console.WriteLine("4. Set Social Insurance Number");
+                    Console.WriteLine("5. Go Back to Employee Details Menu");
+                    choice = Console.ReadKey();
+                    if (choice.KeyChar == '1')
                     {
-                        Console.WriteLine("First Name Successfully Set to \"" + baseEmp.GetFirstName() + "\"");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Failed to Set First Name to \"" + fName + "\"; Remain as \"" + baseEmp.GetFirstName() + "\"");
-                    }
-                }
-                else if (choice.KeyChar == '2')
-                {
-                    lName = SpecifyNameOrRateOrDateOrSIN("Last Name", "Please Enter Last Name of " + type);
-                    if (baseEmp.SetLastName(lName))
-                    {
-                        Console.WriteLine("Last Name Successfully Set to \"" + baseEmp.GetLastName() + "\"");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Failed to Set Last Name to \"" + lName + "\"; Remain as \"" + baseEmp.GetLastName() + "\"");
-                    }
-                }
-                else if (choice.KeyChar == '3')
-                {
-                    dob = SpecifyNameOrRateOrDateOrSIN("Date of Birth", "Please Enter Date of Birth of " + type);
-                    if (baseEmp.SetDOB(dob))
-                    {
-                        if (dob == "N/A")
+                        fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
+                        Console.WriteLine("You wrote " + fName);
+                        if (baseEmp.SetFirstName(fName))
                         {
-                            Console.WriteLine("Date of Birth Successfully Set to \"N/A\"");
+                            Console.WriteLine("First Name Successfully Set to \"" + baseEmp.GetFirstName() + "\"");
                         }
                         else
                         {
-                            Console.WriteLine("Date of Birth Successfully Set to \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
+                            Console.WriteLine("Failed to Set First Name to \"" + fName + "\"; Remain as \"" + baseEmp.GetFirstName() + "\"");
                         }
                     }
-                    else
+                    else if (choice.KeyChar == '2')
                     {
-                        Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \""
-                            + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
+                        lName = SpecifyNameOrRateOrDateOrSIN("Last Name", "Please Enter Last Name of " + type);
+                        if (baseEmp.SetLastName(lName))
+                        {
+                            Console.WriteLine("Last Name Successfully Set to \"" + baseEmp.GetLastName() + "\"");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set Last Name to \"" + lName + "\"; Remain as \"" + baseEmp.GetLastName() + "\"");
+                        }
                     }
-                }
-                else if (choice.KeyChar == '4')
-                {
-                    SIN = SpecifyNameOrRateOrDateOrSIN("Social Insurance Number", "Please Enter SIN number of " + type);
-                    if (baseEmp.SetSIN(SIN))
+                    else if (choice.KeyChar == '3')
                     {
-                        Console.WriteLine("SIN Number Successfully Set to \"" + baseEmp.GetSIN() + "\"");
+                        dob = SpecifyNameOrRateOrDateOrSIN("Date of Birth", "Please Enter Date of Birth of " + type);
+                        if (baseEmp.SetDOB(dob))
+                        {
+                            if (dob == "N/A")
+                            {
+                                Console.WriteLine("Date of Birth Successfully Set to \"N/A\"");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Date of Birth Successfully Set to \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set Date of Birth to \"" + dob + "\"; Remain as \""
+                                + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
+                        }
                     }
-                    else
+                    else if (choice.KeyChar == '4')
                     {
-                        Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \"" + baseEmp.GetSIN() + "\"");
+                        SIN = SpecifyNameOrRateOrDateOrSIN("Social Insurance Number", "Please Enter SIN number of " + type);
+                        if (baseEmp.SetSIN(SIN))
+                        {
+                            Console.WriteLine("SIN Number Successfully Set to \"" + baseEmp.GetSIN() + "\"");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set SIN Number to \"" + SIN + "\"; Remain as \"" + baseEmp.GetSIN() + "\"");
 
+                        }
+                    }
+                    else if (choice.KeyChar == '5')
+                    {
+                        break;
+                    }
+
+                    if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
+                    {
+                        baseEmp.Details(false);
+                        Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                        Console.ReadKey();
                     }
                 }
-                else if (choice.KeyChar == '5')
+            }
+            else
+            {
+                while (true)
                 {
-                    break;
-                }
+                    Console.Clear();
+                    Console.WriteLine("Menu 4.1: Specify Base Employee Details");
+                    Console.WriteLine("2. Set Business Name");
+                    Console.WriteLine("3. Set Date Of Incorporation");
+                    Console.WriteLine("4. Set Business Number");
+                    Console.WriteLine("5. Go Back to Employee Details Menu");
+                    choice = Console.ReadKey();
+                    if (choice.KeyChar == '2')
+                    {
+                        lName = SpecifyNameOrRateOrDateOrSIN("Business Name", "Please Enter Business Name of " + type);
+                        if (baseEmp.SetLastName(lName))
+                        {
+                            Console.WriteLine("Business Name Successfully Set to \"" + baseEmp.GetLastName() + "\"");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set Business Name to \"" + lName + "\"; Remain as \"" + baseEmp.GetLastName() + "\"");
+                        }
+                    }
+                    else if (choice.KeyChar == '3')
+                    {
+                        dob = SpecifyNameOrRateOrDateOrSIN("Date of Incorporation", "Please Enter Date of Incorporation of " + type);
+                        if (baseEmp.SetDOB(dob))
+                        {
+                            if (dob == "N/A")
+                            {
+                                Console.WriteLine("Date of incorporation Successfully Set to \"N/A\"");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Date of Incorporation Successfully Set to \"" + ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") + "\"");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set Date of Incorporation to \"" + dob + "\"; Remain as \""
+                                + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
+                        }
+                    }
+                    else if (choice.KeyChar == '4')
+                    {
+                        SIN = SpecifyNameOrRateOrDateOrSIN("Business Number", "Please Enter BN number of " + type);
+                        if (ctEmp.validateBusinessNumber(SIN, (DateTime)baseEmp.GetDOB()))
+                        {
+                            baseEmp.SetSIN(SIN);
+                            Console.WriteLine("BN Number Successfully Set to \"" + baseEmp.GetSIN() + "\"");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Set BN Number to \"" + SIN + "\"; Remain as \"" + baseEmp.GetSIN() + "\"");
 
-                if ((type != "CT" && choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
-                {
-                    baseEmp.Details(false);
-                    Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
-                    Console.ReadKey();
+                        }
+                    }
+                    else if (choice.KeyChar == '5')
+                    {
+                        break;
+                    }
+
+                    if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
+                    {
+                        Console.WriteLine(baseEmp.ConsoleDetails("CT"));
+                        Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
+                        Console.ReadKey();
+                    }
                 }
             }
             return baseEmp;
@@ -454,6 +549,13 @@ namespace Presentation
 
         public void MenuFourToCreate(String shortType, Object toDelete, bool modify)
         {
+            if (!modify)
+            {
+                ftEmp = new FulltimeEmployee();
+                ptEmp = new ParttimeEmployee();
+                snEmp = new SeasonalEmployee();
+                ctEmp = new ContractEmployee();
+            }
             while (true)
             {
                 PrintMenuFourOptions(shortType);
@@ -609,7 +711,26 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '9')
                         {
-                            break;
+                            bool finish = false;
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Discard Changes? Press 'y' to continue or 'n' to go back");
+                                choice = Console.ReadKey();
+                                if (choice.KeyChar == 'y')
+                                {
+                                    finish = true;
+                                    break;
+                                }
+                                else if (choice.KeyChar == 'n')
+                                {
+                                    break;
+                                }
+                            }
+                            if (finish == true)
+                            {
+                                break;
+                            }
                         }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
@@ -733,7 +854,26 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '9')
                         {
-                            break;
+                            bool finish = false;
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Discard Changes? Press 'y' to continue or 'n' to go back");
+                                choice = Console.ReadKey();
+                                if (choice.KeyChar == 'y')
+                                {
+                                    finish = true;
+                                    break;
+                                }
+                                else if (choice.KeyChar == 'n')
+                                {
+                                    break;
+                                }
+                            }
+                            if (finish == true)
+                            {
+                                break;
+                            }
                         }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
@@ -861,7 +1001,26 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '9')
                         {
-                            break;
+                            bool finish = false;
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Discard Changes? Press 'y' to continue or 'n' to go back");
+                                choice = Console.ReadKey();
+                                if (choice.KeyChar == 'y')
+                                {
+                                    finish = true;
+                                    break;
+                                }
+                                else if (choice.KeyChar == 'n')
+                                {
+                                    break;
+                                }
+                            }
+                            if (finish == true)
+                            {
+                                break;
+                            }
                         }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
@@ -890,7 +1049,7 @@ namespace Presentation
                         else if (choice.KeyChar == '3')
                         {
                             piecePay = SpecifyNameOrRateOrDateOrSIN("Piece Pay", "Please Enter Piece Pay of " + type);
-                            if (ctEmp.SetContractEndDate(piecePay))
+                            if (snEmp.SetPiecePay(piecePay))
                             {
                                 Console.WriteLine("Contract End Date Successfully Set to \"" + snEmp.GetPiecePay().ToString("0.00") + "\"");
                             }
@@ -960,7 +1119,26 @@ namespace Presentation
                         }
                         else if (choice.KeyChar == '9')
                         {
-                            break;
+                            bool finish = false;
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Discard Changes? Press 'y' to continue or 'n' to go back");
+                                choice = Console.ReadKey();
+                                if (choice.KeyChar == 'y')
+                                {
+                                    finish = true;
+                                    break;
+                                }
+                                else if (choice.KeyChar == 'n')
+                                {
+                                    break;
+                                }
+                            }
+                            if (finish == true)
+                            {
+                                break;
+                            }
                         }
 
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
@@ -1013,7 +1191,7 @@ namespace Presentation
                         type = "SN";
                         snEmp = new SeasonalEmployee((SeasonalEmployee)o);
                     }
-                    MenuFourToCreate(type, o, false);
+                    MenuFourToCreate(type, o, true);
                     break;
                 }
             }

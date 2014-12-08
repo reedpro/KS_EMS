@@ -700,6 +700,38 @@ namespace AllEmployees
             return output;
         }
 
+        public String ConsoleDetails(String type)
+        {
+            String output = "";
+            if (type != "CT")
+            {
+                switch (type)
+                {
+                    case "FT":
+                        output += "<Full Time Employee>\n";
+                        break;
+                    case "PT":
+                        output += "<Part Time Employee>\n";
+                        break;
+                    case "SN":
+                        output += "<Seasonal Employee>\n";
+                        break;
+                }
+                output += "\tLast Name:\t\t\t" + "\"" + lastName + "\"";
+                output += "\n\tFirst Name:\t\t\t" + "\"" + firstName + "\"";
+                output += "\n\tSIN:\t\t\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(3, " ").Insert(7, " ") : "") + "\"";
+                output += "\n\tDate of Birth:\t\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            else
+            {
+                output += "<Contract Employee>";
+                output += "\n\tBusiness Name:\t\t\t\"" + lastName + "\"";
+                output += "\n\tBusiness Number:\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(4, " ") : "") + "\"";
+                output += "\n\tDate of Incorporation:\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            }
+            return output;
+        }
+
         /// <summary>
         /// A virtual function that will be called to print details of employee object to database file.
         /// </summary>

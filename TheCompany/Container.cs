@@ -257,15 +257,14 @@ namespace TheCompany
                 lineCount++;
                 if (s != "")
                 {
-                    entryCount++;
                     input = s.Split('|');
                     if (s[0] == 'F')
                     {
+                        entryCount++;
                         FulltimeEmployee f = new FulltimeEmployee();
                         if (!f.SetLastName(input[1]) || !f.SetFirstName(input[2]) || !f.SetSIN(input[3]) || !f.SetDOB(input[4]) || !f.SetDateOfHire(input[5]) || !f.SetDateOfTermination(input[6]) || !f.SetSalary(input[7]))
                         {
-                            log.writeLog(f.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("L"+lineCount+"_E"+entryCount+"::"+"Loading the Entry \"" + s + "\"" + " Has Failed");
+                            log.writeLog(f.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                             result = false;
                         }
                         else
@@ -285,8 +284,7 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
-                                Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                log.writeLog(f.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                                 duplicate = false;
                                 result = false;
                             }
@@ -295,11 +293,11 @@ namespace TheCompany
                     }
                     else if (s[0] == 'P')
                     {
+                        entryCount++;
                         ParttimeEmployee p = new ParttimeEmployee();
                         if (!p.SetLastName(input[1]) || !p.SetFirstName(input[2]) || !p.SetSIN(input[3]) || !p.SetDOB(input[4]) || !p.SetDateOfHire(input[5]) || !p.SetDateOfTermination(input[6]) || !p.SetHourlyRate(input[7]))
                         {
-                            log.writeLog(p.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
+                            log.writeLog(p.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                             result = false;
                         }
                         else
@@ -319,8 +317,7 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
-                                Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                log.writeLog(p.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                                 duplicate = false;
                                 result = false;
                             }
@@ -328,11 +325,11 @@ namespace TheCompany
                     }
                     else if (s[0] == 'C')
                     {
+                        entryCount++;
                         ContractEmployee c = new ContractEmployee();
                         if (!c.SetLastName(input[1]) || !c.SetFirstName(input[2]) || !c.SetSIN(input[3]) || !c.SetDOB(input[4]) || !c.SetContractStartDate(input[5]) || !c.SetContractEndDate(input[6]) || !c.SetFixedContractAmt(input[7]))
                         {
-                            log.writeLog(c.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
+                            log.writeLog(c.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                             result = false;
                         }
                         else
@@ -352,8 +349,7 @@ namespace TheCompany
                              }
                              else
                              {
-                                 Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
-                                 Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                 log.writeLog(c.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                                  duplicate = false;
                                  result = false;
                              }
@@ -361,11 +357,11 @@ namespace TheCompany
                     }
                     else if (s[0] == 'S')
                     {
+                        entryCount++;
                         SeasonalEmployee n = new SeasonalEmployee();
                         if (!n.SetLastName(input[1]) || !n.SetFirstName(input[2]) || !n.SetSIN(input[3]) || !n.SetDOB(input[4]) || !n.SetSeason(input[5]) || !n.SetPiecePay(input[6]))
                         {
-                            log.writeLog(n.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
+                            log.writeLog(n.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                             result = false;
                         }
                         else
@@ -385,8 +381,7 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
-                                Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                log.writeLog(n.produceLogString("LOAD", "1 entry corrupt", s, "FAILED"));
                                 duplicate = false;
                                 result = false;
                             }
@@ -395,11 +390,9 @@ namespace TheCompany
                 }
             }
             Console.WriteLine("\n\n>>>>>>>>>>>>>>>> TOTAL LINES READ           : " + lineCount);
-            Console.WriteLine(    ">>>>>>>>>>>>>>>> TOTAL ENTRIE FOUND         : " + entryCount);
+            Console.WriteLine(    ">>>>>>>>>>>>>>>> TOTAL ENTRIES FOUND        : " + entryCount);
             Console.WriteLine(    ">>>>>>>>>>>>>>>> TOTAL VALID ENTRIES LOADED : " + validCount);
             return result;
         }
-
-
     }
 }

@@ -347,7 +347,7 @@ namespace AllEmployees
         /// validate businessNumber
         /// </summary>
         /// <returns>bool indicating validity</returns>
-        private bool validateBusinessNumber()
+        public bool validateBusinessNumber()
         {
             bool retV = false;
             string num = this.GetSIN(); // get sin 
@@ -363,6 +363,33 @@ namespace AllEmployees
             else
             {
                 log.writeLog(produceLogString("VALIDATE", "", GetSIN(), "FAIL"));
+            }
+            return retV;
+        }
+
+        public bool validateBusinessNumber(String BN, DateTime? incorp)
+        {
+            bool retV = false;
+            string num = BN; // get sin 
+            string year;
+            if (incorp != null)
+            {
+                DateTime? date = incorp;
+                year = String.Format("{0: yy}", date); // store year (yy)
+                year = year.Trim();
+                if ((num[0] == year[0] && num[1] == year[1]) && (CheckSIN(num) == true))
+                {
+                    log.writeLog(produceLogString("VALIDATE", "", GetSIN(), "SUCCESS"));
+                    retV = true;
+                }
+                else
+                {
+                    log.writeLog(produceLogString("VALIDATE", "", GetSIN(), "FAIL"));
+                }
+            }
+            else
+            {
+                retV = CheckSIN(num);
             }
             return retV;
         }
@@ -383,7 +410,7 @@ namespace AllEmployees
             {
                 output += "\nInvalid Last Name:\t\"" + lastName + "\"";
             }
-            if (base.validateSIN() == false)
+            if (base.validateSIN() == false || validateBusinessNumber() == false)
             {
                 output += "\nInvalid SIN:\t\"" + socialInsuranceNumber + "\"";
             }
