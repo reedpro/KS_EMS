@@ -114,7 +114,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - SetDateOfHire_NormalTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.PTE.SDOH.N.1</para>
-        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the hourlyRate variable to an illegal value</para>
+        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the Date of Hire</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "2010/03/03"</para>
         /// <para><b>Expected outputs</b> - "2013/03/03" to be rejected as input</para>
@@ -136,7 +136,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - SetDateOfTermination_NormalTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.PTE.SDOt.N.1</para>
-        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the hourlyRate variable to an illegal value</para>
+        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to set the date of termination</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "2010/03/03"</para>
         /// <para><b>Expected outputs</b> - "2013/03/03" to be rejected as input</para>
