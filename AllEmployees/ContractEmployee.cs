@@ -56,19 +56,38 @@ namespace AllEmployees
             fixedContractAmt = rate;
         }
 
+        /// <summary>
+        /// getter for contractStartDate
+        /// </summary>
+        /// <returns> contractStartDate variable value</returns>
         public DateTime? GetContractStartDate()
         {
             return contractStartDate;
         }
+
+        /// <summary>
+        /// getter for contractEndDate
+        /// </summary>
+        /// <returns>contractEndDate value</returns>
         public DateTime? GetContractEndDate()
         {
             return contractEndDate;
         }
+
+        /// <summary>
+        /// getter for fixedContractAmount
+        /// </summary>
+        /// <returns>fixedContractAmount variable value</returns>
         public Decimal GetFixedContractAmt()
         {
             return fixedContractAmt;
         }
 
+        /// <summary>
+        /// setter for contractStartDate (datetime)
+        /// </summary>
+        /// <param name="cStartDate"></param>
+        /// <returns>contractStartDate variable value</returns>
         public bool SetContractStartDate(DateTime? cStartDate)
         {
             bool retV = false;
@@ -82,6 +101,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for contractStartDate (string)
+        /// </summary>
+        /// <param name="cStartDateStr"></param>
+        /// <returns></returns>
         public bool SetContractStartDate(String cStartDateStr)
         {
             bool retV = false;
@@ -98,6 +122,12 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// setter for contractEndDate variable
+        /// </summary>
+        /// <param name="cEndDate">takes in a datetime to set contractEndDate to</param>
+        /// <returns></returns>
         public bool SetContractEndDate(DateTime? cEndDate)
         {
             bool retV = false;
@@ -111,6 +141,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// loads the details into the database format
+        /// </summary>
+        /// <returns>list that was previously pipe delimited</returns>
         public override List<String> DatabaseDetails()
         {
             List<String> output = new List<String>();
@@ -121,6 +155,11 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// setter for contractEndDate
+        /// </summary>
+        /// <param name="cEndDateStr"></param>
+        /// <returns>bool indicating success or failure</returns>
         public bool SetContractEndDate(String cEndDateStr)
         {
             bool retV = false;
@@ -138,20 +177,32 @@ namespace AllEmployees
             return retV;
         }
 
-
-
-
+        /// <summary>
+        /// check for fixedContractAmount (decimal)
+        /// </summary>
+        /// <param name="fAmt"></param>
+        /// <returns>bool indicating success or failure</returns>
         public bool CheckFixedContractAmt(Decimal fAmt)
         {
             return fAmt > 0;
         }
 
+        /// <summary>
+        /// check for fixedContractAmount (string)
+        /// </summary>
+        /// <param name="fAmtStr"></param>
+        /// <returns>bool indicating success or failure</returns>
         public bool CheckFixedContractAmt(String fAmtStr)
         {
             Decimal newFixedAmount;
             return Decimal.TryParse(fAmtStr, out newFixedAmount) && CheckFixedContractAmt(newFixedAmount);
         }
 
+        /// <summary>
+        /// setter for fixedContractAmount
+        /// </summary>
+        /// <param name="fAmt"></param>
+        /// <returns>bool indicating success or failure</returns>
         public bool SetFixedContractAmt(Decimal fAmt)
         {
             bool retV = false;
@@ -169,6 +220,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for fixedContractAmount
+        /// </summary>
+        /// <param name="fAmtStr"></param>
+        /// <returns>bool indicating success or failure</returns>
         public bool SetFixedContractAmt(String fAmtStr)
         {
             bool retV = false;
@@ -181,7 +237,10 @@ namespace AllEmployees
             return retV;
         }
 
-
+        /// <summary>
+        /// validate constractStartDate method
+        /// </summary>
+        /// <returns>bool indicating validity</returns>
         private bool validateCSD()
         {
             bool retV = false;
@@ -212,6 +271,11 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validation for contractEndDate
+        /// </summary>
+        /// <returns>bool indicating validity</returns>
         private bool validateCED()
         {
             bool retV = false;
@@ -243,6 +307,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// validation for fixedContractAmount
+        /// </summary>
+        /// <returns>bool indicating validity</returns>
         private bool validateFixedContractAmt()
         {
             bool retV = false;
@@ -261,6 +329,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// validate businessNumber
+        /// </summary>
+        /// <returns>bool indicating validity</returns>
         private bool validateBusinessNumber()
         {
             bool retV = false;
@@ -270,6 +342,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// Validate method validates all fields to determine if entire employee is valid
+        /// </summary>
+        /// <returns>output</returns>
         public override String Validate()
         {
             String output = "";
@@ -292,6 +368,11 @@ namespace AllEmployees
             }
             return output;
         }
+        
+        /// <summary>
+        /// format the output for the console details
+        /// </summary>
+        /// <returns>the string output</returns>
         protected override String ConsoleDetails()
         {
             String output = "";
