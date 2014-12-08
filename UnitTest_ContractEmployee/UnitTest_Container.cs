@@ -35,9 +35,9 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void AddEmployee_NormalTest1(Employee newEmployee)
         {
-            Employee input = new Employee();
+           
             TheCompany.Container Cont = new TheCompany.Container();
-
+            Employee input = new Employee();
             bool expected = true;
             bool actual = false;
 
