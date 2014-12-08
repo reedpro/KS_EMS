@@ -34,7 +34,14 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetSeason_NormalTest1()
         {
+            SeasonalEmployee val = new SeasonalEmployee();
+            string input = "Winter";
+            bool expected = true;
+            bool actual = false;
 
+            actual = val.SetSeason(input);
+
+            Assert.AreEqual(expected, actual, "Accepted false contract end date");
         }
 
         ///
@@ -50,7 +57,14 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetPiecePay_NormalTest1()
         {
+            SeasonalEmployee val = new SeasonalEmployee();
+            Decimal input = 10.50m;
+            bool expected = true;
+            bool actual = false;
 
+            actual = val.SetPiecePay(input);
+
+            Assert.AreEqual(expected, actual, "Failed to set proper Piece Pay");
         }
 
         ///
@@ -66,7 +80,14 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetSeason_ExceptionTest1()
         {
+            SeasonalEmployee val = new SeasonalEmployee();
+            string input = "Frall";
+            bool expected = false;
+            bool actual = true;
 
+            actual = val.SetPiecePay(input);
+
+            Assert.AreEqual(expected, actual, "Accepted improper input");
         }
 
         ///
@@ -80,9 +101,16 @@ namespace UnitTest_AllEmployees
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         /// 
         [TestMethod]
-        public void SetPiecePay_ExceptionTest1()
+        public void CheckPiecePay_ExceptionTest1()
         {
+            SeasonalEmployee val = new SeasonalEmployee();
+            string input = "a bit";
+            bool expected =false;
+            bool actual = true;
 
+            actual = val.CheckPiecePay(input);
+
+            Assert.AreEqual(expected, actual, "Allowed improper piece pay");
         }
     }
 }
