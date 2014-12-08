@@ -66,21 +66,24 @@ namespace Presentation
                 if (choice.KeyChar == '1')  //Manage EMS DB File
                 {
                     MenuTwo();
-                    break;
+                    //break;
                 }
                 else if (choice.KeyChar == '2') //Manage Employees
                 {
                     MenuThree();
-                    break;
+                    //break;
                 }
                 else if (choice.KeyChar == '9') //Quit
                 {
-                    //TO DO:
-                    //Ask if want to quit for sure
-                    break;
+                    Console.Clear();
+                    Console.WriteLine("Would you like to quit? ('y')");
+                    choice = Console.ReadKey();
+                    if(choice.KeyChar == 'y')
+                    {
+                        break;
+                    }
                 }
             }
-
         }
 
 
@@ -170,7 +173,7 @@ namespace Presentation
                 {
                     manType = "Create";
                     MenuFourToCreate(AskForEmployeeType());
-                    break;
+                    //break;
                 }
 
                 else if (choice.KeyChar == '3')
@@ -508,6 +511,10 @@ namespace Presentation
                                 Console.WriteLine(type + "Employee data has NOT been added");
                                 
                             }
+                        }
+                        else if (choice.KeyChar == '9')
+                        {
+                            break;
                         }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
