@@ -252,7 +252,7 @@ namespace AllEmployees
             {
                 DateTime newCSD = (DateTime)contractStartDate;
                 DateTime CSD_MinDate = (DateTime)dateOfBirth;
-                DateTime CSD_MaxDate = new DateTime();
+                DateTime CSD_MaxDate = DateTime.MaxValue;
                 if (contractEndDate != null)
                 {
                     CSD_MaxDate = (DateTime)contractEndDate;
