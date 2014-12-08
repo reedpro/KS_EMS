@@ -95,24 +95,42 @@ namespace AllEmployees
             log = new Logging();
         }
 
+        /// <summary>
+        /// getter for firstName
+        /// </summary>
+        /// <returns>firstName value</returns>
         public String GetFirstName()
         {
             return firstName;
         }
 
+        /// <summary>
+        /// getter for lastName
+        /// </summary>
+        /// <returns>lastName value</returns>
         public String GetLastName()
         {
             return lastName;
         }
 
+        /// <summary>
+        /// getter for dateOfBirth
+        /// </summary>
+        /// <returns>dateOfBirth value</returns>
         public DateTime? GetDOB()
         {
             return dateOfBirth;
         }
+
+        /// <summary>
+        /// getter for socialInsuranceNumber
+        /// </summary>
+        /// <returns>value of socialInsuranceNumber</returns>
         public String GetSIN()
         {
             return socialInsuranceNumber;
         }
+
         /// <summary>
         /// A method checking if the input string only contains valid characters A-Za-z, hyphen, and apostrophe
         /// </summary>
@@ -123,6 +141,7 @@ namespace AllEmployees
             bool retV = true;
             if (s != null)
             {
+                /// check the name to make sure it only has letters, '\', and '-'
                 for (int i = 0; i < s.Length; i++)
                 {
                     if (!(Char.IsLetter(s[i]) || s[i] == '\'' || s[i] == '-'))
@@ -156,6 +175,12 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// method to check the SIN for validity (calling validateSIN)
+        /// </summary>
+        /// <param name="s">string s for the input SIN for checking</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool CheckSIN(String s)
         {
             bool retV = false;
@@ -195,6 +220,7 @@ namespace AllEmployees
             {
                 for (i = 0; i < (inSin.Length - 1); i++)
                 {
+                    /// make sure the first 8 are digits
                     if (char.IsDigit(inSin[i]) && j < 8)
                     {
                         sin[j++] = (int)Char.GetNumericValue(inSin[i]);
@@ -295,6 +321,11 @@ namespace AllEmployees
 
         }
 
+        /// <summary>
+        /// setter for dateOfBirth
+        /// </summary>
+        /// <param name="dateStr">the date in string form to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetDOB(String dateStr)
         {
             bool retV = false;
