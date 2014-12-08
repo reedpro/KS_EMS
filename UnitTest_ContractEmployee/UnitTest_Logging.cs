@@ -21,67 +21,53 @@ namespace UnitTest_Supporting
     public class UnitTest_Logging
     {
         ///
-        /// <para><b>Test Identifier</b> - openLog_Normal1()</para>
-        /// <para><b>Unique Identifier</b> - TS.L.OL.N.1</para>
+        /// <para><b>Test Identifier</b> - writeLog_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TS.L.wL.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to open the test log</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "\test.log"</para>
-        /// <para><b>Expected outputs</b> - Log opened</para>
-        /// <para><b>Observed outputs</b> - Log opened</para>
+        /// <para><b>Input data</b> - "Frank"</para>
+        /// <para><b>Expected outputs</b> - Log opened and written to</para>
+        /// <para><b>Observed outputs</b> - Log opened and written to</para>
         /// <para><b>If Failed</b> - Failed to open log file</para>
         /// 
         [TestMethod]
-        public void openLog_NormalTest1()
+        public void writeLog_NormalTest1()
         {
 
+           Logging val = new Logging();
+            string input = "Frank";
+            bool expected = true;
+            bool actual = false;
+
+            actual = val.writeLog(input);
+
+            Assert.AreEqual(expected, actual, "Failed to write to file");
         }
+
 
         ///
-        /// <para><b>Test Identifier</b> - closeLog_Normal1()</para>
-        /// <para><b>Unique Identifier</b> - TS.L.CL.N.1</para>
-        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to close the test log</para>
+        /// <para><b>Test Identifier</b> - openLog_Normal2()</para>
+        /// <para><b>Unique Identifier</b> - TS.L.OL.N.1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to open the test log</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - none</para>
-        /// <para><b>Expected outputs</b> - Log closed</para>
-        /// <para><b>Observed outputs</b> - Log closed</para>
-        /// <para><b>If Failed</b> - Failed to close log file</para>
+        /// <para><b>Input data</b> - "This is a test"</para>
+        /// <para><b>Expected outputs</b> - Log opened and written to</para>
+        /// <para><b>Observed outputs</b> - Log opened and written to</para>
+        /// <para><b>If Failed</b> - Failed to open log file</para>
         /// 
         [TestMethod]
-        public void closeLog_NormalTest1()
+        public void writeLog_NormalTest2()
         {
 
+            Logging val = new Logging();
+            string input = "This is a test";
+            bool expected = true;
+            bool actual = false;
+
+            actual = val.writeLog(input);
+
+            Assert.AreEqual(expected, actual, "Failed to write to file");
         }
-
-        ///
-        /// <para><b>Test Identifier</b> - WriteLog_Exception1()</para>
-        /// <para><b>Unique Identifier</b> - TS.L.WL.E.1</para>
-        /// <para><b>Description</b> - Method tests the writing to the log while it is not open</para>
-        /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - none</para>
-        /// <para><b>Expected outputs</b> - Cannot write to log while it is not open</para>
-        /// <para><b>Observed outputs</b> - Cannot write to log while it is not open</para>
-        /// <para><b>If Failed</b> - Did not fail while log is not opened</para>
-        /// 
-        [TestMethod]
-        public void writeLog_ExceptionTest1()
-        {
-
-        }
-
-        ///
-        /// <para><b>Test Identifier</b> - closeLog_Exception1()</para>
-        /// <para><b>Unique Identifier</b> - TS.L.CL.E.1</para>
-        /// <para><b>Description</b> - Method tests the  attempting to close the test log while it is not open</para>
-        /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - none</para>
-        /// <para><b>Expected outputs</b> - Cannot close a file while none are open</para>
-        /// <para><b>Observed outputs</b> - Cannot close a file while none are open</para>
-        /// <para><b>If Failed</b> - Closed file that isnt open</para>
-        /// 
-        [TestMethod]
-        public void closeLog_ExceptionTest1()
-        {
-
-        }
+        
     }
 }
