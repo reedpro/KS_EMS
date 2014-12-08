@@ -9,6 +9,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AllEmployees;
 using Supporting;
+using System.Collections.Generic;
 
 ///
 /// <para>Test Identification</para>
@@ -46,21 +47,6 @@ namespace UnitTest_AllEmployees
             
         }
 
-        ///
-        /// <para><b>Test Identifier</b> - FindEmployee_Normal1()</para>
-        /// <para><b>Unique Identifier</b> - TC.C.FE.N1</para>
-        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to find if an employee data exist that match the given criteria</para>
-        /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - ContractEmployee</para>
-        /// <para><b>Expected outputs</b> - The passed in ContractEmployee object added to the container and log it in a log file</para>
-        /// <para><b>Observed outputs</b> - TO DO at project completion</para>
-        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to find an employee object and/or no logging activity</para>
-        /// 
-        [TestMethod]
-        public void FindEmployee_NormalTest1(Employee newEmployee)
-        {
-
-        }
 
         ///
         /// <para><b>Test Identifier</b> - FindEmployee_Exception1()</para>
@@ -85,7 +71,7 @@ namespace UnitTest_AllEmployees
 
             actual = Cont.FindAndDisplay(input1,input2);
 
-            Assert.AreEqual(expected, actual, "Did not add a new employee");
+            Assert.AreEqual(expected, actual, "Found Fake Employee");
         }
 
         ///
@@ -113,6 +99,134 @@ namespace UnitTest_AllEmployees
             Assert.AreEqual(expected, actual, "Found Improper SIN");
         }
 
+
+        ///
+        /// <para><b>Test Identifier</b> - AddFullTimeEmployee_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TC.C.AFTE.N1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to add new Fulltime Employee entry</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - FullTimeEmployee</para>
+        /// <para><b>Expected outputs</b> - The passed in FullTimeEmployee object added to the container and log it in a log file</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to add an employee object and log it in a log file</para>
+        /// 
+        [TestMethod]
+        public void AddFullTimeEmployee_NormalTest1(Employee newEmployee)
+        {
+            FulltimeEmployee ft = new FulltimeEmployee();
+            TheCompany.Container Cont = new TheCompany.Container();
+
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.AddFullTimeEmployee(ft);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
+
+        }
+
+
+        ///
+        /// <para><b>Test Identifier</b> - AddPartTimeEmployee_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TC.C.APTE.N1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to add new Parttime Employee entry</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - PartTimeEmployee</para>
+        /// <para><b>Expected outputs</b> - The passed in PartTimeEmployee object added to the container and log it in a log file</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to add an employee object and log it in a log file</para>
+        /// 
+        [TestMethod]
+        public void AddPartTimeEmployee_NormalTest1(Employee newEmployee)
+        {
+            ParttimeEmployee pt = new ParttimeEmployee();
+            TheCompany.Container Cont = new TheCompany.Container();
+
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.AddPartTimeEmployee(pt);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
+
+        }
+
+        ///
+        /// <para><b>Test Identifier</b> - AddSeasonalEmployee_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TC.C.ASE.N1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to add new Seasonal Employee entry</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - PartTimeEmployee</para>
+        /// <para><b>Expected outputs</b> - The passed in SeasonalEmployee object added to the container and log it in a log file</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to add an employee object and log it in a log file</para>
+        /// 
+        [TestMethod]
+        public void AddSeasonalEmployee_NormalTest1(Employee newEmployee)
+        {
+            SeasonalEmployee sn = new SeasonalEmployee();
+            TheCompany.Container Cont = new TheCompany.Container();
+
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.AddSeasonalEmployee(sn);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
+
+        }
+
+        ///
+        /// <para><b>Test Identifier</b> - AddContractEmployee_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TC.C.ACE.N1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to add new Contract Employee entry</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - PartTimeEmployee</para>
+        /// <para><b>Expected outputs</b> - The passed in ContractEmployee object added to the container and log it in a log file</para>
+        /// <para><b>Observed outputs</b> - TestPased</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to add an employee object and log it in a log file</para>
+        /// 
+        [TestMethod]
+        public void AddContractEmployee_NormalTest1(Employee newEmployee)
+        {
+            ContractEmployee ct = new ContractEmployee();
+            TheCompany.Container Cont = new TheCompany.Container();
+
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.AddContractEmployee(ct);
+
+            Assert.AreEqual(expected, actual, "Did not add a new employee");
+
+        }
+
+
+        ///
+        /// <para><b>Test Identifier</b> - RemoveEmployee_Normal1()</para>
+        /// <para><b>Unique Identifier</b> - TC.C.RE.N1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to find Employee entry and remove it</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - FindEmployee</para>
+        /// <para><b>Expected outputs</b> - type and value as strings</para>
+        /// <para><b>Observed outputs</b> - Test passed</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding the attempt to remove an employee object and log it in a log file</para>
+        /// 
+        [TestMethod]
+        public void RemoveEmployee_NormalTest1(Employee newEmployee)
+        {
+            TheCompany.Container Cont = new TheCompany.Container();
+ 
+            String input1 = "FirstName";
+            String input2 = "Bob";
+            bool expected = true;
+            bool actual = false;
+
+            actual = Cont.RemoveEmployee(input1,input2);
+
+            Assert.AreEqual(expected, actual, "Did not Remove a new employee");
+
+        }
     }
 }
  
