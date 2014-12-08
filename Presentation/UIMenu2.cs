@@ -168,6 +168,8 @@ namespace Presentation
                 {
                     int count = company.Display();
                     Console.WriteLine("Total " + count + "Number of Employ Records Stored");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
                 }
                 else if (choice.KeyChar == '2')
                 {

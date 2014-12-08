@@ -193,9 +193,11 @@ namespace TheCompany
         public Int32 Display()
         {
             int count = 0;
-            foreach (Employee emp in container)
+            Employee e = new Employee();
+            foreach (Object emp in container)
             {
-                emp.Details(true);
+                e = (Employee)emp;
+                e.Details(true);
                 count++;
             }
             return count;
