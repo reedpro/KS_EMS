@@ -44,9 +44,6 @@ namespace Presentation
         ParttimeEmployee ptEmp = new ParttimeEmployee();
         Employee baseEmp = new Employee();
 
-        bool mainMenu = false;
-        char empType = 'x';
-        string input = "";
 
 
         public void MenuOne()
@@ -55,7 +52,6 @@ namespace Presentation
             ///Call to Validate Number() is in range
             while (true)
             {
-                mainMenu = false;
                 Console.Clear();
                 Console.WriteLine("Menu 1: Main Menu");
                 Console.WriteLine("1. Manage EMS DBase Files");
@@ -100,10 +96,10 @@ namespace Presentation
                 ///Display File List (option to feed the file name to loadcontainer??)
                 if(!company.LoadContainer())
                 {
+                    Console.WriteLine("\n\n>>>>>>>>>>> One or more of the database entries was corrupt. Load anyway? 'y' or 'n'");
+
                     while (true)
                     {
-                        Console.Clear();
-                        Console.WriteLine("One or more of the database entries was corrupt. Load anyway? 'y' or 'n'");
                         choice = Console.ReadKey();
                         if (choice.KeyChar == 'y')
                         {
@@ -116,12 +112,30 @@ namespace Presentation
                         }
                     }
                 }
+                else
+                {
+                    Console.WriteLine("\nDatabase Successfully loaded");
+                    Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                    Console.ReadKey();
+                }
+                //Console.Clear();
             }
 
             else if (choice.KeyChar == '2')
             {
                 ///Call to WriteFile()
-                company.SaveContainer();
+                if(company.SaveContainer())
+                {
+                    Console.WriteLine("\nDatabase Successfully Saved");
+                    Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("\nDatabase Failed");
+                    Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
+                    Console.ReadKey();
+                }
             }
 
             else if (choice.KeyChar == '9')
@@ -134,27 +148,34 @@ namespace Presentation
         public String AskForEmployeeType()
         {
             String employeeType = "";
-            Console.Clear();
-            Console.WriteLine("Please select employee type:");
-            Console.WriteLine("\t1. Full Time Employee");
-            Console.WriteLine("\t2. Part Time Employee");
-            Console.WriteLine("\t3. Contract Employee");
-            Console.WriteLine("\t4. Seasonal Employee");
-            choice = Console.ReadKey();
-            switch (choice.KeyChar)
+            while (true)
             {
-                case '1':
-                    employeeType = "FT";
+                Console.Clear();
+                Console.WriteLine("Please select employee type:");
+                Console.WriteLine("\t1. Full Time Employee");
+                Console.WriteLine("\t2. Part Time Employee");
+                Console.WriteLine("\t3. Contract Employee");
+                Console.WriteLine("\t4. Seasonal Employee");
+                choice = Console.ReadKey();
+                switch (choice.KeyChar)
+                {
+                    case '1':
+                        employeeType = "FT";
+                        break;
+                    case '2':
+                        employeeType = "PT";
+                        break;
+                    case '3':
+                        employeeType = "CT";
+                        break;
+                    case '4':
+                        employeeType = "SN";
+                        break;
+                }
+                if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4'))
+                {
                     break;
-                case '2':
-                    employeeType = "PT";
-                    break;
-                case '3':
-                    employeeType = "CT";
-                    break;
-                case '4':
-                    employeeType = "SN";
-                    break;
+                }
             }
             return employeeType;
         }
@@ -288,34 +309,42 @@ namespace Presentation
         public String SpecifySeason()
         {
             String input = "";
-
-            Console.Clear();
-            Console.WriteLine("Specify Season for the Contract Employee");
-            Console.WriteLine("\t1. Winter");
-            Console.WriteLine("\t2. Spring");
-            Console.WriteLine("\t3. Summer");
-            Console.WriteLine("\t4. Fall");
-            Console.WriteLine("\t5. BLANK");
-            char c = Console.ReadKey().KeyChar;
-            switch (c)
+            while (true)
             {
-                case '1':
-                    input = "WINTER";
+                Console.Clear();
+                Console.WriteLine("Specify Season for the Contract Employee");
+                Console.WriteLine("\t1. Winter");
+                Console.WriteLine("\t2. Spring");
+                Console.WriteLine("\t3. Summer");
+                Console.WriteLine("\t4. Fall");
+                Console.WriteLine("\t5. BLANK");
+                char c = Console.ReadKey().KeyChar;
+                switch (c)
+                {
+                    case '1':
+                        input = "WINTER";
+                        break;
+                    case '2':
+                        input = "SPRING";
+                        break;
+                    case '3':
+                        input = "SUMMER";
+                        break;
+                    case '4':
+                        input = "FALL";
+                        break;
+                    case '5':
+                        input = "";
+                        break;
+                }
+                if ((choice.KeyChar == '1') || (choice.KeyChar == '2') ||
+                    (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
+                {
                     break;
-                case '2':
-                    input = "SPRING";
-                    break;
-                case '3':
-                    input = "SUMMER";
-                    break;
-                case '4':
-                    input = "FALL";
-                    break;
-                case '5':
-                    input = "";
-                    break;
+                }
             }
             return input;
+
         }
 
         public Employee SpecifiyBaseEmployee(String type)
@@ -590,12 +619,12 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ptEmp.GetDateOfHire() + "\"");
+                                    Console.WriteLine("Hiring Date Successfully Set to \"" + ((DateTime)ptEmp.GetDateOfHire()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Hiring Date to \"" + hDateStr + "\"; Remain as \"" + ptEmp.GetDateOfHire() + "\"");
+                                Console.WriteLine("Failed to Set Hiring Date to \"" + hDateStr + "\"; Remain as \"" + ((DateTime)ptEmp.GetDateOfHire()).ToString("yyyy-MM-dd") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '3')
@@ -609,12 +638,12 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Termination Date Successfully Set to \"" + ptEmp.GetDateOfTermination() + "\"");
+                                    Console.WriteLine("Termination Date Successfully Set to \"" + ((DateTime)ptEmp.GetDateOfTermination()).ToString("yyyy-MM-dd") + "\"");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Termination Date to \"" + tDateStr + "\"; Remain as \"" + ptEmp.GetDateOfTermination() + "\"");
+                                Console.WriteLine("Failed to Set Termination Date to \"" + tDateStr + "\"; Remain as \"" + ((DateTime)ptEmp.GetDateOfTermination()).ToString("yyyy-MM-dd") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '4')
@@ -622,11 +651,11 @@ namespace Presentation
                             hourlyRateStr = SpecifyNameOrRateOrDateOrSIN("Hourly Rate", "Please Enter Salary of " + type);
                             if (ptEmp.SetHourlyRate(hourlyRateStr))
                             {
-                                Console.WriteLine("Hourly Rate Successfully Set to \"" + ptEmp.GetHourlyRate() + "\"");
+                                Console.WriteLine("Hourly Rate Successfully Set to \"" + ptEmp.GetHourlyRate().ToString("0.00") + "\"");
                             }
                             else
                             {
-                                Console.WriteLine("Failed to Set Hourly Rate to \"" + hourlyRateStr + "\"; Remain as \"" + ptEmp.GetHourlyRate() + "\"");
+                                Console.WriteLine("Failed to Set Hourly Rate to \"" + hourlyRateStr + "\"; Remain as \"" + ptEmp.GetHourlyRate().ToString("0.00") + "\"");
                             }
                         }
                         else if (choice.KeyChar == '6')

@@ -74,30 +74,7 @@ namespace UnitTest_AllEmployees
             Assert.AreEqual(expected, actual, "Found Fake Employee");
         }
 
-        ///
-        /// <para><b>Test Identifier</b> - ModifyEmployee_Exception1()</para>
-        /// <para><b>Unique Identifier</b> - TC.C.ME.E1</para>
-        /// <para><b>Description</b> - Method tests the exceptional use of the method, attempting to modify employee data that has the passed in SIN while the format of SIN is incorrect</para>
-        /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - String SIN</para>
-        /// <para><b>Expected outputs</b> - Throws an exception notifying that the passed in SIN is not in the correct format and logs about it</para>
-        /// <para><b>Observed outputs</b> - Test passed</para>
-        /// <para><b>If Failed</b> - wrong entry might be modified with corrupt data and/or no logging activity</para>
-        /// 
-        [TestMethod]
-        public void ModifyEmployee_ExceptionTest1(String SIN)
-        {
-            TheCompany.Container Cont = new TheCompany.Container();
 
-            String input = "123 123 123";
-        
-            bool expected = false;
-            bool actual = true;
-
-            actual = Cont.ModifyEmployee(input);
-
-            Assert.AreEqual(expected, actual, "Found Improper SIN");
-        }
 
 
         ///
