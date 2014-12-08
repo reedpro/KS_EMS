@@ -208,7 +208,7 @@ namespace Presentation
                 }
                 else if (choice.KeyChar == '2')
                 {
-                    MenuFourToCreate(AskForEmployeeType(), new Object());
+                    MenuFourToCreate(AskForEmployeeType(), new Object(), false);
                     //break;
                 }
 
@@ -440,7 +440,7 @@ namespace Presentation
 
 
 
-        public void MenuFourToCreate(String shortType, Object toDelete)
+        public void MenuFourToCreate(String shortType, Object toDelete, bool modify)
         {
             while (true)
             {
@@ -569,6 +569,10 @@ namespace Presentation
                                     if (e.GetSIN() == ftEmp.GetSIN())
                                     {
                                         duplicate = true;
+                                        if(modify)
+                                        {
+                                            company.container.Remove(e);
+                                        }
                                     }
                                 }
                                 if (duplicate == false)
@@ -582,7 +586,18 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                    if (modify)
+                                    {
+                                        company.AddFullTimeEmployee(ftEmp);
+                                        Console.Clear();
+                                        Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                        ftEmp.Details(false);
+                                        ftEmp = new FulltimeEmployee();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                    }
                                 }
                             }
                             else
@@ -701,6 +716,10 @@ namespace Presentation
                                     if (e.GetSIN() == ptEmp.GetSIN())
                                     {
                                         duplicate = true;
+                                        if (modify)
+                                        {
+                                            company.container.Remove(e);
+                                        }
                                     }
                                 }
                                 if (duplicate == false)
@@ -713,7 +732,18 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                    if (modify)
+                                    {
+                                        company.AddPartTimeEmployee(ptEmp);
+                                        Console.Clear();
+                                        Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                        ptEmp.Details(false);
+                                        ptEmp = new ParttimeEmployee();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                    }
                                 }
                             }
                             else
@@ -831,9 +861,13 @@ namespace Presentation
                                  foreach (Object o in company.container)
                                 {
                                     e = (Employee)o;
-                                    if (e.GetSIN() == ftEmp.GetSIN())
+                                    if (e.GetSIN() == ctEmp.GetSIN())
                                     {
                                         duplicate = true;
+                                        if (modify)
+                                        {
+                                            company.container.Remove(e);
+                                        }
                                     }
                                 }
                                  if (duplicate == false)
@@ -846,7 +880,29 @@ namespace Presentation
                                  }
                                  else
                                  {
-                                     Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                     if (modify)
+                                     {
+                                         company.AddContractEmployee(ctEmp);
+                                         Console.Clear();
+                                         Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                         ctEmp.Details(false);
+                                         ctEmp = new ContractEmployee();
+                                     }
+                                     else
+                                     {
+                                         if (modify)
+                                         {
+                                             company.AddContractEmployee(ctEmp);
+                                             Console.Clear();
+                                             Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                             ctEmp.Details(false);
+                                             ctEmp = new ContractEmployee();
+                                         }
+                                         else
+                                         {
+                                             Console.WriteLine("ERROR: An employee with this sin number already exists");
+                                         }
+                                     }
                                  }
                             }
                             else
@@ -947,6 +1003,7 @@ namespace Presentation
         {
             String input = "";
             string type = "";
+            Console.Clear();
             Console.WriteLine("Please enter SIN/BN of Employee you wish to modify:");
             input = Console.ReadLine();
             Employee e = new Employee();
@@ -981,7 +1038,7 @@ namespace Presentation
                         type = "SN";
                         snEmp = new SeasonalEmployee((SeasonalEmployee)o);
                     }
-                    MenuFourToCreate(type, o);
+                    MenuFourToCreate(type, o, false);
                     break;
                 }
             }
