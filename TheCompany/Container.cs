@@ -238,6 +238,8 @@ namespace TheCompany
             bool result = true;
             string[] fileContents; // create string to hold file contents
             string[] input;
+            Employee e = new Employee();
+            bool duplicate = false;
             fileContents = dbFile.dBaseOpen_R(); // fill the string with file contents
             container.Clear();
             foreach (string s in fileContents)
@@ -255,7 +257,22 @@ namespace TheCompany
                         }
                         else
                         {
-                            container.Add(f);
+                            foreach (Object o in container)
+                            {
+                                e = (Employee)o;
+                                if (e.GetSIN() == f.GetSIN())
+                                {
+                                    duplicate = true;
+                                }
+                            }
+                            if (duplicate == false)
+                            {
+                                container.Add(f);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ERROR: An employee with this sin number already exists");
+                            }
                         }
 
                     }
@@ -269,7 +286,22 @@ namespace TheCompany
                         }
                         else
                         {
-                            container.Add(p);
+                            foreach (Object o in container)
+                            {
+                                e = (Employee)o;
+                                if (e.GetSIN() == p.GetSIN())
+                                {
+                                    duplicate = true;
+                                }
+                            }
+                            if (duplicate == false)
+                            {
+                                container.Add(p);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ERROR: An employee with this sin number already exists");
+                            }
                         }
                     }
                     else if (s[0] == 'C')
@@ -282,7 +314,22 @@ namespace TheCompany
                         }
                         else
                         {
-                            container.Add(c);
+                             foreach (Object o in container)
+                            {
+                                e = (Employee)o;
+                                if (e.GetSIN() == c.GetSIN())
+                                {
+                                    duplicate = true;
+                                }
+                            }
+                             if (duplicate == false)
+                             {
+                                 container.Add(c);
+                             }
+                             else
+                             {
+                                 Console.WriteLine("ERROR: An employee with this sin number already exists");
+                             }
                         }
                     }
                     else if (s[0] == 'S')
@@ -295,7 +342,22 @@ namespace TheCompany
                         }
                         else
                         {
-                            container.Add(n);
+                            foreach (Object o in container)
+                            {
+                                e = (Employee)o;
+                                if (e.GetSIN() == n.GetSIN())
+                                {
+                                    duplicate = true;
+                                }
+                            }
+                            if (duplicate == false)
+                            {
+                                container.Add(n);
+                            }
+                            else
+                            {
+                                Console.WriteLine("ERROR: An employee with this sin number already exists");
+                            }
                         }
                     }
                 }
