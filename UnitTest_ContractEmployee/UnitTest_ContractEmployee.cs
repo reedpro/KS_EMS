@@ -104,7 +104,7 @@ namespace UnitTest_AllEmployees
         /// <para><b>If Failed</b> - corrupt data is used to set FirstName variable and/or no logging activity</para>
         ///
         [TestMethod]
-        public void SetContractEndDate_ExceptionTest1()
+        public void SetContractEndDate_ExceptionTest2()
         {
             ContractEmployee val = new ContractEmployee();
             string input = "Hello";
