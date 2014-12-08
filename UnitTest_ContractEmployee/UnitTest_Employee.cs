@@ -56,7 +56,14 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetFirstName_NormalTest1()
         {
+            Employee val = new Employee();
+            string input = "Frank";
+            bool expected = true;
+            bool actual = false;
 
+            actual = val.SetSIN(input);
+
+            Assert.AreEqual(expected, actual, "Did not accept valid First name");
 
         }
 
@@ -73,22 +80,36 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetFirstName_ExceptionTest1()
         {
+            Employee val = new Employee();
+            string input = "제이슨 므라즈";
+            bool expected = false;
+            bool actual = true;
 
+            actual = val.SetFirstName(input);
+
+            Assert.AreEqual(expected, actual, "Accepted false name");
         }
         ///
         /// <para><b>Test Identifier</b> - SetSalary_ExceptionTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.E.SS.E.1</para>
         /// <para><b>Description</b> - Method tests exceptional use of the method, attempting to set the Salary variable to illegal data type</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - -10.00</para>
+        /// <para><b>Input data</b> - 173 158 658</para>
         /// <para><b>Expected outputs</b> - -10.00 rejected as input</para>
         /// <para><b>Observed outputs</b> - TO DO at project completion</para>
         /// <para><b>If Failed</b> - No Displays failed message regarding setting the variable and/or logging activity</para>
         ///
         [TestMethod]
-        public void SetSalary_ExceptionTest1()
+        public void SetSIN_ExceptionTest1()
         {
+            Employee val = new Employee();
+            string input = "173 158 658";
+            bool expected = false;
+            bool actual = true;
 
+            actual = val.SetSIN(input);
+
+            Assert.AreEqual(expected, actual, "Accepted inproper SIN");
         }
 
     }
