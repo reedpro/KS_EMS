@@ -61,7 +61,7 @@ namespace UnitTest_AllEmployees
             bool expected = true;
             bool actual = false;
 
-            actual = val.SetSIN(input);
+            actual = val.SetFirstName(input);
 
             Assert.AreEqual(expected, actual, "Did not accept valid First name");
 
@@ -103,7 +103,7 @@ namespace UnitTest_AllEmployees
         public void SetSIN_ExceptionTest1()
         {
             Employee val = new Employee();
-            string input = "173 158 658";
+            string input = "123 456 789";
             bool expected = false;
             bool actual = true;
 
