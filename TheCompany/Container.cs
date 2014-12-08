@@ -203,21 +203,6 @@ namespace TheCompany
             return count;
         }
 
-
-        /// <summary>
-        /// Method Name: RemoveEmployee
-        /// This function is called to remove a specific employee that meets the specified condition.
-        /// </summary>
-        /// <param name="type">the type of attribute that will be searched for to be removed</param>
-        /// <param name="value">the value of attribute that will be searched for to be removed</param>
-        /// <returns>A boolean indicating whether the removal operation was successful</returns>
-        public bool RemoveEmployee(String type, String value)
-        {
-            bool result = false;
-            // To do
-            return result;
-        }
-
         /// <summary>
         /// Method Name: ModifyEmployee
         /// This function is called to update an employee listed in the database based on the SIN number.
