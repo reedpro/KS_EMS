@@ -111,6 +111,16 @@ namespace AllEmployees
             return retV;
         }
 
+        public override List<String> DatabaseDetails()
+        {
+            List<String> output = new List<String>();
+            output.AddRange(
+                new String[] {"CT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"), (contractStartDate.HasValue ? contractStartDate.Value.ToString("yyyy-MM-dd") : "N/A")
+                                , (contractEndDate.HasValue ? contractEndDate.Value.ToString("yyyy-MM-dd") : "N/A"), fixedContractAmt.ToString()});
+            return output;
+        }
+
         public bool SetContractEndDate(String cEndDateStr)
         {
             bool retV = false;

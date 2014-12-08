@@ -132,7 +132,7 @@ namespace AllEmployees
 
         public bool CheckHourlyRate(Decimal hRate)
         {
-            return hRate > 0;
+            return hRate > 0m;
         }
 
         public bool CheckHourlyRate(String hRateStr)
@@ -164,8 +164,7 @@ namespace AllEmployees
             Decimal newHourlyRate;
             if (Decimal.TryParse(hRateStr, out newHourlyRate))
             {
-                SetHourlyRate(newHourlyRate);
-                retV = true;
+                retV = SetHourlyRate(newHourlyRate);
             }
             return retV;
         }
@@ -244,6 +243,16 @@ namespace AllEmployees
 
             }
             return retV;
+        }
+
+        public override List<String> DatabaseDetails()
+        {
+            List<String> output = new List<String>();
+            output.AddRange(
+                new String[] {"PT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"), (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A")
+                                , (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"), hourlyRate.ToString()});
+            return output;
         }
 
         public override String Validate()

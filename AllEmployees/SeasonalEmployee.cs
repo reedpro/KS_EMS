@@ -64,7 +64,14 @@ namespace AllEmployees
         }
 
 
-
+        public override List<String> DatabaseDetails()
+        {
+            List<String> output = new List<String>();
+            output.AddRange(
+                new String[] {"SN", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"), season, piecePay.ToString()});
+            return output;
+        }
 
         /// <summary>
         /// Method checks if the input season is a valid season

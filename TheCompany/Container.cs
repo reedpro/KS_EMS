@@ -240,11 +240,13 @@ namespace TheCompany
         public bool SaveContainer()
         {
             bool result = false;
+            Employee e = new Employee();
             string[] employeeInfo = null;
             // TODO: fill the string[] with the contents of the employee object
-            foreach (Employee emp in container)
+            foreach (Object emp in container)
             {
-                employeeInfo = emp.DatabaseDetails().ToArray();
+                e = (Employee)emp;
+                employeeInfo = e.DatabaseDetails().ToArray();
             }
             dbFile.dBaseOpen_W(employeeInfo);
             return result;

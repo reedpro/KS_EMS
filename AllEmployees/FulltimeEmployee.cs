@@ -270,6 +270,15 @@ namespace AllEmployees
             return retV;
         }
 
+        public override List<String> DatabaseDetails()
+        {
+            List<String> output = new List<String>();
+                output.AddRange(
+                    new String[] {"FT", lastName, firstName, socialInsuranceNumber, 
+                                (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A"), (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A")
+                                , (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A"), salary.ToString()});
+            return output;
+        }
 
         public override String Validate()
         {
