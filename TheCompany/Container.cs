@@ -294,6 +294,7 @@ namespace TheCompany
                             if (duplicate == false)
                             {
                                 container.Add(f);
+                                validCount++;
                             }
                             else
                             {
@@ -327,6 +328,7 @@ namespace TheCompany
                             if (duplicate == false)
                             {
                                 container.Add(p);
+                                validCount++;
                             }
                             else
                             {
@@ -359,6 +361,7 @@ namespace TheCompany
                              if (duplicate == false)
                              {
                                  container.Add(c);
+                                 validCount++;
                              }
                              else
                              {
@@ -391,6 +394,7 @@ namespace TheCompany
                             if (duplicate == false)
                             {
                                 container.Add(n);
+                                validCount++;
                             }
                             else
                             {
@@ -403,6 +407,9 @@ namespace TheCompany
                     }
                 }
             }
+            Console.WriteLine("\n\n>>>>>>>>>>>>>>>> TOTAL LINES READ           : " + lineCount);
+            Console.WriteLine(    ">>>>>>>>>>>>>>>> TOTAL ENTRIE FOUND         : " + entryCount);
+            Console.WriteLine(    ">>>>>>>>>>>>>>>> TOTAL VALID ENTRIES LOADED : " + validCount);
             return result;
         }
 
