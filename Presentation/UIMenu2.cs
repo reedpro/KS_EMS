@@ -45,7 +45,11 @@ namespace Presentation
         Employee baseEmp = new Employee();
 
 
-
+        /// <summary>
+        /// Method: MenuOne
+        /// This method will display the main menu to the user and allow input from the user to 
+        /// manipulate it.
+        /// </summary>
         public void MenuOne()
         {
             ///To DO: 
@@ -82,7 +86,11 @@ namespace Presentation
             }
         }
 
-
+        /// <summary>
+        /// Method: MenuTwo
+        /// This method will display the File managment menu to the user and allow input from the user to 
+        /// manipulate it.
+        /// </summary>
         public void MenuTwo()
         {
             Console.Clear();
@@ -120,7 +128,8 @@ namespace Presentation
                 }
                 //Console.Clear();
             }
-
+                ///Will ensure user wants to save the container to a file,
+                ///and apon proper input will save the container to database file.
             else if (choice.KeyChar == '2')
             {
                 if (company.container.Count == 0)
@@ -184,6 +193,11 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Method: AskForEmployeeType
+        /// This method will display a list of emloyee types to the user
+        /// and allow user to specify which type they would like to create
+        /// </summary>
         public String AskForEmployeeType()
         {
             String employeeType = "";
@@ -196,6 +210,7 @@ namespace Presentation
                 Console.WriteLine("\t3. Contract Employee");
                 Console.WriteLine("\t4. Seasonal Employee");
                 choice = Console.ReadKey();
+                ///Sets employee type based on users choice
                 switch (choice.KeyChar)
                 {
                     case '1':
@@ -219,6 +234,12 @@ namespace Presentation
             return employeeType;
         }
 
+        /// <summary>
+        /// Method: MenuThree
+        /// This method will display the Employee managment menu to the user
+        /// and allow the user to decide what they would like to do
+        /// either create, modify or remove an employee from the container
+        /// </summary>
         public void MenuThree()
         {
             ///<VAR manType = "String">The users specified type of manipulation
@@ -254,6 +275,9 @@ namespace Presentation
                     MenuFourToModify();
                     break;
                 }
+                    ///If the user choses to remove an employee Will 
+                    ///check to ensure employee exists and double check with
+                    ///user before removing the selected employee
                 else if (choice.KeyChar == '4')
                 {
                     Console.Clear();
@@ -299,6 +323,12 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Method:PrintMenuFourOptions
+        /// Will display the Employee detail menu and
+        /// allow user to input fields of an employee based on its type
+        ///
+        /// </summary>
         public void PrintMenuFourOptions(String type)
         {
             Console.Clear();
@@ -307,26 +337,31 @@ namespace Presentation
 
             switch (type)
             {
+                    ///For full time employee
                 case "FT":
                     Console.WriteLine("2. Set Full Time Employee Date Of Hire");
                     Console.WriteLine("3. Set Full Time Employee Date Of Termination");
                     Console.WriteLine("4. Set Full Time Employee Salary");
                     break;
+                    ///for Part time employee
                 case "PT":
                     Console.WriteLine("2. Set Part Time Employee Date Of Hire");
                     Console.WriteLine("3. Set Part Time Employee Date Of Termination");
                     Console.WriteLine("4. Set Part Time Employee Hourly rate");
                     break;
+                    ///for Contract employee
                 case "CT":
                     Console.WriteLine("2. Set Contract Employee Contract Start Date");
                     Console.WriteLine("3. Set Contract Employee Contract Stop Date");
                     Console.WriteLine("4. Set Contract Employee Fixed Contract Amount");
                     break;
+                    ///For Seasonal employee
                 case "SN":
                     Console.WriteLine("2. Set Seasonal Employee Season");
                     Console.WriteLine("3. Set Seasonal Employee Piece Pay");
                     break;
             }
+            ///Displayed for all employee types
             Console.WriteLine("");
             Console.WriteLine("6. Preview Employee Data Entered So Far");
             Console.WriteLine("7. Discard Employee Data Entered So Far");
@@ -334,6 +369,10 @@ namespace Presentation
             Console.WriteLine("9. Return to Employee Management Menu");
         }
 
+        /// <summary>
+        /// Method: SpecifyNameOrRateOrDateOrSIN()
+        /// Will take either name, or rate or date or sin to serch for employee
+        /// </summary>
         public String SpecifyNameOrRateOrDateOrSIN(String what, String question)
         {
             String input = "";
@@ -345,11 +384,16 @@ namespace Presentation
             return input;
         }
 
+        /// <summary>
+        /// Method: SpecifySeason()
+        /// Will Diaply the options for what season the seasonal employee is hired for
+        /// </summary>
         public String SpecifySeason()
         {
             String input = "";
             while (true)
             {
+                 ///User can select wither Winter, Summer, Spring or Fall
                 Console.Clear();
                 Console.WriteLine("Specify Season for the Contract Employee");
                 Console.WriteLine("\t1. Winter");
@@ -386,9 +430,14 @@ namespace Presentation
 
         }
 
+        /// <summary>
+        /// Method: SpecifiyBaseEmployee()
+        /// Will Diaply the base atributes of all employees
+        /// </summary>
         public Employee SpecifiyBaseEmployee(String type)
         {
             String fName, lName, dob, SIN;
+            //If not a contract employee has been selected
             if (type != "CT")
             {
                 while (true)
@@ -401,6 +450,7 @@ namespace Presentation
                     Console.WriteLine("4. Set Social Insurance Number");
                     Console.WriteLine("5. Go Back to Employee Details Menu");
                     choice = Console.ReadKey();
+                    ///For option one, allows entry of name then verifys it
                     if (choice.KeyChar == '1')
                     {
                         fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
@@ -414,6 +464,7 @@ namespace Presentation
                             Console.WriteLine("Failed to Set First Name to \"" + fName + "\"; Remain as \"" + baseEmp.GetFirstName() + "\"");
                         }
                     }
+                        ///For option two allows entry of last name then verifys it
                     else if (choice.KeyChar == '2')
                     {
                         lName = SpecifyNameOrRateOrDateOrSIN("Last Name", "Please Enter Last Name of " + type);
@@ -426,6 +477,7 @@ namespace Presentation
                             Console.WriteLine("Failed to Set Last Name to \"" + lName + "\"; Remain as \"" + baseEmp.GetLastName() + "\"");
                         }
                     }
+                        ///For option three allows entry of date of birth and verifys it
                     else if (choice.KeyChar == '3')
                     {
                         dob = SpecifyNameOrRateOrDateOrSIN("Date of Birth", "Please Enter Date of Birth of " + type);
@@ -446,6 +498,7 @@ namespace Presentation
                                 + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
                         }
                     }
+                        ///For option 4 allows entry of Scocial insurance number and verifys it
                     else if (choice.KeyChar == '4')
                     {
                         SIN = SpecifyNameOrRateOrDateOrSIN("Social Insurance Number", "Please Enter SIN number of " + type);
@@ -459,6 +512,7 @@ namespace Presentation
 
                         }
                     }
+                        ///For option 5 returns to employee details menu
                     else if (choice.KeyChar == '5')
                     {
                         break;
@@ -474,6 +528,7 @@ namespace Presentation
             }
             else
             {
+                ///For contrat employee shows special attributes
                 while (true)
                 {
                     Console.Clear();
@@ -483,6 +538,7 @@ namespace Presentation
                     Console.WriteLine("4. Set Business Number");
                     Console.WriteLine("5. Go Back to Employee Details Menu");
                     choice = Console.ReadKey();
+                    ///For option two allows entry of buissness name and verifys it
                     if (choice.KeyChar == '2')
                     {
                         lName = SpecifyNameOrRateOrDateOrSIN("Business Name", "Please Enter Business Name of " + type);
@@ -495,6 +551,7 @@ namespace Presentation
                             Console.WriteLine("Failed to Set Business Name to \"" + lName + "\"; Remain as \"" + baseEmp.GetLastName() + "\"");
                         }
                     }
+                        ///For choice three Takes date of incorporation and verifys it
                     else if (choice.KeyChar == '3')
                     {
                         dob = SpecifyNameOrRateOrDateOrSIN("Date of Incorporation", "Please Enter Date of Incorporation of " + type);
@@ -515,6 +572,7 @@ namespace Presentation
                                 + (baseEmp.GetDOB().HasValue ? ((DateTime)baseEmp.GetDOB()).ToString("yyyy-MM-dd") : "N/A") + "\"");
                         }
                     }
+                        ///for option four allows entry of buissness number and verifys it
                     else if (choice.KeyChar == '4')
                     {
                         SIN = SpecifyNameOrRateOrDateOrSIN("Business Number", "Please Enter BN number of " + type);
@@ -529,6 +587,7 @@ namespace Presentation
 
                         }
                     }
+                        ///For entry five returns to previous menu
                     else if (choice.KeyChar == '5')
                     {
                         break;
@@ -546,7 +605,10 @@ namespace Presentation
         }
 
 
-
+        /// <summary>
+        /// Method: MenuFourToCreate()
+        /// Creates instance of a new employee and sets the attributs to what the user has previously defined
+        /// </summary>
         public void MenuFourToCreate(String shortType, Object toDelete, bool modify)
         {
             if (!modify)
@@ -558,6 +620,7 @@ namespace Presentation
             }
             while (true)
             {
+                //Shows the options for menu four
                 PrintMenuFourOptions(shortType);
                 
                 choice = Console.ReadKey();
@@ -1152,6 +1215,11 @@ namespace Presentation
                 }
             }
         }
+
+        /// <summary>
+        /// Method: MenuFourToModify()
+        /// Opens the modify employee menu and allows user to specify which feild they would like to modify
+        /// </summary>
         public void MenuFourToModify()
         {
             String input = "";
@@ -1160,6 +1228,8 @@ namespace Presentation
             Console.WriteLine("Please enter SIN/BN of Employee you wish to modify:");
             input = Console.ReadLine();
             Employee e = new Employee();
+           ///For each employee in the container checks for user defined sin number 
+           ///Signifying which employee they would like to modify
             foreach (Object o in company.container)
             {
                 e = (Employee)o;
@@ -1171,6 +1241,10 @@ namespace Presentation
                     Console.WriteLine("Press any key to continue:");
                     Console.ReadKey();
                     baseEmp = (Employee)o;
+                    ///Checks the object for employee type
+                    ///creates new employee object to be modified
+                    ///if user is happy with the modifications object is stored to the container
+                    ///replacing previouse employee data.
                     if (o is FulltimeEmployee)
                     {
                         type = "FT";
