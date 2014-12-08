@@ -389,9 +389,16 @@ namespace AllEmployees
                 }
                 else
                 {
-                    log.writeLog(
-                        produceLogString("SET", firstName, fName, "SUCCESS")
-                                         + "\nDetail: Called to set type to Contract Employee thus blank first name");
+                    try
+                    {
+                        log.writeLog(
+                            produceLogString("SET", firstName, fName, "SUCCESS")
+                                             + "\nDetail: Called to set type to Contract Employee thus blank first name");
+                    }
+                    catch(Exception e)
+                    {
+                        
+                    }
                     firstName = fName;
                     retV = true;
                 }

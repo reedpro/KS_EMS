@@ -126,6 +126,18 @@ namespace Presentation
                 ///Call to WriteFile()
                 if(company.SaveContainer())
                 {
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\n\n[ ! ] The Container is Empty and and DB File will be overwritten with EMPTY File");
+                        Console.WriteLine("\tAre You Sure You Would Like To Save the Current Container?");
+                        Console.WriteLine("\tYES[y] No[any_key]");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            company.container.Clear();
+                        }
+                    }
                     Console.Clear();
                     Console.WriteLine("\nDatabase Successfully Saved");
                     Console.WriteLine("\n\nPress Any Key to Return to Previous Menu");
@@ -457,7 +469,7 @@ namespace Presentation
                     ftEmp.SetLastName(baseEmp.GetLastName());
                     ptEmp.SetLastName(baseEmp.GetLastName());
                     snEmp.SetLastName(baseEmp.GetLastName());
-                    ctEmp.SetLastName(baseEmp.GetFirstName());
+                    ctEmp.SetLastName(baseEmp.GetLastName());
 
                     ftEmp.SetDOB(baseEmp.GetDOB());
                     ptEmp.SetDOB(baseEmp.GetDOB());
@@ -568,11 +580,8 @@ namespace Presentation
                                     e = (Employee)o;
                                     if (e.GetSIN() == ftEmp.GetSIN())
                                     {
-                                        duplicate = true;
-                                        if(modify)
-                                        {
-                                            company.container.Remove(e);
-                                        }
+                                        break;
+                                        company.container.Remove(e);
                                     }
                                 }
                                 if (duplicate == false)
@@ -586,18 +595,7 @@ namespace Presentation
                                 }
                                 else
                                 {
-                                    if (modify)
-                                    {
-                                        company.AddFullTimeEmployee(ftEmp);
-                                        Console.Clear();
-                                        Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
-                                        ftEmp.Details(false);
-                                        ftEmp = new FulltimeEmployee();
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("ERROR: An employee with this sin number already exists");
-                                    }
+                                    Console.WriteLine("ERROR: An employee with this sin number already exists");
                                 }
                             }
                             else
@@ -715,36 +713,15 @@ namespace Presentation
                                     e = (Employee)o;
                                     if (e.GetSIN() == ptEmp.GetSIN())
                                     {
-                                        duplicate = true;
-                                        if (modify)
-                                        {
-                                            company.container.Remove(e);
-                                        }
+                                        company.container.Remove(e);
+                                        break;
                                     }
                                 }
-                                if (duplicate == false)
-                                {
                                     company.AddPartTimeEmployee(ptEmp);
                                     Console.Clear();
-                                    Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
+                                    Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
                                     ptEmp.Details(false);
                                     ptEmp = new ParttimeEmployee();
-                                }
-                                else
-                                {
-                                    if (modify)
-                                    {
-                                        company.AddPartTimeEmployee(ptEmp);
-                                        Console.Clear();
-                                        Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
-                                        ptEmp.Details(false);
-                                        ptEmp = new ParttimeEmployee();
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("ERROR: An employee with this sin number already exists");
-                                    }
-                                }
                             }
                             else
                             {
@@ -863,47 +840,15 @@ namespace Presentation
                                     e = (Employee)o;
                                     if (e.GetSIN() == ctEmp.GetSIN())
                                     {
-                                        duplicate = true;
-                                        if (modify)
-                                        {
-                                            company.container.Remove(e);
-                                        }
+                                        company.container.Remove(e);
+                                        break;
                                     }
                                 }
-                                 if (duplicate == false)
-                                 {
-                                     company.AddContractEmployee(ctEmp);
-                                     Console.Clear();
-                                     Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                     ctEmp.Details(false);
-                                     ctEmp = new ContractEmployee();
-                                 }
-                                 else
-                                 {
-                                     if (modify)
-                                     {
-                                         company.AddContractEmployee(ctEmp);
-                                         Console.Clear();
-                                         Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
-                                         ctEmp.Details(false);
-                                         ctEmp = new ContractEmployee();
-                                     }
-                                     else
-                                     {
-                                         if (modify)
-                                         {
-                                             company.AddContractEmployee(ctEmp);
-                                             Console.Clear();
-                                             Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
-                                             ctEmp.Details(false);
-                                             ctEmp = new ContractEmployee();
-                                         }
-                                         else
-                                         {
-                                             Console.WriteLine("ERROR: An employee with this sin number already exists");
-                                         }
-                                     }
-                                 }
+                                company.AddContractEmployee(ctEmp);
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                ctEmp.Details(false);
+                                ctEmp = new ContractEmployee();
                             }
                             else
                             {
@@ -981,6 +926,36 @@ namespace Presentation
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee data has NOT been reset");
                                 snEmp.Details(false);
+                            }
+                        }
+                        else if (choice.KeyChar == '8')
+                        {
+                            Employee e = new Employee();
+                            bool duplicate = false;
+                            if ((snEmp.Validate()).Length <= 0)
+                            {
+                                foreach (Object o in company.container)
+                                {
+                                    e = (Employee)o;
+                                    if (e.GetSIN() == snEmp.GetSIN())
+                                    {
+                                        company.container.Remove(e);
+                                        break;
+                                    }
+                                }
+                                company.AddSeasonalEmployee(snEmp);
+                                Console.Clear();
+                                Console.WriteLine(type + "Employee with the following details has been successfully modified to the Company container");
+                                ctEmp.Details(false);
+                                ctEmp = new ContractEmployee();
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine(ctEmp.Validate());
+                                Console.WriteLine(type + "Employee data has NOT been added");
+
                             }
                         }
                         else if (choice.KeyChar == '9')
