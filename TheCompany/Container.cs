@@ -192,11 +192,11 @@ namespace TheCompany
         /// </summary>
         public Int32 Display()
         {
+            Console.Clear();
             int count = 0;
             Employee e = new Employee();
             foreach (Object emp in container)
             {
-                Console.Clear();
                 e = (Employee)emp;
                 e.Details(true);
                 count++;
@@ -224,7 +224,7 @@ namespace TheCompany
             }
             foreach (var emp in list)
             {
-                dbFile.dBaseOpen_W(emp);
+                dbFile.dBaseOpen_W(emp, true);
             }
             result = (list.Count == container.Count);
             return result;
@@ -241,6 +241,9 @@ namespace TheCompany
             bool result = true;
             string[] fileContents; // create string to hold file contents
             string[] input;
+            Int32 validCount = 0;
+            Int32 lineCount = 0;
+            Int32 entryCount = 0;
             Employee e = new Employee();
             bool duplicate = false;
             fileContents = dbFile.dBaseOpen_R(); // fill the string with file contents
@@ -248,8 +251,10 @@ namespace TheCompany
             Console.Clear();
             foreach (string s in fileContents)
             {
+                lineCount++;
                 if (s != "")
                 {
+                    entryCount++;
                     input = s.Split('|');
                     if (s[0] == 'F')
                     {
@@ -257,7 +262,7 @@ namespace TheCompany
                         if (!f.SetLastName(input[1]) || !f.SetFirstName(input[2]) || !f.SetSIN(input[3]) || !f.SetDOB(input[4]) || !f.SetDateOfHire(input[5]) || !f.SetDateOfTermination(input[6]) || !f.SetSalary(input[7]))
                         {
                             log.writeLog(f.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                            Console.WriteLine("L"+lineCount+"_E"+entryCount+"::"+"Loading the Entry \"" + s + "\"" + " Has Failed");
                             result = false;
                         }
                         else
@@ -276,8 +281,9 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                                 Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                duplicate = false;
                                 result = false;
                             }
                         }
@@ -289,7 +295,7 @@ namespace TheCompany
                         if (!p.SetLastName(input[1]) || !p.SetFirstName(input[2]) || !p.SetSIN(input[3]) || !p.SetDOB(input[4]) || !p.SetDateOfHire(input[5]) || !p.SetDateOfTermination(input[6]) || !p.SetHourlyRate(input[7]))
                         {
                             log.writeLog(p.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                             result = false;
                         }
                         else
@@ -308,8 +314,9 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                                 Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                duplicate = false;
                                 result = false;
                             }
                         }
@@ -320,7 +327,7 @@ namespace TheCompany
                         if (!c.SetLastName(input[1]) || !c.SetFirstName(input[2]) || !c.SetSIN(input[3]) || !c.SetDOB(input[4]) || !c.SetContractStartDate(input[5]) || !c.SetContractEndDate(input[6]) || !c.SetFixedContractAmt(input[7]))
                         {
                             log.writeLog(c.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                             result = false;
                         }
                         else
@@ -339,8 +346,9 @@ namespace TheCompany
                              }
                              else
                              {
-                                 Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                                 Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                                  Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                 duplicate = false;
                                  result = false;
                              }
                         }
@@ -351,7 +359,7 @@ namespace TheCompany
                         if (!n.SetLastName(input[1]) || !n.SetFirstName(input[2]) || !n.SetSIN(input[3]) || !n.SetDOB(input[4]) || !n.SetSeason(input[5]) || !n.SetPiecePay(input[6]))
                         {
                             log.writeLog(n.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
-                            Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                            Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                             result = false;
                         }
                         else
@@ -370,8 +378,9 @@ namespace TheCompany
                             }
                             else
                             {
-                                Console.WriteLine("Loading the Entry \"" + s + "\"" + " Has Failed");
+                                Console.WriteLine("L"+lineCount+"_E" + entryCount + "::" + "Loading the Entry \"" + s + "\"" + " Has Failed");
                                 Console.WriteLine("\tERROR: An employee with this sin number already exists");
+                                duplicate = false;
                                 result = false;
                             }
                         }

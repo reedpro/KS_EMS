@@ -62,14 +62,19 @@ namespace Supporting
         /// the parameter string array elements to the file, delimited by pipes.
         /// </summary>
         /// <param name="path">A string containing the path of the file to open</param>
-        public void dBaseOpen_W(string[] employeeData)
+        public void dBaseOpen_W(string[] employeeData, bool overwrite)
         {
             // create the DBase folder if it doesn't already exist
             if (!Directory.Exists(Path.Combine(dbasePath, "DBase")))
             {
                 Directory.CreateDirectory(Path.Combine(dbasePath, "DBase"));
             }
-            
+
+            if (System.IO.File.Exists(dbFilePath) || overwrite == true)
+            {
+                System.IO.File.Delete(dbFilePath); //try/catch exception handling needs to be implemented
+            }
+
             // write to dbase file (formatted)
             using (StreamWriter dBase_W = File.AppendText(dbFilePath))
             {

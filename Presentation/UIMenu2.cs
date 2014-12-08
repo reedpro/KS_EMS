@@ -200,8 +200,8 @@ namespace Presentation
                 if (choice.KeyChar == '1')
                 {
                     int count = company.Display();
-                    Console.WriteLine(count + " Employees stored successfully");
-                    Console.WriteLine("Press any key to continue");
+                    Console.WriteLine("\n\n>>>>>>>>>>>> " +count + " Employees stored successfully");
+                    Console.WriteLine("Press Any Key to Go to Previous Menu");
                     Console.ReadKey();
                 }
                 else if (choice.KeyChar == '2')
