@@ -25,7 +25,7 @@ namespace TheCompany
     public class Container
     {
         string dBaseFile = Path.Combine(Directory.GetCurrentDirectory(), "DBase", "DB.csv"); // dbase filepath
-
+        Logging log = new Logging();
         /// <summary>
         /// The container holding any number and any type of employee-type classes
         /// </summary>
@@ -260,9 +260,72 @@ namespace TheCompany
         /// <returns>A boolean indicating whether the operation was successful</returns>
         public bool LoadContainer()
         {
-            bool result = false;
+            bool result = true;
             string[] fileContents; // create string to hold file contents
+            string[] input;
             fileContents = dbFile.dBaseOpen_R(); // fill the string with file contents
+            container.Clear();
+            foreach (string s in fileContents)
+            {
+                if (s != "")
+                {
+                    input = s.Split('|');
+                    if (s[0] == 'F')
+                    {
+                        FulltimeEmployee f = new FulltimeEmployee();
+                        if (!f.SetLastName(input[1]) || !f.SetFirstName(input[2]) || !f.SetSIN(input[3]) || !f.SetDOB(input[4]) || !f.SetDateOfHire(input[5]) || !f.SetDateOfTermination(input[6]) || !f.SetSalary(input[7]))
+                        {
+                            log.writeLog(f.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
+                            result = false;
+                        }
+                        else
+                        {
+                            container.Add(f);
+                        }
+
+                    }
+                    else if (s[0] == 'P')
+                    {
+                        ParttimeEmployee p = new ParttimeEmployee();
+                        if (!p.SetLastName(input[1]) || !p.SetFirstName(input[2]) || !p.SetSIN(input[3]) || !p.SetDOB(input[4]) || !p.SetDateOfHire(input[5]) || !p.SetDateOfTermination(input[6]) || !p.SetHourlyRate(input[7]))
+                        {
+                            log.writeLog(p.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
+                            result = false;
+                        }
+                        else
+                        {
+                            container.Add(p);
+                        }
+                    }
+                    else if (s[0] == 'C')
+                    {
+                        ContractEmployee c = new ContractEmployee();
+                        if (!c.SetLastName(input[1]) || !c.SetFirstName(input[2]) || !c.SetSIN(input[3]) || !c.SetDOB(input[4]) || !c.SetContractStartDate(input[5]) || !c.SetContractEndDate(input[6]) || !c.SetFixedContractAmt(input[7]))
+                        {
+                            log.writeLog(c.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
+                            result = false;
+                        }
+                        else
+                        {
+                            container.Add(c);
+                        }
+                    }
+                    else if (s[0] == 'S')
+                    {
+                        SeasonalEmployee n = new SeasonalEmployee();
+                        if (!n.SetLastName(input[1]) || !n.SetFirstName(input[2]) || !n.SetSIN(input[3]) || !n.SetDOB(input[4]) || !n.SetSeason(input[5]) || !n.SetPiecePay(input[6]))
+                        {
+                            log.writeLog(n.produceLogString("LOAD", "1 entry corrupt", "", "FAILED"));
+                            result = false;
+                        }
+                        else
+                        {
+                            container.Add(n);
+                        }
+                    }
+                }
+            }
+            Console.ReadKey();
             return result;
         }
 
