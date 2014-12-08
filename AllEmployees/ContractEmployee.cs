@@ -390,9 +390,9 @@ namespace AllEmployees
         protected override String ConsoleDetails()
         {
             String output = "";
-            output += "\tContract Start Date:\t\t\"" + (contractStartDate.HasValue ? ((DateTime)contractStartDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
-            output += "\tContract End Date:\t\t\t\"" + (contractEndDate.HasValue ? ((DateTime)contractEndDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
-            output += "\tFixed Contract Amount:\t\t" + fixedContractAmt.ToString("0.00");
+            output += "\tContract Start Date:\t\"" + (contractStartDate.HasValue ? ((DateTime)contractStartDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\tContract End Date:\t\t\"" + (contractEndDate.HasValue ? ((DateTime)contractEndDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\tFixed Contract Amount:\t" + fixedContractAmt.ToString("0.00");
             return output;
         }
 
