@@ -179,7 +179,7 @@ namespace Presentation
                 if (choice.KeyChar == '1')
                 {
                     int count = company.Display();
-                    Console.WriteLine("Total " + count + "Number of Employ Records Stored");
+                    Console.WriteLine(count + " Employees stored successfully");
                     Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
                 }
@@ -191,7 +191,7 @@ namespace Presentation
 
                 else if (choice.KeyChar == '3')
                 {
-                    //MenuFourToModify();
+                    MenuFourToModify();
                     break;
                 }
                 else if (choice.KeyChar == '4')
@@ -270,7 +270,7 @@ namespace Presentation
             Console.WriteLine("");
             Console.WriteLine("6. Preview Employee Data Entered So Far");
             Console.WriteLine("7. Discard Employee Data Entered So Far");
-            Console.WriteLine("8. Add Employee Data Entered to Employee Set");
+            Console.WriteLine("8. Save Employee");
             Console.WriteLine("9. Return to Employee Management Menu");
         }
 
@@ -513,6 +513,9 @@ namespace Presentation
                             {
                                 Console.Clear();
                                 ftEmp = new FulltimeEmployee();
+                                ptEmp = new ParttimeEmployee();
+                                ctEmp = new ContractEmployee();
+                                snEmp = new SeasonalEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
                                 ftEmp.Details(false);
                             }
@@ -623,7 +626,10 @@ namespace Presentation
                             if (c.KeyChar == 'y')
                             {
                                 Console.Clear();
+                                ftEmp = new FulltimeEmployee();
                                 ptEmp = new ParttimeEmployee();
+                                ctEmp = new ContractEmployee();
+                                snEmp = new SeasonalEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
                                 ptEmp.Details(false);
                             }
@@ -736,7 +742,10 @@ namespace Presentation
                             if (c.KeyChar == 'y')
                             {
                                 Console.Clear();
+                                ftEmp = new FulltimeEmployee();
+                                ptEmp = new ParttimeEmployee();
                                 ctEmp = new ContractEmployee();
+                                snEmp = new SeasonalEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
                                 ctEmp.Details(false);
                             }
@@ -821,6 +830,9 @@ namespace Presentation
                             if (c.KeyChar == 'y')
                             {
                                 Console.Clear();
+                                ftEmp = new FulltimeEmployee();
+                                ptEmp = new ParttimeEmployee();
+                                ctEmp = new ContractEmployee();
                                 snEmp = new SeasonalEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
                                 snEmp.Details(false);
@@ -848,9 +860,48 @@ namespace Presentation
                 }
             }
         }
-        public void MenuFourToModify(String SIN, String action)
+        public void MenuFourToModify()
         {
-
+            String input = "";
+            string type = "";
+            Console.WriteLine("Please enter SIN/BN of Employee you wish to modify:");
+            input = Console.ReadLine();
+            Employee e = new Employee();
+            foreach (Object o in company.container)
+            {
+                e = (Employee)o;
+                if (e.GetSIN() == input)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Found:");
+                    e.Details(false);
+                    Console.WriteLine("Press any key to continue:");
+                    Console.ReadKey();
+                    baseEmp = (Employee)o;
+                    if (o is FulltimeEmployee)
+                    {
+                        type = "FT";
+                        ftEmp = (FulltimeEmployee)o;
+                    }
+                    else if (o is ParttimeEmployee)
+                    {
+                        type = "PT";
+                        ptEmp = (ParttimeEmployee)o;
+                    }
+                    else if (o is ContractEmployee)
+                    {
+                        type = "CT";
+                        ctEmp = (ContractEmployee)o;
+                    }
+                    else if (o is SeasonalEmployee)
+                    {
+                        type = "SN";
+                        snEmp = (SeasonalEmployee)o;
+                    }
+                    MenuFourToCreate(type);
+                    break;
+                }
+            }
         }
 
         #region jordan's code

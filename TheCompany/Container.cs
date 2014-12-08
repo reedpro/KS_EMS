@@ -196,24 +196,14 @@ namespace TheCompany
             Employee e = new Employee();
             foreach (Object emp in container)
             {
+                Console.Clear();
                 e = (Employee)emp;
                 e.Details(true);
+                Console.WriteLine("PRESS ANY KEY TO CONTINUE");
+                Console.ReadKey();
                 count++;
             }
             return count;
-        }
-
-        /// <summary>
-        /// Method Name: ModifyEmployee
-        /// This function is called to update an employee listed in the database based on the SIN number.
-        /// </summary>
-        /// <param name="SIN">the SIN number of the employee that will be updated</param>
-        /// <returns>A boolean indicating whether the modifying operation was successful</returns>
-        public bool ModifyEmployee(String SIN)
-        {
-            bool result = false;
-            // To do
-            return result;
         }
 
         /// <summary>
