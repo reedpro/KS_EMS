@@ -24,15 +24,28 @@ namespace AllEmployees
         private DateTime? dateOfTermination;
         private Decimal hourlyRate;
 
+        /// <summary>
+        /// Getter for dateofHire variable
+        /// </summary>
+        /// <returns>the actual variable contents</returns>
         public DateTime? GetDateOfHire()
         {
             return dateOfHire;
         }
+
+        /// <summary>
+        /// getter for dateOfTermination
+        /// </summary>
+        /// <returns>the actual date of termination value</returns>
         public DateTime? GetDateOfTermination()
         {
             return dateOfTermination;
         }
 
+        /// <summary>
+        /// getter for hourlyRate
+        /// </summary>
+        /// <returns>hourlyRate value</returns>
         public Decimal GetHourlyRate()
         {
             return hourlyRate;
@@ -71,6 +84,12 @@ namespace AllEmployees
             dateOfTermination = tDate;
             hourlyRate = rate;
         }
+
+        /// <summary>
+        /// setter for dateOfHire variable (datetime)
+        /// </summary>
+        /// <param name="hDate">the date to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetDateOfHire(DateTime? hDate)
         {
             bool retV = false;
@@ -84,6 +103,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for dateOfHire variable (string)
+        /// </summary>
+        /// <param name="hDateStr">the date to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetDateOfHire(String hDateStr)
         {
             bool retV = false;
@@ -101,6 +125,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for dateOfTermination (datetime)
+        /// </summary>
+        /// <param name="tDate">the date to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetDateOfTermination(DateTime? tDate)
         {
             bool retV = false;
@@ -114,6 +143,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for dateOfTermination (string)
+        /// </summary>
+        /// <param name="tDateStr">the date to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetDateOfTermination(String tDateStr)
         {
             bool retV = false;
@@ -131,17 +165,32 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// Check method for HourlyRate - field validation (decimal)
+        /// </summary>
+        /// <param name="hRate">the decimal value to check</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool CheckHourlyRate(Decimal hRate)
         {
             return hRate > 0m;
         }
-
+        
+        /// <summary>
+        /// Check method for hourlyRate - field validation (string)
+        /// </summary>
+        /// <param name="hRateStr">the string value to check</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool CheckHourlyRate(String hRateStr)
         {
             Decimal newSal;
             return Decimal.TryParse(hRateStr, out newSal) && CheckHourlyRate(newSal);
         }
 
+        /// <summary>
+        /// setter for hourlyRate (decimal)
+        /// </summary>
+        /// <param name="hRate">the decimal rate to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetHourlyRate(Decimal hRate)
         {
             bool retV = false;
@@ -159,6 +208,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for hourlyRate (string)
+        /// </summary>
+        /// <param name="hRateStr">the string rate to set</param>
+        /// <returns>a bool indicating success or failure</returns>
         public bool SetHourlyRate(String hRateStr)
         {
             bool retV = false;
@@ -170,11 +224,14 @@ namespace AllEmployees
             return retV;
         }
 
-
+        /// <summary>
+        /// validation method for dateOfHire
+        /// </summary>
+        /// <returns>a bool indicating success or failure</returns>
         private bool validateDOH()
         {
             bool retV = false;
-            if (dateOfHire == null)
+            if (dateOfHire == null) /// dateOfHire is null
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "FAIL")
                                             + "\nDetails: Date of Hire cannot be NULL\n");
@@ -185,6 +242,7 @@ namespace AllEmployees
                 DateTime DOH_MinDate = (DateTime)dateOfBirth;
                 DateTime DOH_MaxDate = (dateOfTermination.HasValue ? (DateTime)dateOfTermination : DateTime.Now);
 
+                /// check to make sure the date is within valid range
                 if (CheckDateRange(DOH_MinDate, DOH_MaxDate, newDOH) == true)
                 {
                     log.writeLog(
@@ -201,14 +259,21 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validation for dateOfTermination()
+        /// </summary>
+        /// <returns>a bool indicating success or failure</returns>
         private bool validateDOT()
         {
             bool retV = false;
+            /// date can be blank
             if (dateOfTermination == null)
             {
                 log.writeLog(produceLogString("VALIDATE", "", "N/A", "SUCCESS"));
                 retV = true;
             }
+            /// check the range and log
             else
             {
                 DateTime DOT_MinDate = (DateTime)dateOfHire;
@@ -229,15 +294,22 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validation for hourlyRate
+        /// </summary>
+        /// <returns>a bool indicating success or failure</returns>
         private bool validateHourlyRate()
         {
             bool retV = false;
-
+            /// check the rate and make sure it's not 0
             if (CheckHourlyRate(hourlyRate) && hourlyRate != 0)
             {
+                /// then log and set return to true
                 log.writeLog(produceLogString("VALIDATE", "", hourlyRate.ToString("0.00"), "SUCCESS"));
                 retV = true;
             }
+            /// or its invalid
             else
             {
                 log.writeLog(produceLogString("VALIDATE", "", hourlyRate.ToString("0.00"), "FAIL") + "\nDetails: Hourly Rate must be bigger than 0\n");
@@ -246,6 +318,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// set up the employee to be stored to the database
+        /// </summary>
+        /// <returns>List<String> of formatted employee for database storage</returns>
         public override List<String> DatabaseDetails()
         {
             List<String> output = new List<String>();
@@ -256,22 +332,30 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// validate the entire employee
+        /// </summary>
+        /// <returns>a bool indicating success or failure</returns>
         public override String Validate()
         {
             String output = "";
             String msg = "";
+            /// validate base employee variables
             if ((msg = base.Validate()).Length > 0)
             {
                 output += msg;
             }
+            /// validate dateOfHire
             if (validateDOH() == false)
             {
                 output += "\nIncorrect Date of Hire:\t\"" + (dateOfHire.HasValue ? ((DateTime)dateOfHire).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
+            /// validate dateOfTermination
             if (validateDOT() == false)
             {
                 output += "\nIncorrect Date of Termination:\t\"" + (dateOfTermination.HasValue ? ((DateTime)dateOfTermination).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
+            /// validateHourlyRate
             if (validateHourlyRate() == false)
             {
                 output += "\nIncorrect Hourly Rate:\t\"" + hourlyRate.ToString("0.00") + "\"";
@@ -279,6 +363,10 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// method formats the console output for the class information
+        /// </summary>
+        /// <returns>returns the formatted string of data</returns>
         protected override String ConsoleDetails()
         {
             String output = "";
@@ -287,7 +375,6 @@ namespace AllEmployees
             output += "\r\n\tHourly Rate:\t\t\t\"" + hourlyRate.ToString("0.00") + "\"";
             return output;
         }
-
 
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
