@@ -297,20 +297,23 @@ namespace AllEmployees
         protected override String ConsoleDetails()
         {
             String output = "";
-            output += "\n\tDate of Hire:\t\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\n\tDate of Hire:\t\t\t" + "\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
             output += "\n\tDate of Termination:\t" + "\"" + (dateOfTermination.HasValue ? dateOfTermination.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
-            output += "\n\tSalary:\t\t\t" + "\"" + salary.ToString("0.00") + "\"";
+            output += "\n\tSalary:\t\t\t\t\t" + "\"" + salary.ToString("0.00") + "\"";
             return output;
         }
 
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
-        public override void Details()
+        public override void Details(bool logging)
         {
             String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
             Console.WriteLine(consoleOutput);
-            log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
+            if (logging)
+            {
+                log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
+            }
         }
     }
 }

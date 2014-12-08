@@ -221,19 +221,22 @@ namespace AllEmployees
         protected override String ConsoleDetails()
         {
             String output = "";
-            output += "\tSeason:\t\t" + season;
-            output += "\tPiece Pay:\t" + piecePay.ToString("0.00");
+            output += "\tSeason:\t\t\t\t\t" + season;
+            output += "\tPiece Pay:\t\t\t\t" + piecePay.ToString("0.00");
             return output;
         }
 
         /// <summary>
         /// Method is called upon to output (to the screen) all attribute values for the class.
         /// </summary>
-        public override void Details()
+        public override void Details(bool logging)
         {
             String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
             Console.WriteLine(consoleOutput);
-            log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
+            if (logging)
+            {
+                log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
+            }
         }
     }
 }

@@ -366,7 +366,7 @@ namespace Presentation
 
                 if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
                 {
-                    baseEmp.Details();
+                    baseEmp.Details(false);
                     Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
                     Console.ReadKey();
                 }
@@ -467,13 +467,13 @@ namespace Presentation
                         else if (choice.KeyChar == '6')
                         {
                             Console.Clear();
-                            ftEmp.Details();
+                            ftEmp.Details(true);
                         }
                         else if (choice.KeyChar == '7')
                         {
                             Console.Clear();
                             Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
-                            ftEmp.Details();
+                            ftEmp.Details(false);
                             ConsoleKeyInfo c = new ConsoleKeyInfo();
                             c = Console.ReadKey();
                             if (c.KeyChar == 'y')
@@ -481,13 +481,13 @@ namespace Presentation
                                 Console.Clear();
                                 ftEmp = new FulltimeEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
-                                ftEmp.Details();
+                                ftEmp.Details(false);
                             }
                             else
                             {
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee data has NOT been reset");
-                                ftEmp.Details();
+                                ftEmp.Details(false);
                             }
                         }
                         else if (choice.KeyChar == '8')
@@ -497,7 +497,7 @@ namespace Presentation
                                 company.AddFullTimeEmployee(ftEmp);
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ftEmp.Details();
+                                ftEmp.Details(false);
                                 ftEmp = new FulltimeEmployee();
                             }
                             else
@@ -574,13 +574,13 @@ namespace Presentation
                         else if (choice.KeyChar == '6')
                         {
                             Console.Clear();
-                            ptEmp.Details();
+                            ptEmp.Details(true);
                         }
                         else if (choice.KeyChar == '7')
                         {
                             Console.Clear();
                             Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
-                            ftEmp.Details();
+                            ftEmp.Details(false);
                             ConsoleKeyInfo c = new ConsoleKeyInfo();
                             c = Console.ReadKey();
                             if (c.KeyChar == 'y')
@@ -588,13 +588,13 @@ namespace Presentation
                                 Console.Clear();
                                 ptEmp = new ParttimeEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
-                                ptEmp.Details();
+                                ptEmp.Details(false);
                             }
                             else
                             {
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee data has NOT been reset");
-                                ptEmp.Details();
+                                ptEmp.Details(false);
                             }
                         }
                         else if (choice.KeyChar == '8')
@@ -604,7 +604,7 @@ namespace Presentation
                                 company.AddPartTimeEmployee(ptEmp);
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ptEmp.Details();
+                                ptEmp.Details(false);
                                 ptEmp = new ParttimeEmployee();
                             }
                             else
@@ -683,13 +683,13 @@ namespace Presentation
                         else if (choice.KeyChar == '6')
                         {
                             Console.Clear();
-                            ctEmp.Details();
+                            ctEmp.Details(true);
                         }
                         else if (choice.KeyChar == '7')
                         {
                             Console.Clear();
                             Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
-                            ctEmp.Details();
+                            ctEmp.Details(false);
                             ConsoleKeyInfo c = new ConsoleKeyInfo();
                             c = Console.ReadKey();
                             if (c.KeyChar == 'y')
@@ -697,13 +697,13 @@ namespace Presentation
                                 Console.Clear();
                                 ctEmp = new ContractEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
-                                ctEmp.Details();
+                                ctEmp.Details(false);
                             }
                             else
                             {
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee data has NOT been reset");
-                                ctEmp.Details();
+                                ctEmp.Details(false);
                             }
                         }
                         else if (choice.KeyChar == '8')
@@ -713,7 +713,7 @@ namespace Presentation
                                 company.AddContractEmployee(ctEmp);
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee with the following details has been successfully added to the Company container");
-                                ctEmp.Details();
+                                ctEmp.Details(false);
                                 ctEmp = new ContractEmployee();
                             }
                             else
@@ -764,13 +764,13 @@ namespace Presentation
                         else if (choice.KeyChar == '6')
                         {
                             Console.Clear();
-                            snEmp.Details();
+                            snEmp.Details(true);
                         }
                         else if (choice.KeyChar == '7')
                         {
                             Console.Clear();
                             Console.WriteLine("Are you sure you want to discard data entered for this employee? YES[y] No[any_key]");
-                            snEmp.Details();
+                            snEmp.Details(false);
                             ConsoleKeyInfo c = new ConsoleKeyInfo();
                             c = Console.ReadKey();
                             if (c.KeyChar == 'y')
@@ -778,13 +778,13 @@ namespace Presentation
                                 Console.Clear();
                                 snEmp = new SeasonalEmployee();
                                 Console.WriteLine(type + "Employee data has been successfully reset");
-                                snEmp.Details();
+                                snEmp.Details(false);
                             }
                             else
                             {
                                 Console.Clear();
                                 Console.WriteLine(type + "Employee data has NOT been reset");
-                                snEmp.Details();
+                                snEmp.Details(false);
                             }
                         }
 

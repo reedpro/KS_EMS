@@ -195,7 +195,7 @@ namespace TheCompany
             int count = 0;
             foreach (Employee emp in container)
             {
-                emp.Details();
+                emp.Details(true);
                 count++;
             }
             return count;

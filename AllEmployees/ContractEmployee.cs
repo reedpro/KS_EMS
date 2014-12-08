@@ -282,6 +282,27 @@ namespace AllEmployees
             }
             return output;
         }
+        protected override String ConsoleDetails()
+        {
+            String output = "";
+            output += "\tContract Start Date:\t\t\"" + (contractStartDate.HasValue ? ((DateTime)contractStartDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\tContract End Date:\t\t\t\"" + (contractEndDate.HasValue ? ((DateTime)contractEndDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\tFixed Contract Amount:\t\t" + fixedContractAmt.ToString("0.00");
+            return output;
+        }
 
+
+        /// <summary>
+        /// Method is called upon to output (to the screen) all attribute values for the class.
+        /// </summary>
+        public override void Details(bool logging)
+        {
+            String consoleOutput = base.ConsoleDetails() + this.ConsoleDetails();
+            Console.WriteLine(consoleOutput);
+            if (logging)
+            {
+                log.writeLog(produceLogString("DETAILS", "", "", "") + "\nInput: \n" + consoleOutput);
+            }
+        }
     }
 }

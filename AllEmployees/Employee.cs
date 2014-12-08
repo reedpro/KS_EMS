@@ -647,10 +647,10 @@ namespace AllEmployees
                         output += "<Seasonal Employee>\n";
                         goto default;
                     default:
-                        output += "\tLast Name:\t\t" + "\"" + lastName + "\"";
-                        output += "\n\tFirst Name:\t\t" + "\"" + firstName + "\"";
-                        output += "\n\tSIN:\t\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(3, " ").Insert(7, " ") : "") + "\"";
-                        output += "\n\tDate of Birth:\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+                        output += "\tLast Name:\t\t\t" + "\"" + lastName + "\"";
+                        output += "\n\tFirst Name:\t\t\t" + "\"" + firstName + "\"";
+                        output += "\n\tSIN:\t\t\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(3, " ").Insert(7, " ") : "") + "\"";
+                        output += "\n\tDate of Birth:\t\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
                         break;
                 }
             }
@@ -704,7 +704,7 @@ namespace AllEmployees
         /// <summary>
         /// A virtual Details function that will be called to print details of base employee object to the console.
         /// </summary>
-        public virtual void Details()
+        public virtual void Details(bool logging)
         {
             String consoleOutput = ConsoleDetails();
             Console.WriteLine(consoleOutput);
