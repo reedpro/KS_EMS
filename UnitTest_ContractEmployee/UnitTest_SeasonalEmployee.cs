@@ -41,7 +41,7 @@ namespace UnitTest_AllEmployees
 
             actual = val.SetSeason(input);
 
-            Assert.AreEqual(expected, actual, "Accepted false contract end date");
+            Assert.AreEqual(expected, actual, "Did not accept proper Season");
         }
 
         ///
@@ -112,6 +112,54 @@ namespace UnitTest_AllEmployees
 
             Assert.AreEqual(expected, actual, "Allowed improper piece pay");
         }
+
+
+        ///
+        /// <para><b>Test Identifier</b> - CheckPiecePay_decimal_NormalTest1()</para>
+        /// <para><b>Unique Identifier</b> - AE.SE.CPP.N.1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the piecePay variable</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - "10.50"</para>
+        /// <para><b>Expected outputs</b> - "10.50" set correctly for variable: piecePay</para>
+        /// <para><b>Observed outputs</b> - "10.50" set correctly for variable: piecePay</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
+        /// 
+        [TestMethod]
+        public void CheckPiecePay_decimal_NormalTest1()
+        {
+            SeasonalEmployee val = new SeasonalEmployee();
+            Decimal input = 10.50m;
+            bool expected = true;
+            bool actual = false;
+
+            actual = val.CheckPiecePay(input);
+
+            Assert.AreEqual(expected, actual, "Failed to check piece pay input");
+        }
+
+        ///
+        /// <para><b>Test Identifier</b> - CheckSeason_NormalTest1()</para>
+        /// <para><b>Unique Identifier</b> - AE.SE.CS.N.1</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the season variable</para>
+        /// <para><b>Method of execution</b> - Automatic</para>
+        /// <para><b>Input data</b> - "Winter"</para>
+        /// <para><b>Expected outputs</b> - "Winter" set correctly for variable: season</para>
+        /// <para><b>Observed outputs</b> - "Winter" set correctly for variable: season</para>
+        /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
+        /// 
+        [TestMethod]
+        public void CheckSeason_NormalTest1()
+        {
+            SeasonalEmployee val = new SeasonalEmployee();
+            string input = "Winter";
+            bool expected = true;
+            bool actual = false;
+
+            actual = val.CheckSeason(input);
+
+            Assert.AreEqual(expected, actual, "Valid season rejected");
+        }
+
     }
 }
 
