@@ -360,7 +360,7 @@ namespace AllEmployees
         /// <summary>
         /// Validate method validates all fields to determine if entire employee is valid
         /// </summary>
-        /// <returns>output</returns>
+        /// <returns>the validity string prudent to the current scenario</returns>
         public override String Validate()
         {
             String output = "";
