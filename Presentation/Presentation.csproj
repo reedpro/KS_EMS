@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIMenu2.cs" />
+    <Compile Include="UIMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AllEmployees\AllEmployees.csproj">

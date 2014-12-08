@@ -395,7 +395,7 @@ namespace AllEmployees
                             produceLogString("SET", firstName, fName, "SUCCESS")
                                              + "\nDetail: Called to set type to Contract Employee thus blank first name");
                     }
-                    catch(Exception e)
+                    catch(Exception)
                     {
                         
                     }

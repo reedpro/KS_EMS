@@ -401,7 +401,6 @@ namespace AllEmployees
         public override String Validate()
         {
             String output = "";
-            String msg = "";
             if (firstName != "")
             {
                 output += "\nInvalid First Name:\t\"" + firstName + "\"";
