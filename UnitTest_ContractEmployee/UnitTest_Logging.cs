@@ -47,7 +47,7 @@ namespace UnitTest_Supporting
 
 
         ///
-        /// <para><b>Test Identifier</b> - WriteLog_NormalTest()</para>
+        /// <para><b>Test Identifier</b> - WriteLog_NormalTest2()</para>
         /// <para><b>Unique Identifier</b> - TS.L.WL.E.1</para>
         /// <para><b>Description</b> - Method tests the writing to the log while it is not open</para>
         /// <para><b>Method of execution</b> - Automatic</para>
@@ -57,7 +57,7 @@ namespace UnitTest_Supporting
         /// <para><b>If Failed</b> -Will not write to loggin file</para>
         /// 
         [TestMethod]
-        public void writeLog_NormalTest1()
+        public void writeLog_NormalTest2()
         {
             Logging val = new Logging();
             string input = "TestWithOneString";
