@@ -308,16 +308,16 @@ namespace Presentation
             {
                 Console.Clear();
                 Console.WriteLine("Menu 4.1: Specify Base Employee Details");
-                if (type != "Contract")
+                if (type != "CT")
                 {
-                    Console.WriteLine("1. Set Firt Name");
+                    Console.WriteLine("1. Set First Name");
                 }
                 Console.WriteLine("2. Set Last Name");
                 Console.WriteLine("3. Set Date Of Birth");
                 Console.WriteLine("4. Set Social Insurance Number");
                 Console.WriteLine("5. Go Back to Employee Details Menu");
                 choice = Console.ReadKey();
-                if ((choice.KeyChar == '1') && (type != "Contract"))
+                if ((choice.KeyChar == '1') && (type != "CT"))
                 {
                     fName = SpecifyNameOrRateOrDateOrSIN("First Name", "Please Enter First Name of " + type);
                     Console.WriteLine("You wrote " + fName);
@@ -380,7 +380,7 @@ namespace Presentation
                     break;
                 }
 
-                if ((choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
+                if ((type != "CT" && choice.KeyChar == '1') || (choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '5'))
                 {
                     baseEmp.Details(false);
                     Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
@@ -695,7 +695,7 @@ namespace Presentation
                         else if (choice.KeyChar == '4')
                         {
                             fixedContractAmtStr = SpecifyNameOrRateOrDateOrSIN("Fixed Contract Amount", "Please Enter Fixed Contract Amount of " + type);
-                            if (ctEmp.CheckFixedContractAmt(fixedContractAmtStr))
+                            if (ctEmp.SetFixedContractAmt(fixedContractAmtStr))
                             {
                                 Console.WriteLine("Contract Fixed Contract Amount Successfully Set to \"" + ctEmp.GetFixedContractAmt().ToString("0.00") + "\"");
                             }

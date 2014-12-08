@@ -46,6 +46,7 @@ namespace AllEmployees
             : base()
         {
             dateOfHire = null;
+            SetType("PT");
             dateOfTermination = null;
             hourlyRate = 0.00M;
 
@@ -281,9 +282,9 @@ namespace AllEmployees
         protected override String ConsoleDetails()
         {
             String output = "";
-            output += "\tDate of Hire:\t\t\t\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
-            output += "\tDate of Termination:\t" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A");
-            output += "\tHourly Rate:\t\t\t\t" + hourlyRate.ToString("0.00");
+            output += "\r\n\tDate of Hire:\t\t\t\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\r\n\tDate of Termination:\t\t\"" + (dateOfHire.HasValue ? dateOfHire.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+            output += "\r\n\tHourly Rate:\t\t\t\"" + hourlyRate.ToString("0.00") + "\"";
             return output;
         }
 

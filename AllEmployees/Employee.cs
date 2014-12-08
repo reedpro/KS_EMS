@@ -550,7 +550,7 @@ namespace AllEmployees
         /// Last name validating method that is called by Validate() function.
         /// </summary>
         /// <returns>A boolean indicating whether the obejct has valid last name attribute or not.</returns>
-        private bool validateLastName()
+        public bool validateLastName()
         {
             bool retV = false;
             if (lastName != null)
@@ -583,7 +583,7 @@ namespace AllEmployees
         /// DOB validating method that is called by Validate() function.
         /// </summary>
         /// <returns>A boolean indicating whether the obejct has valid dateofBirth attribute or not.</returns>
-        private bool validateDOB()
+        public bool validateDOB()
         {
             bool retV = false;
 
@@ -611,7 +611,7 @@ namespace AllEmployees
         /// SIN validating method that is called by Validate() function.
         /// </summary>
         /// <returns>A boolean indicating whether the obejct has valid SIN attribute or not.</returns>
-        private bool validateSIN()
+        public bool validateSIN()
         {
             bool retV = false;
             if (validateSIN(socialInsuranceNumber) == true)
@@ -654,10 +654,10 @@ namespace AllEmployees
             }
             else
             {
-                output += "<Contract Employee>\n";
-                output += "\n\tBusiness Name:\t\t" + lastName;
+                output += "<Contract Employee>";
+                output += "\n\tBusiness Name:\t\t\t\"" + lastName + "\"";
                 output += "\n\tBusiness Number:\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(4, " ") : "") + "\"";
-                output += "\n\tDate of Incorporation:\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
+                output += "\n\tDate of Incorporation:\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
             return output;
         }

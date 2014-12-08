@@ -228,8 +228,8 @@ namespace AllEmployees
         protected override String ConsoleDetails()
         {
             String output = "";
-            output += "\tSeason:\t\t\t\t\t" + season;
-            output += "\tPiece Pay:\t\t\t\t" + piecePay.ToString("0.00");
+            output += "\r\n\tSeason:\t\t\t\t\"" + season + "\"";
+            output += "\r\n\tPiece Pay:\t\t\t\"" + piecePay.ToString("0.00") + "\"";
             return output;
         }
 

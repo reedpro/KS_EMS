@@ -34,6 +34,7 @@ namespace AllEmployees
             contractStartDate = null;
             contractEndDate = null;
             fixedContractAmt = 0.00M;
+            SetType("CT");
         }
 
         /// <summary>
@@ -364,9 +365,21 @@ namespace AllEmployees
         {
             String output = "";
             String msg = "";
-            if ((msg = base.Validate()).Length > 0)
+            if (firstName != "")
             {
-                output += msg;
+                output += "\nInvalid First Name:\t\"" + firstName + "\"";
+            }
+            if (base.validateLastName() == false)
+            {
+                output += "\nInvalid Last Name:\t\"" + lastName + "\"";
+            }
+            if (base.validateSIN() == false)
+            {
+                output += "\nInvalid SIN:\t\"" + socialInsuranceNumber + "\"";
+            }
+            if (base.validateDOB() == false)
+            {
+                output += "\nInvalid Date of Birth:\t\"" + (dateOfBirth.HasValue ? ((DateTime)dateOfBirth).ToString("yyyy-MM-dd") : "N/A") + "\"";
             }
             if (validateCSD() == false)
             {
@@ -392,7 +405,7 @@ namespace AllEmployees
             String output = "";
             output += "\r\n\tContract Start Date:\t\t\"" + (contractStartDate.HasValue ? ((DateTime)contractStartDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
             output += "\r\n\tContract End Date:\t\t\"" + (contractEndDate.HasValue ? ((DateTime)contractEndDate).ToString("yyyy-MM-dd") : "N/A") + "\"";
-            output += "\r\n\tFixed Contract Amount:\t\t" + fixedContractAmt.ToString("0.00");
+            output += "\r\n\tFixed Contract Amount:\t\t\"" + fixedContractAmt.ToString("0.00") + "\"";
             return output;
         }
 
