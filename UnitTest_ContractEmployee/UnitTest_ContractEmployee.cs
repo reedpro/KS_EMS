@@ -25,8 +25,8 @@ namespace UnitTest_AllEmployees
         /// <para><b>Unique Identifier</b> - AE.E.SCSD.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method</para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "10/13/2014"</para>
-        /// <para><b>Expected outputs</b> - "10/13/2014" set correctly for SIN of that employee</para>
+        /// <para><b>Input data</b> - "2014/12/03"</para>
+        /// <para><b>Expected outputs</b> - "2014/12/03" set correctly for SIN of that employee</para>
         /// <para><b>Observed outputs</b> - passed</para>
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         /// 
@@ -34,7 +34,7 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetContractStartDate_NormalTest1()
         {
-            string input = "10/13/2014";
+            string input = "2014/12/03";
             bool expected = true;
             bool actual = false;
 
@@ -51,7 +51,7 @@ namespace UnitTest_AllEmployees
         /// <para><b>Description</b> - Method tests the regular use of the method</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "10/13/2014"</para>
-        /// <para><b>Expected outputs</b> - "10/13/2014" set correctly for SIN of that employee</para>
+        /// <para><b>Expected outputs</b> - "2014/12/07" set correctly for SIN of that employee</para>
         /// <para><b>Observed outputs</b> - passed</para>
         /// <para><b>If Failed</b> - Displays failed message regarding setting the variable</para>
         /// 
@@ -59,7 +59,7 @@ namespace UnitTest_AllEmployees
         [TestMethod]
         public void SetContractStartDate_NormalTest2()
         {
-            string input = "1/13/2014";
+            string input = "2014/12/07";
             bool expected = true;
             bool actual = false;
 
