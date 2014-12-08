@@ -54,16 +54,28 @@ namespace AllEmployees
             SetType("SN");
         }
 
+        /// <summary>
+        /// Getter for season
+        /// </summary>
+        /// <returns>the value of season</returns>
         public String GetSeason()
         {
             return season;
         }
+
+        /// <summary>
+        /// Getter for Piece Pay
+        /// </summary>
+        /// <returns>the value of piece pay</returns>
         public Decimal GetPiecePay()
         {
             return piecePay;
         }
 
-
+        /// <summary>
+        /// formats output for database contents
+        /// </summary>
+        /// <returns>returns the list</returns>
         public override List<String> DatabaseDetails()
         {
             List<String> output = new List<String>();
@@ -113,6 +125,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// Validate method for season object
+        /// </summary>
+        /// <returns>bool indicating validity</returns>
         public bool ValidateSeason()
         {
             bool retV = false;
@@ -225,6 +241,10 @@ namespace AllEmployees
             return output;
         }
 
+        /// <summary>
+        /// Formats console output for the two variables in this class
+        /// </summary>
+        /// <returns>the formatted string for printing</returns>
         protected override String ConsoleDetails()
         {
             String output = "";
