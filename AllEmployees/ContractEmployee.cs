@@ -231,8 +231,7 @@ namespace AllEmployees
             Decimal newFixedContractAmt;
             if (Decimal.TryParse(fAmtStr, out newFixedContractAmt))
             {
-                SetFixedContractAmt(newFixedContractAmt);
-                retV = true;
+                retV = SetFixedContractAmt(newFixedContractAmt);
             }
             return retV;
         }
@@ -252,8 +251,8 @@ namespace AllEmployees
             else
             {
                 DateTime newCSD = (DateTime)contractStartDate;
-                DateTime CSD_MinDate = (DateTime)dateOfBirth;
-                DateTime CSD_MaxDate = (DateTime)contractEndDate;
+                DateTime? CSD_MinDate = (DateTime)dateOfBirth;
+                DateTime? CSD_MaxDate = (DateTime)contractEndDate;
 
                 if (CheckDateRange(CSD_MinDate, CSD_MaxDate, newCSD) == true)
                 {
