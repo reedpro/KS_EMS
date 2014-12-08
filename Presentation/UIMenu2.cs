@@ -89,33 +89,44 @@ namespace Presentation
 
         public void MenuTwo()
         {
-            while (true)
+            Console.Clear();
+            Console.WriteLine("Menu 2: File Managment Menu");
+            Console.WriteLine("1. Load EMS DBase From File");
+            Console.WriteLine("2. Save Employee set to EMS Dbase");
+            Console.WriteLine("9. Return To Main Menu ");
+            choice = Console.ReadKey();
+            if (choice.KeyChar == '1')
+            {                    
+                ///Display File List (option to feed the file name to loadcontainer??)
+                if(!company.LoadContainer())
+                {
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("One or more of the database entries was corrupt. Load anyway? 'y' or 'n'");
+                        choice = Console.ReadKey();
+                        if (choice.KeyChar == 'y')
+                        {
+                            break;
+                        }
+                        else if (choice.KeyChar == 'n')
+                        {
+                            company.container.Clear();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            else if (choice.KeyChar == '2')
             {
-                Console.Clear();
-                Console.WriteLine("Menu 2: File Managment Menu");
-                Console.WriteLine("1. Load EMS DBase From File");
-                Console.WriteLine("2. Save Employee set to EMS Dbase");
-                Console.WriteLine("9. Return To Main Menu ");
-                choice = Console.ReadKey();
-                if (choice.KeyChar == '1')
-                {
-                    ///Display File List (option to feed the file name to loadcontainer??)
-                    company.LoadContainer();
-                    break;
-                }
+                ///Call to WriteFile()
+                company.SaveContainer();
+            }
 
-                else if (choice.KeyChar == '2')
-                {
-                    ///Call to WriteFile()
-                    company.SaveContainer();
-                    break;
-                }
-
-                else if (choice.KeyChar == '9')
-                {
-                    MenuOne();
-                    break;
-                }
+            else if (choice.KeyChar == '9')
+            {
+                MenuOne();
             }
 
         }
@@ -124,7 +135,7 @@ namespace Presentation
         {
             String employeeType = "";
             Console.Clear();
-            Console.WriteLine("You must specify the type of employee you are interested in");
+            Console.WriteLine("Please select employee type:");
             Console.WriteLine("\t1. Full Time Employee");
             Console.WriteLine("\t2. Part Time Employee");
             Console.WriteLine("\t3. Contract Employee");

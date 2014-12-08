@@ -325,7 +325,6 @@ namespace TheCompany
                     }
                 }
             }
-            Console.ReadKey();
             return result;
         }
 

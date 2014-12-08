@@ -189,7 +189,7 @@ namespace AllEmployees
             int j = 0;
             if (inSin == "")
             {
-                returnVal = true;
+                returnVal = false;
             }
             else
             {
@@ -639,20 +639,18 @@ namespace AllEmployees
                 {
                     case "FT":
                         output += "<Full Time Employee>\n";
-                        goto default;
+                        break;
                     case "PT":
                         output += "<Part Time Employee>\n";
-                        goto default;
+                        break;
                     case "SN":
                         output += "<Seasonal Employee>\n";
-                        goto default;
-                    default:
+                        break;
+                }
                         output += "\tLast Name:\t\t\t" + "\"" + lastName + "\"";
                         output += "\n\tFirst Name:\t\t\t" + "\"" + firstName + "\"";
                         output += "\n\tSIN:\t\t\t\t" + "\"" + (socialInsuranceNumber != "" ? socialInsuranceNumber.Insert(3, " ").Insert(7, " ") : "") + "\"";
-                        output += "\n\tDate of Birth:\t\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";
-                        break;
-                }
+                        output += "\n\tDate of Birth:\t\t\t" + "\"" + (dateOfBirth.HasValue ? dateOfBirth.Value.ToString("yyyy-MM-dd") : "N/A") + "\"";              
             }
             else
             {
