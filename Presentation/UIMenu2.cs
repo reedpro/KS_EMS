@@ -163,7 +163,8 @@ namespace Presentation
         {
             ///<VAR manType = "String">The users specified type of manipulation
             ///either to create or Remove an Employee</Var>
-            String manType = "";
+            String input = "";
+            Employee e = new Employee();
             while (true)
             {
                 Console.Clear();
@@ -184,35 +185,51 @@ namespace Presentation
                 }
                 else if (choice.KeyChar == '2')
                 {
-                    manType = "Create";
                     MenuFourToCreate(AskForEmployeeType());
                     //break;
                 }
 
                 else if (choice.KeyChar == '3')
                 {
-                    manType = "Modify";
-                    //MenuFour(manType);
+                    //MenuFourToModify();
                     break;
                 }
                 else if (choice.KeyChar == '4')
                 {
-                    Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
-                    Console.WriteLine("Press 1 for YES.");
-                    Console.WriteLine("Press 2 for NO.");
-                    choice = Console.ReadKey();
-                    if (choice.KeyChar == '1')
+                    Console.Clear();
+                    Console.WriteLine("Please enter SIN/BN of Employee to delete:");
+                    input = Console.ReadLine();
+                    input.Replace(" ", "");
+                    foreach(Object o in company.container)
                     {
-                        ///TO DO Call RemoveEmployee()      //////////////////////////////////////////////////
-                        Console.WriteLine("Employee Removed Successfully.");
-                        MenuThree();
-                        break;
-                    }
-                    else if (choice.KeyChar == '2')
-                    {
-                        Console.WriteLine("Employee Was NOT Removed");
-                        MenuThree();
-                        break;
+                        e = (Employee)o;
+                        if(e.GetSIN() == input)
+                        {
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Found:");
+                                e.Details(false);
+                                Console.WriteLine("Are You Sure You Would Like To Remove Employee?");
+                                Console.WriteLine("Press 1 for YES.");
+                                Console.WriteLine("Press 2 for NO.");
+                                choice = Console.ReadKey();
+                                if (choice.KeyChar == '1')
+                                {
+                                    company.container.Remove(o);
+                                    Console.WriteLine("Employee Removed Successfully. Press any key to continue:");
+                                    Console.ReadKey();
+                                    break;
+                                }
+                                else if (choice.KeyChar == '2')
+                                {
+                                    Console.WriteLine("Employee Was NOT Removed. Press any key to continue:");
+                                    Console.ReadKey();
+                                    break;
+                                }
+                            }
+                            break;
+                        }
                     }
                 }
                 else if (choice.KeyChar == '9')
@@ -831,7 +848,7 @@ namespace Presentation
                 }
             }
         }
-        public void MenuFourToModify(String SIN)
+        public void MenuFourToModify(String SIN, String action)
         {
 
         }
