@@ -21,19 +21,22 @@ namespace UnitTest_FileIO
     public class UnitTest_FileIO
     {
         ///
-        /// <para><b>Test Identifier</b> - dataBaseOpen_R_Normal1()</para>
+        /// <para><b>Test Identifier</b> - dBaseOpen_W_Normal1()</para>
         /// <para><b>Unique Identifier</b> - TS.FIO.DBOR.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to open an existing file </para>
         /// <para><b>Method of execution</b> - Automatic</para>
-        /// <para><b>Input data</b> - "C:\Windows\Test.txt"</para>
+        /// <para><b>Input data</b> - ""</para>
         /// <para><b>Expected outputs</b> - "File opened safely</para>
         /// <para><b>Observed outputs</b> - "File opened</para>
         /// <para><b>If Failed</b> - Displays failed message regarding opening the file</para>
         /// 
         [TestMethod]
-        public void dataBaseOpen_R_NormalTest1()
+        public void dBaseOpen_W_NormalTest1()
         {
-
+            String[] input = { "test1" ,"test2" };
+            FileIO file = new FileIO();
+            file.dBaseOpen_W(input);
+           //This Test must be manually checked to ensure that the test strings have been written to a file
         }
 
         ///
