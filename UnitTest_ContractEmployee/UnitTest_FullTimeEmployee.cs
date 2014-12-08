@@ -93,7 +93,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - SetDateOfTermination_ExceptionTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.FTE.SDT.E.1</para>
-        /// <para><b>Description</b> - Method tests exceptional use of the method, attempting to set the dateOfTermination variable to illegal data type</para>
+        /// <para><b>Description</b> - Method tests exceptional use of the method</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "Yesterday"</para>
         /// <para><b>Expected outputs</b> - "false" rejected as input</para>
@@ -115,7 +115,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - CheckSalary_NormalTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.FTE.CS.N.1</para>
-        /// <para><b>Description</b> - Method tests exceptional use of the method, attempting to set the dateOfTermination variable to illegal data type</para>
+        /// <para><b>Description</b> - Method tests exceptional use of the method</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "13.00"</para>
         /// <para><b>Expected outputs</b> - "13.00" rejected as input</para>
@@ -137,7 +137,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - SetSalary_NormalTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.FTE.SS.N.1</para>
-        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the dateOfTermination variable</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the sallary variable</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "13.00"</para>
         /// <para><b>Expected outputs</b> - "13.00" set correctly for variable: SetSallary</para>
@@ -160,7 +160,7 @@ namespace UnitTest_AllEmployees
         ///
         /// <para><b>Test Identifier</b> - SetSalary_NormalTest1()</para>
         /// <para><b>Unique Identifier</b> - AE.FTE.SS.N.1</para>
-        /// <para><b>Description</b> - Method tests the regular use of the method, attempting to set the dateOfTermination variable</para>
+        /// <para><b>Description</b> - Method tests the regular use of the method</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "13.00"</para>
         /// <para><b>Expected outputs</b> - "13.00" set correctly for variable: SetSallary</para>

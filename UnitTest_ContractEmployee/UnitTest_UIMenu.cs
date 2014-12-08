@@ -127,6 +127,23 @@ namespace UnitTest_UIMenu
         ///
 
 
+
+        ///
+        /// <para><b>Test Identifier</b> - AskForEmployeeType_Normal Test</para>
+        /// <para><b>Unique Identifier</b> - P.UI.AFET.N.1</para>
+        /// <para><b>Description</b> - This set of tests will ensure each menu option can be accessed. Each menu option will be selected to make sure it leads to the corresponding menu.  </para>
+        /// <para><b>Method of execution</b> - These test will be entered manually, by entering each number in the menu list, and checking the outcome.  </para>
+        /// <para><b>Input data</b> - "1, 2, 3, 4, "</para>
+        /// <para><b>Expected outputs</b> - "1 Entered Full employee is selected for new entry</para>
+        /// <para> 2 Entered Part Time Employee is selected for new entry</para> 
+        /// <para> 3 Entered Contract Employee is selected for new entry</para>
+        /// <para> 4 entered Seasonal employee is selected for new entry</para>
+        /// <para> 9 Entered returns to main menu</para>
+        ///<para> *After 12345 cases have been entered user will be prompted to enter each field the class contains. Other automated testing will ensure that these fields only accept the correct input.</para> 
+        /// <para><b>Observed outputs</b> - TBD</para>
+        /// <para><b>If Failed</b> - "Displays failed Error message regarding use of menu three"</para>
+        ///
+
     }
 }
 
