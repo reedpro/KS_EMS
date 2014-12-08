@@ -251,8 +251,12 @@ namespace AllEmployees
             else
             {
                 DateTime newCSD = (DateTime)contractStartDate;
-                DateTime? CSD_MinDate = (DateTime)dateOfBirth;
-                DateTime? CSD_MaxDate = (DateTime)contractEndDate;
+                DateTime CSD_MinDate = (DateTime)dateOfBirth;
+                DateTime CSD_MaxDate = new DateTime();
+                if (contractEndDate != null)
+                {
+                    CSD_MaxDate = (DateTime)contractEndDate;
+                }
 
                 if (CheckDateRange(CSD_MinDate, CSD_MaxDate, newCSD) == true)
                 {
