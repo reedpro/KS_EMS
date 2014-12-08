@@ -136,13 +136,13 @@ namespace Presentation
                     employeeType = "FT";
                     break;
                 case '2':
-                    employeeType = "PT";
+                    employeeType = "FT";
                     break;
                 case '3':
-                    employeeType = "CT";
+                    employeeType = "FT";
                     break;
                 case '4':
-                    employeeType = "SN";
+                    employeeType = "FT";
                     break;
             }
             return employeeType;
@@ -622,10 +622,6 @@ namespace Presentation
                                 Console.WriteLine(type + "Employee data has NOT been added");
                             }
                         }
-                        else if(choice.KeyChar == '9')
-                        {
-                            break;
-                        }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
@@ -736,10 +732,6 @@ namespace Presentation
 
                             }
                         }
-                        else if(choice.KeyChar == '9')
-                        {
-                            break;
-                        }
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '4') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
                         {
                             Console.WriteLine("Press Any Key to Go Back to Previous Menu and Make Other Changes");
@@ -801,10 +793,6 @@ namespace Presentation
                                 Console.WriteLine(type + "Employee data has NOT been reset");
                                 snEmp.Details(false);
                             }
-                        }
-                        else if(choice.KeyChar == '9')
-                        {
-                            break;
                         }
 
                         if ((choice.KeyChar == '2') || (choice.KeyChar == '3') || (choice.KeyChar == '6') || (choice.KeyChar == '7') || (choice.KeyChar == '8'))
