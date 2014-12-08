@@ -56,19 +56,38 @@ namespace AllEmployees
             fixedContractAmt = rate;
         }
 
+        /// <summary>
+        /// Get the contractStartDate
+        /// </summary>
+        /// <returns>the contents of contractEndDate</returns>
         public DateTime? GetContractStartDate()
         {
             return contractStartDate;
         }
+
+        /// <summary>
+        /// get the contractEndDate
+        /// </summary>
+        /// <returns>the contents of the contractendDate</returns>
         public DateTime? GetContractEndDate()
         {
             return contractEndDate;
         }
+
+        /// <summary>
+        /// getter for fixedContractAmoutn
+        /// </summary>
+        /// <returns>the fixedContractAmt</returns>
         public Decimal GetFixedContractAmt()
         {
             return fixedContractAmt;
         }
 
+        /// <summary>
+        /// Set the contractStartDate (datetime)
+        /// </summary>
+        /// <param name="cStartDate"></param>
+        /// <returns>a bool to find out of the method was successful</returns>
         public bool SetContractStartDate(DateTime? cStartDate)
         {
             bool retV = false;
@@ -82,6 +101,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// Set the contractStart date (string)
+        /// </summary>
+        /// <param name="cStartDateStr"></param>
+        /// <returns>a bool to find out of the method was successful</returns>
         public bool SetContractStartDate(String cStartDateStr)
         {
             bool retV = false;
@@ -98,6 +122,12 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// set contractEndDate
+        /// </summary>
+        /// <param name="cEndDate"></param>
+        /// <returns>a bool to find out of the method was successful</returns>
         public bool SetContractEndDate(DateTime? cEndDate)
         {
             bool retV = false;
@@ -111,6 +141,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// set contractEndDate variable
+        /// </summary>
+        /// <param name="cEndDateStr"></param>
+        /// <returns>a bool to find out of the method was successful</returns>
         public bool SetContractEndDate(String cEndDateStr)
         {
             bool retV = false;
@@ -128,20 +163,32 @@ namespace AllEmployees
             return retV;
         }
 
-
-
-
+        /// <summary>
+        /// the check method for the fixedContractAmt variable (decimal)
+        /// </summary>
+        /// <param name="fAmt">a bool to find out of the method was successful</param>
+        /// <returns></returns>
         public bool CheckFixedContractAmt(Decimal fAmt)
         {
             return fAmt > 0;
         }
 
+        /// <summary>
+        /// the check method for the fixedContractAmt variable (string)
+        /// </summary>
+        /// <param name="fAmtStr">a bool to find out of the method was successful</param>
+        /// <returns></returns>
         public bool CheckFixedContractAmt(String fAmtStr)
         {
             Decimal newFixedAmount;
             return Decimal.TryParse(fAmtStr, out newFixedAmount) && CheckFixedContractAmt(newFixedAmount);
         }
 
+        /// <summary>
+        /// setter for the fixedContractAmt (decimal)
+        /// </summary>
+        /// <param name="fAmt">a bool to find out of the method was successful</param>
+        /// <returns></returns>
         public bool SetFixedContractAmt(Decimal fAmt)
         {
             bool retV = false;
@@ -159,6 +206,11 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// setter for the FixedContractAmt variable (string)
+        /// </summary>
+        /// <param name="fAmtStr"></param>
+        /// <returns>a bool to find out of the method was successful</returns>
         public bool SetFixedContractAmt(String fAmtStr)
         {
             bool retV = false;
@@ -171,7 +223,10 @@ namespace AllEmployees
             return retV;
         }
 
-
+        /// <summary>
+        /// validate constractStartDate
+        /// </summary>
+        /// <returns>a bool to find out of the method was successful</returns>
         private bool validateCSD()
         {
             bool retV = false;
@@ -202,6 +257,11 @@ namespace AllEmployees
             }
             return retV;
         }
+
+        /// <summary>
+        /// validate for contractEndDate
+        /// </summary>
+        /// <returns>a bool to find out of the method was successful</returns>
         private bool validateCED()
         {
             bool retV = false;
@@ -233,6 +293,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// validate fixedContractAmoutn
+        /// </summary>
+        /// <returns>a bool to find out of the method was successful</returns>
         private bool validateFixedContractAmt()
         {
             bool retV = false;
@@ -260,6 +324,10 @@ namespace AllEmployees
             return retV;
         }
 
+        /// <summary>
+        /// validates all fields to determine the validity of the object as a whole
+        /// </summary>
+        /// <returns></returns>
         public override String Validate()
         {
             String output = "";
