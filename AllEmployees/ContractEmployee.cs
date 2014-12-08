@@ -336,9 +336,20 @@ namespace AllEmployees
         private bool validateBusinessNumber()
         {
             bool retV = false;
+            string num = this.GetSIN(); // get sin 
+            string year;
+            DateTime date = (DateTime)this.GetDOB();
+            year = String.Format("{0: yy}", date); // store year (yy)
 
-
-
+            if ((num[0] == year[2] && num[1] == year[3]) && (CheckSIN(num) == true))
+            {
+                log.writeLog(produceLogString("VALIDATE", "", GetSIN(), "SUCCESS"));
+                retV = true;
+            }
+            else
+            {
+                log.writeLog(produceLogString("VALIDATE", "", GetSIN(), "FAIL"));
+            }
             return retV;
         }
 
