@@ -47,7 +47,7 @@ namespace UnitTest_Supporting
 
         ///
         /// <para><b>Test Identifier</b> - openLog_Normal2()</para>
-        /// <para><b>Unique Identifier</b> - TS.L.OL.N.1</para>
+        /// <para><b>Unique Identifier</b> - TS.L.WL.N.1</para>
         /// <para><b>Description</b> - Method tests the regular use of the method, attempting to open the test log</para>
         /// <para><b>Method of execution</b> - Automatic</para>
         /// <para><b>Input data</b> - "This is a test"</para>
